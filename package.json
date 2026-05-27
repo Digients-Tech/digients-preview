@@ -1,0 +1,17 @@
+{
+  "name": "digients-preview",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Client-facing data-preview portal — browse the embodied-AI data taxonomy and preview video demos. Single always-on Node (Hono) process serving the built frontend, API, and on-disk videos.",
+  "scripts": {
+    "dev": "concurrently -n web,api -c cyan,magenta \"pnpm -C web dev\" \"pnpm -C server dev\"",
+    "build": "pnpm -C web build",
+    "start": "pnpm -C server start",
+    "typecheck": "pnpm -C web typecheck && pnpm -C server typecheck",
+    "gen:samples": "pnpm -C server gen:samples"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  }
+}

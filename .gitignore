@@ -1,0 +1,27 @@
+# Secrets
+.env
+.env.local
+*.env
+
+# Packages
+node_modules/
+**/node_modules/
+
+# Build
+web/dist/
+server/dist/
+.vite/
+
+# Data
+# Preview videos live on the server disk, not in git (regenerate samples via `pnpm gen:samples`)
+videos/*
+!videos/.gitkeep
+
+# Cache
+.DS_Store
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# Tooling
+.claude/
