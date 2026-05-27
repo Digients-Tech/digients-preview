@@ -1,0 +1,10 @@
+# Caddy reverse proxy + automatic HTTPS (Let's Encrypt).
+#
+# Set the domain via the PREVIEW_DOMAIN env var, or edit the default below.
+# Point that domain's DNS A record at this box's public IP, and open ports
+# 80 + 443 in the Lightsail/EC2 firewall — Caddy handles certs from there.
+
+{$PREVIEW_DOMAIN:preview.digients.tech} {
+	encode zstd gzip
+	reverse_proxy localhost:8787
+}

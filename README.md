@@ -83,3 +83,6 @@ Re-generate the throwaway placeholders any time with `pnpm gen:samples`.
 Designed for a small always-on AWS instance (Lightsail / small EC2) in the same account as
 the main backend — **not** the `digients-api` Lambda, which has no persistent disk for the
 videos. Videos sit on the instance disk (the dataset of preview clips is small, ~GBs).
+
+Full runbook + provisioning scripts (systemd + Caddy auto-HTTPS): [`deploy/README.md`](deploy/README.md).
+One-time setup is `bash deploy/setup.sh`; redeploys are `bash deploy/update.sh`.

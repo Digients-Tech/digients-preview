@@ -1,0 +1,22 @@
+[Unit]
+Description=Digients data-preview portal
+Documentation=https://github.com/wyf-ACCEPT/digients-preview
+After=network.target
+
+[Service]
+Type=simple
+# __USER__ and __APP_DIR__ are substituted by deploy/setup.sh.
+User=__USER__
+WorkingDirectory=__APP_DIR__/server
+EnvironmentFile=/etc/digients-preview.env
+Environment=NODE_ENV=production
+# Runs `tsx src/index.ts`; pnpm is on PATH via `corepack enable`.
+ExecStart=/usr/bin/env pnpm start
+Restart=on-failure
+RestartSec=3
+# Mild hardening (videos + build are read from the checkout, which stays writable).
+NoNewPrivileges=true
+ProtectSystem=full
+
+[Install]
+WantedBy=multi-user.target

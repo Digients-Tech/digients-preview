@@ -29,6 +29,9 @@ app.use(
   cors({ origin: (o) => o ?? "*", credentials: true })
 );
 
+// --- Health (no auth) ---
+app.get("/healthz", (c) => c.text("ok"));
+
 // --- Auth ---
 app.post("/api/login", async (c) => {
   const body = await c.req.json().catch(() => ({}));
