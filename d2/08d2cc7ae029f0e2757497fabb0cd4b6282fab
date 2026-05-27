@@ -1,0 +1,43 @@
+server/src/videos.ts
+  s_2105b1640aa52a::t_4d9fe1dc65deb1 1-3,5,11-19,21-22,25-26,31,55-56,66-72,76
+  s_2105b1640aa52a::t_5a64909b330c1a 73-75
+server/package.json
+  s_2105b1640aa52a::t_cccfef6ac51c9d 10-11
+package.json
+  s_2105b1640aa52a::t_81854ee8a143d3 12-13
+web/src/components/VideoModal.tsx
+  s_2105b1640aa52a::t_2b5502c7d4db9f 2-3,8-26,60,64,67,87
+server/scripts/gen-posters.ts
+  s_2105b1640aa52a::t_79d452be74fd32 1-67
+deploy/setup.sh
+  s_2105b1640aa52a::t_4b4935de8b1b6e 41,45
+server/src/index.ts
+  s_2105b1640aa52a::t_08892f9eedcae6 55,57
+  s_2105b1640aa52a::t_7c6276aef22e06 21
+README.md
+  s_2105b1640aa52a::t_0c77cf181fcdba 81-84
+web/src/api.ts
+  s_2105b1640aa52a::t_487fc851719fe1 35-39
+.gitignore
+  s_2105b1640aa52a::t_24fc2fc961c103 16-17,20
+web/src/index.css
+  s_2105b1640aa52a::t_2728b8c8ce9729 305,310-320
+deploy/README.md
+  s_2105b1640aa52a::t_79d2772125b732 67
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.2",
+  "base_commit_sha": "d208d2cc7ae029f0e2757497fabb0cd4b6282fab",
+  "prompts": {},
+  "sessions": {
+    "s_2105b1640aa52a": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "ad8f6419-9ff9-47b6-91c4-57ea078c2ed3",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "wyf-ACCEPT <importwyf@gmail.com>"
+    }
+  }
+}
