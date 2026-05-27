@@ -1,0 +1,35 @@
+server/src/data.ts
+  s_2105b1640aa52a::t_bd5b5917f1bfbc 1-4,6-7,9-11,13,15-18,28-53,56-64,66-74,76-80,82-88,90-93,98-105,107-112,115,118-119
+web/src/types.ts
+  s_2105b1640aa52a::t_3bdb831614d064 2,13,20-21
+web/src/components/ScenarioPreview.tsx
+  s_2105b1640aa52a::t_2d04cf11c9ecb9 1-2,4,6,24-26,29-30,33-39,42,44-60,62-63,65-80,82
+README.md
+  s_2105b1640aa52a::t_ae9b072354cd29 71-76,80-81
+  s_2105b1640aa52a::t_4f629b77d577cb 3-6,9,13,17,22-26
+web/src/components/StatCards.tsx
+  s_2105b1640aa52a::t_07bc3e70f13376 5-6,11
+web/src/index.css
+  s_2105b1640aa52a::t_14dacb82da5ab0 129-133
+  s_2105b1640aa52a::t_c8b7672ad22331 211-234,240
+  s_2105b1640aa52a::t_854945d3f64af1 287,289
+  s_2105b1640aa52a::t_9af4175590e286 325,329-330,332
+web/src/components/TaxonomyBrowser.tsx
+  s_2105b1640aa52a::t_40b0d8080802cb 2,4-5,8-9,11,18,33,36,44,47,50-51,53-71,73,75-91,93,95-103,106
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.2",
+  "base_commit_sha": "449b8c50e9eb349c32bd9a0dc3bf733e83397dd8",
+  "prompts": {},
+  "sessions": {
+    "s_2105b1640aa52a": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "ad8f6419-9ff9-47b6-91c4-57ea078c2ed3",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "wyf-ACCEPT <importwyf@gmail.com>"
+    }
+  }
+}
