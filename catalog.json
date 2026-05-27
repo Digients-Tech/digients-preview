@@ -82,21 +82,6 @@
           ]
         }
       ]
-    },
-    {
-      "id": "gripper",
-      "name": "Gripper",
-      "icon": "gripper",
-      "domains": [
-        {
-          "id": "tabletop-manipulation",
-          "name": "Tabletop Manipulation",
-          "scenarios": [
-            { "id": "tabletop-pick", "name": "Pick & Place", "recordingCount": 8, "previews": [{ "id": "tabletop-pick-1", "label": "Pick & Place", "file": "tabletop-pick-1.mp4", "durationSec": 4 }] },
-            { "id": "tabletop-assemble", "name": "Assembly", "recordingCount": 6, "previews": [{ "id": "tabletop-assemble-1", "label": "Assembly", "file": "tabletop-assemble-1.mp4", "durationSec": 4 }] }
-          ]
-        }
-      ]
     }
   ]
 }

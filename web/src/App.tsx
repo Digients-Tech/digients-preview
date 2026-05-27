@@ -47,20 +47,27 @@ export function App() {
           <span className="topbar__logo">D</span>
           <span>Digients · Data Preview</span>
         </div>
-        <ModalityTabs
-          modalities={catalog.modalities}
-          activeId={active?.id ?? ""}
-          onSelect={setActiveId}
-        />
+        {/* Only show the modality switcher when there's more than one modality. */}
+        {catalog.modalities.length > 1 ? (
+          <ModalityTabs
+            modalities={catalog.modalities}
+            activeId={active?.id ?? ""}
+            onSelect={setActiveId}
+          />
+        ) : (
+          <span />
+        )}
         <button className="topbar__logout" onClick={doLogout}>Sign out</button>
       </header>
 
       {active && (
         <main className="content">
-          <div className={`crumb crumb--${active.icon}`}>
-            {active.icon === "ego" ? <CameraIcon className="icon" /> : <CubeIcon className="icon" />}
-            <span>{active.name}</span>
-          </div>
+          {catalog.modalities.length > 1 && (
+            <div className={`crumb crumb--${active.icon}`}>
+              {active.icon === "ego" ? <CameraIcon className="icon" /> : <CubeIcon className="icon" />}
+              <span>{active.name}</span>
+            </div>
+          )}
 
           <TaxonomyBrowser key={active.id} modality={active} />
 
