@@ -1,0 +1,102 @@
+{
+  "_comment": "Data-preview taxonomy. Two levels: domain (scene_major) -> scenario (scene_minor), matching the Capture App's SCENE_CATALOG. Edit this file to change content — no code change or rebuild needed; the server reloads it on the next request. Each scenario's previews[].file maps to a video in the videos dir (run `pnpm gen:posters` after adding clips).",
+  "modalities": [
+    {
+      "id": "ego",
+      "name": "Ego",
+      "icon": "ego",
+      "domains": [
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "scenarios": [
+            { "id": "kitchen-clean", "name": "Environment Cleaning", "recordingCount": 14, "previews": [{ "id": "kitchen-clean-1", "label": "Environment Cleaning", "file": "kitchen-clean-1.mp4", "durationSec": 4 }] },
+            { "id": "kitchen-tools", "name": "Counter & Utensil Cleaning", "recordingCount": 9, "previews": [{ "id": "kitchen-tools-1", "label": "Counter & Utensil Cleaning", "file": "kitchen-tools-1.mp4", "durationSec": 4 }] },
+            { "id": "kitchen-wash", "name": "Ingredient Washing", "recordingCount": 11, "previews": [{ "id": "kitchen-wash-1", "label": "Ingredient Washing", "file": "kitchen-wash-1.mp4", "durationSec": 4 }] },
+            { "id": "kitchen-cook", "name": "Cooking", "recordingCount": 23, "previews": [{ "id": "kitchen-cook-1", "label": "Cooking", "file": "kitchen-cook-1.mp4", "durationSec": 4 }] },
+            { "id": "kitchen-drink", "name": "Beverage Preparation", "recordingCount": 7, "previews": [{ "id": "kitchen-drink-1", "label": "Beverage Preparation", "file": "kitchen-drink-1.mp4", "durationSec": 4 }] }
+          ]
+        },
+        {
+          "id": "warehouse",
+          "name": "Warehouse",
+          "scenarios": [
+            { "id": "warehouse-sort", "name": "Sorting & Categorizing", "recordingCount": 18, "previews": [{ "id": "warehouse-sort-1", "label": "Sorting & Categorizing", "file": "warehouse-sort-1.mp4", "durationSec": 4 }] },
+            { "id": "warehouse-pack", "name": "Packing & Sealing", "recordingCount": 15, "previews": [{ "id": "warehouse-pack-1", "label": "Packing & Sealing", "file": "warehouse-pack-1.mp4", "durationSec": 4 }] },
+            { "id": "warehouse-load", "name": "Goods Handling & Loading", "recordingCount": 12, "previews": [{ "id": "warehouse-load-1", "label": "Goods Handling & Loading", "file": "warehouse-load-1.mp4", "durationSec": 4 }] },
+            { "id": "warehouse-inventory", "name": "Inventory Counting & Management", "recordingCount": 6, "previews": [{ "id": "warehouse-inventory-1", "label": "Inventory Counting & Management", "file": "warehouse-inventory-1.mp4", "durationSec": 4 }] },
+            { "id": "warehouse-clean", "name": "Site Cleaning & Maintenance", "recordingCount": 8, "previews": [{ "id": "warehouse-clean-1", "label": "Site Cleaning & Maintenance", "file": "warehouse-clean-1.mp4", "durationSec": 4 }] }
+          ]
+        },
+        {
+          "id": "delivery",
+          "name": "Delivery",
+          "scenarios": [
+            { "id": "delivery-sort", "name": "Parcel Sorting", "recordingCount": 10, "previews": [{ "id": "delivery-sort-1", "label": "Parcel Sorting", "file": "delivery-sort-1.mp4", "durationSec": 4 }] },
+            { "id": "delivery-dispatch", "name": "Parcel Loading & Dispatch", "recordingCount": 9, "previews": [{ "id": "delivery-dispatch-1", "label": "Parcel Loading & Dispatch", "file": "delivery-dispatch-1.mp4", "durationSec": 4 }] },
+            { "id": "delivery-locker", "name": "Parcel Locker Operation", "recordingCount": 5, "previews": [{ "id": "delivery-locker-1", "label": "Parcel Locker Operation", "file": "delivery-locker-1.mp4", "durationSec": 4 }] }
+          ]
+        },
+        {
+          "id": "internet",
+          "name": "Internet Café",
+          "scenarios": [
+            { "id": "internet-serve", "name": "Service Delivery", "recordingCount": 6, "previews": [{ "id": "internet-serve-1", "label": "Service Delivery", "file": "internet-serve-1.mp4", "durationSec": 4 }] },
+            { "id": "internet-operate", "name": "Equipment Control & Operation", "recordingCount": 8, "previews": [{ "id": "internet-operate-1", "label": "Equipment Control & Operation", "file": "internet-operate-1.mp4", "durationSec": 4 }] },
+            { "id": "internet-clean", "name": "Equipment & Environment Cleaning", "recordingCount": 4, "previews": [{ "id": "internet-clean-1", "label": "Equipment & Environment Cleaning", "file": "internet-clean-1.mp4", "durationSec": 4 }] }
+          ]
+        },
+        {
+          "id": "store",
+          "name": "Store",
+          "scenarios": [
+            { "id": "store-display", "name": "Product Placement & Display", "recordingCount": 13, "previews": [{ "id": "store-display-1", "label": "Product Placement & Display", "file": "store-display-1.mp4", "durationSec": 4 }] },
+            { "id": "store-bag", "name": "Product Packing & Bagging", "recordingCount": 9, "previews": [{ "id": "store-bag-1", "label": "Product Packing & Bagging", "file": "store-bag-1.mp4", "durationSec": 4 }] },
+            { "id": "store-handover", "name": "Customer Handover", "recordingCount": 7, "previews": [{ "id": "store-handover-1", "label": "Customer Handover", "file": "store-handover-1.mp4", "durationSec": 4 }] },
+            { "id": "store-clean", "name": "Storefront Cleaning & Maintenance", "recordingCount": 5, "previews": [{ "id": "store-clean-1", "label": "Storefront Cleaning & Maintenance", "file": "store-clean-1.mp4", "durationSec": 4 }] }
+          ]
+        },
+        {
+          "id": "garment",
+          "name": "Garment Workshop",
+          "scenarios": [
+            { "id": "garment-sew", "name": "Garment Sewing", "recordingCount": 16, "previews": [{ "id": "garment-sew-1", "label": "Garment Sewing", "file": "garment-sew-1.mp4", "durationSec": 4 }] },
+            { "id": "garment-fold", "name": "Garment Folding", "recordingCount": 11, "previews": [{ "id": "garment-fold-1", "label": "Garment Folding", "file": "garment-fold-1.mp4", "durationSec": 4 }] },
+            { "id": "garment-clean", "name": "Equipment & Environment Cleaning", "recordingCount": 4, "previews": [{ "id": "garment-clean-1", "label": "Equipment & Environment Cleaning", "file": "garment-clean-1.mp4", "durationSec": 4 }] }
+          ]
+        },
+        {
+          "id": "repair",
+          "name": "Repair Workshop",
+          "scenarios": [
+            { "id": "repair-fix", "name": "Repair & Assist", "recordingCount": 9, "previews": [{ "id": "repair-fix-1", "label": "Repair & Assist", "file": "repair-fix-1.mp4", "durationSec": 4 }] },
+            { "id": "repair-tidy", "name": "Workshop Tidying", "recordingCount": 5, "previews": [{ "id": "repair-tidy-1", "label": "Workshop Tidying", "file": "repair-tidy-1.mp4", "durationSec": 4 }] },
+            { "id": "repair-clean", "name": "Environment Cleaning", "recordingCount": 3, "previews": [{ "id": "repair-clean-1", "label": "Environment Cleaning", "file": "repair-clean-1.mp4", "durationSec": 4 }] }
+          ]
+        },
+        {
+          "id": "other",
+          "name": "Other",
+          "scenarios": [
+            { "id": "other-misc", "name": "Other", "recordingCount": 2, "previews": [{ "id": "other-misc-1", "label": "Other", "file": "other-misc-1.mp4", "durationSec": 4 }] }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gripper",
+      "name": "Gripper",
+      "icon": "gripper",
+      "domains": [
+        {
+          "id": "tabletop-manipulation",
+          "name": "Tabletop Manipulation",
+          "scenarios": [
+            { "id": "tabletop-pick", "name": "Pick & Place", "recordingCount": 8, "previews": [{ "id": "tabletop-pick-1", "label": "Pick & Place", "file": "tabletop-pick-1.mp4", "durationSec": 4 }] },
+            { "id": "tabletop-assemble", "name": "Assembly", "recordingCount": 6, "previews": [{ "id": "tabletop-assemble-1", "label": "Assembly", "file": "tabletop-assemble-1.mp4", "durationSec": 4 }] }
+          ]
+        }
+      ]
+    }
+  ]
+}

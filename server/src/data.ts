@@ -1,44 +1,21 @@
-// Catalog seed + counting helpers for the data-preview portal.
+// Loads the data-preview taxonomy from catalog.json at runtime (not hardcoded), so
+// content can change without touching code or rebuilding. Two levels:
+//   Modality (Ego | Gripper) -> Domain (scene_major) -> Scenario (scene_minor)
+// Each scenario carries a recording count + a few viewable preview clips.
 //
-// The taxonomy is a curated presentation layer modelled after the reference mock:
-//   Modality (Gripper | Ego) -> L1 Domain -> L2 Scenario -> L3 Task -> L4 Skill
-// Each skill carries a recording count (the green badge) and a few short, viewable
-// preview clips. This is hand-authored demo data; swap it for submission-derived
-// data once the real catalog exists.
+// The file is validated on load and cached by mtime — edit catalog.json and the next
+// request picks it up. A bad file throws a clear error rather than serving garbage.
+
+import { existsSync, readFileSync, statSync } from "node:fs";
+import { isAbsolute, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 
 export type ModalityIcon = "gripper" | "ego";
 
-export type Clip = {
-  id: string;
-  label: string;
-  file: string; // file name inside the videos directory
-  durationSec: number;
-};
-
-type SkillSeed = {
-  id: string;
-  name: string;
-  recordingCount: number; // total recordings in the dataset (illustrative)
-  previews: Clip[]; // short clips actually viewable in the portal
-};
-
-type TaskSeed = { id: string; name: string; skills: SkillSeed[] };
-type ScenarioSeed = { id: string; name: string; tasks: TaskSeed[] };
-type DomainSeed = { id: string; name: string; scenarios: ScenarioSeed[] };
-type ModalitySeed = {
-  id: string;
-  name: string;
-  icon: ModalityIcon;
-  domains: DomainSeed[];
-};
-
-// --- DTOs returned to the client (seed + computed skillCount / stats) ---
-
-export type SkillDTO = SkillSeed;
-export type TaskDTO = { id: string; name: string; skillCount: number; skills: SkillDTO[] };
-export type ScenarioDTO = { id: string; name: string; skillCount: number; tasks: TaskDTO[] };
-export type DomainDTO = { id: string; name: string; skillCount: number; scenarios: ScenarioDTO[] };
-export type ModalityStats = { domains: number; scenarios: number; tasks: number; skills: number };
+export type Clip = { id: string; label: string; file: string; durationSec: number };
+export type ScenarioDTO = { id: string; name: string; recordingCount: number; previews: Clip[] };
+export type DomainDTO = { id: string; name: string; scenarioCount: number; scenarios: ScenarioDTO[] };
+export type ModalityStats = { domains: number; scenarios: number; recordings: number };
 export type ModalityDTO = {
   id: string;
   name: string;
@@ -48,185 +25,97 @@ export type ModalityDTO = {
 };
 export type CatalogDTO = { modalities: ModalityDTO[] };
 
-// Build N preview clips for a skill. The sample generator creates matching files;
-// any missing file degrades gracefully in the UI.
-function previews(skillId: string, labels: string[]): Clip[] {
-  return labels.map((label, i) => ({
-    id: `${skillId}-${i + 1}`,
-    label,
-    file: `${skillId}-${i + 1}.mp4`,
-    durationSec: 4,
-  }));
+const CATALOG_FILE = process.env.CATALOG_FILE
+  ? isAbsolute(process.env.CATALOG_FILE)
+    ? process.env.CATALOG_FILE
+    : resolve(process.env.CATALOG_FILE)
+  : resolve(fileURLToPath(new URL("../../catalog.json", import.meta.url)));
+
+// --- tiny validators (no schema dependency) ---
+function fail(msg: string): never {
+  throw new Error(`[catalog] ${msg} (in ${CATALOG_FILE})`);
+}
+function obj(v: unknown, path: string): Record<string, unknown> {
+  if (typeof v !== "object" || v === null || Array.isArray(v)) fail(`${path} must be an object`);
+  return v as Record<string, unknown>;
+}
+function arr(v: unknown, path: string): unknown[] {
+  if (!Array.isArray(v)) fail(`${path} must be an array`);
+  return v;
+}
+function str(v: unknown, path: string): string {
+  if (typeof v !== "string" || v.length === 0) fail(`${path} must be a non-empty string`);
+  return v;
+}
+function num(v: unknown, path: string, fallback: number): number {
+  if (v === undefined) return fallback;
+  if (typeof v !== "number" || !Number.isFinite(v)) fail(`${path} must be a number`);
+  return v;
 }
 
-const SEED: ModalitySeed[] = [
-  {
-    id: "ego",
-    name: "Ego",
-    icon: "ego",
-    domains: [
-      {
-        id: "domestic-services",
-        name: "Domestic Services",
-        scenarios: [
-          {
-            id: "study",
-            name: "Study",
-            tasks: [
-              {
-                id: "organization",
-                name: "Organization",
-                skills: [
-                  { id: "organize-desk", name: "Organize Desk", recordingCount: 9, previews: previews("organize-desk", ["Clear the desktop", "Sort stationery"]) },
-                  { id: "organize-books", name: "Organize Books", recordingCount: 11, previews: previews("organize-books", ["Shelve by height", "Group by topic"]) },
-                ],
-              },
-            ],
-          },
-          {
-            id: "bedroom",
-            name: "Bedroom",
-            tasks: [
-              {
-                id: "tidying",
-                name: "Tidying",
-                skills: [
-                  { id: "make-bed", name: "Make Bed", recordingCount: 7, previews: previews("make-bed", ["Smooth the duvet"]) },
-                  { id: "fold-clothes", name: "Fold Clothes", recordingCount: 5, previews: previews("fold-clothes", ["Fold a t-shirt"]) },
-                ],
-              },
-            ],
-          },
-          {
-            id: "living-room",
-            name: "Living Room",
-            tasks: [
-              {
-                id: "cleaning",
-                name: "Cleaning",
-                skills: [
-                  { id: "wipe-table", name: "Wipe Coffee Table", recordingCount: 6, previews: previews("wipe-table", ["Wipe down the surface"]) },
-                  { id: "vacuum-rug", name: "Vacuum Rug", recordingCount: 4, previews: previews("vacuum-rug", ["Vacuum the rug"]) },
-                ],
-              },
-            ],
-          },
-          {
-            id: "kitchen",
-            name: "Kitchen",
-            tasks: [
-              {
-                id: "dishwashing",
-                name: "Dishwashing",
-                skills: [
-                  { id: "load-dishwasher", name: "Load Dishwasher", recordingCount: 8, previews: previews("load-dishwasher", ["Load the plates"]) },
-                  { id: "unload-dishwasher", name: "Unload Dishwasher", recordingCount: 5, previews: previews("unload-dishwasher", ["Put away cups"]) },
-                ],
-              },
-              {
-                id: "food-prep",
-                name: "Food Prep",
-                skills: [
-                  { id: "chop-vegetables", name: "Chop Vegetables", recordingCount: 10, previews: previews("chop-vegetables", ["Chop a carrot"]) },
-                  { id: "wash-produce", name: "Wash Produce", recordingCount: 3, previews: previews("wash-produce", ["Rinse vegetables"]) },
-                ],
-              },
-            ],
-          },
-        ],
-      },
-    ],
-  },
-  {
-    id: "gripper",
-    name: "Gripper",
-    icon: "gripper",
-    domains: [
-      {
-        id: "tabletop-manipulation",
-        name: "Tabletop Manipulation",
-        scenarios: [
-          {
-            id: "pick-and-place",
-            name: "Pick & Place",
-            tasks: [
-              {
-                id: "sorting",
-                name: "Sorting",
-                skills: [
-                  { id: "sort-color", name: "Sort by Color", recordingCount: 8, previews: previews("sort-color", ["Sort red and blue blocks"]) },
-                  { id: "sort-size", name: "Sort by Size", recordingCount: 6, previews: previews("sort-size", ["Stack by size"]) },
-                ],
-              },
-            ],
-          },
-          {
-            id: "assembly",
-            name: "Assembly",
-            tasks: [
-              {
-                id: "insertion",
-                name: "Insertion",
-                skills: [
-                  { id: "peg-in-hole", name: "Peg in Hole", recordingCount: 12, previews: previews("peg-in-hole", ["Insert the peg"]) },
-                ],
-              },
-            ],
-          },
-        ],
-      },
-    ],
-  },
-];
-
-function annotateModality(m: ModalitySeed): ModalityDTO {
-  let scenarioCount = 0;
-  let taskCount = 0;
-  let skillTotal = 0;
-
-  const domains: DomainDTO[] = m.domains.map((d) => {
-    let domainSkills = 0;
-    const scenarios: ScenarioDTO[] = d.scenarios.map((s) => {
-      scenarioCount += 1;
-      let scenarioSkills = 0;
-      const tasks: TaskDTO[] = s.tasks.map((t) => {
-        taskCount += 1;
-        const skillCount = t.skills.length;
-        scenarioSkills += skillCount;
-        skillTotal += skillCount;
-        return { id: t.id, name: t.name, skillCount, skills: t.skills };
-      });
-      domainSkills += scenarioSkills;
-      return { id: s.id, name: s.name, skillCount: scenarioSkills, tasks };
-    });
-    return { id: d.id, name: d.name, skillCount: domainSkills, scenarios };
-  });
-
+function parseClip(raw: unknown, path: string): Clip {
+  const c = obj(raw, path);
   return {
-    id: m.id,
-    name: m.name,
-    icon: m.icon,
-    stats: {
-      domains: m.domains.length,
-      scenarios: scenarioCount,
-      tasks: taskCount,
-      skills: skillTotal,
-    },
+    id: str(c.id, `${path}.id`),
+    label: typeof c.label === "string" ? c.label : "",
+    file: str(c.file, `${path}.file`),
+    durationSec: num(c.durationSec, `${path}.durationSec`, 0),
+  };
+}
+
+function parseScenario(raw: unknown, path: string): ScenarioDTO {
+  const s = obj(raw, path);
+  return {
+    id: str(s.id, `${path}.id`),
+    name: str(s.name, `${path}.name`),
+    recordingCount: num(s.recordingCount, `${path}.recordingCount`, 0),
+    previews: arr(s.previews ?? [], `${path}.previews`).map((p, i) => parseClip(p, `${path}.previews[${i}]`)),
+  };
+}
+
+function parseDomain(raw: unknown, path: string): DomainDTO {
+  const d = obj(raw, path);
+  const scenarios = arr(d.scenarios, `${path}.scenarios`).map((s, i) => parseScenario(s, `${path}.scenarios[${i}]`));
+  return { id: str(d.id, `${path}.id`), name: str(d.name, `${path}.name`), scenarioCount: scenarios.length, scenarios };
+}
+
+function parseModality(raw: unknown, path: string): ModalityDTO {
+  const m = obj(raw, path);
+  const icon = str(m.icon, `${path}.icon`);
+  if (icon !== "ego" && icon !== "gripper") fail(`${path}.icon must be "ego" or "gripper"`);
+  const domains = arr(m.domains, `${path}.domains`).map((d, i) => parseDomain(d, `${path}.domains[${i}]`));
+  const scenarios = domains.reduce((n, d) => n + d.scenarios.length, 0);
+  const recordings = domains.reduce((n, d) => n + d.scenarios.reduce((k, s) => k + s.recordingCount, 0), 0);
+  return {
+    id: str(m.id, `${path}.id`),
+    name: str(m.name, `${path}.name`),
+    icon,
+    stats: { domains: domains.length, scenarios, recordings },
     domains,
   };
 }
 
-export function buildCatalog(): CatalogDTO {
-  return { modalities: SEED.map(annotateModality) };
+function parseCatalog(raw: unknown): CatalogDTO {
+  const root = obj(raw, "root");
+  return { modalities: arr(root.modalities, "modalities").map((m, i) => parseModality(m, `modalities[${i}]`)) };
 }
 
-// Flat list of every preview clip — used by the sample-video generator.
+// mtime cache: reload only when the file changes.
+let cache: { mtimeMs: number; catalog: CatalogDTO } | null = null;
+
+export function buildCatalog(): CatalogDTO {
+  if (!existsSync(CATALOG_FILE)) fail("catalog file not found");
+  const mtimeMs = statSync(CATALOG_FILE).mtimeMs;
+  if (cache && cache.mtimeMs === mtimeMs) return cache.catalog;
+  const catalog = parseCatalog(JSON.parse(readFileSync(CATALOG_FILE, "utf8")));
+  cache = { mtimeMs, catalog };
+  return catalog;
+}
+
+// Flat list of every preview clip — used by the sample-video + poster generators.
 export function allPreviewClips(): Clip[] {
   const clips: Clip[] = [];
-  for (const m of SEED)
-    for (const d of m.domains)
-      for (const s of d.scenarios)
-        for (const t of s.tasks)
-          for (const sk of t.skills) clips.push(...sk.previews);
+  for (const m of buildCatalog().modalities)
+    for (const d of m.domains) for (const s of d.scenarios) clips.push(...s.previews);
   return clips;
 }

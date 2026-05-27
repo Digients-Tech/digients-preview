@@ -1,4 +1,5 @@
 // Mirrors the server DTOs returned by GET /api/catalog.
+// Two levels: Domain (scene_major) -> Scenario (scene_minor); scenarios hold preview clips.
 
 export type ModalityIcon = "gripper" | "ego";
 
@@ -9,17 +10,15 @@ export type Clip = {
   durationSec: number;
 };
 
-export type Skill = {
+export type Scenario = {
   id: string;
   name: string;
   recordingCount: number;
   previews: Clip[];
 };
 
-export type Task = { id: string; name: string; skillCount: number; skills: Skill[] };
-export type Scenario = { id: string; name: string; skillCount: number; tasks: Task[] };
-export type Domain = { id: string; name: string; skillCount: number; scenarios: Scenario[] };
-export type ModalityStats = { domains: number; scenarios: number; tasks: number; skills: number };
+export type Domain = { id: string; name: string; scenarioCount: number; scenarios: Scenario[] };
+export type ModalityStats = { domains: number; scenarios: number; recordings: number };
 export type Modality = {
   id: string;
   name: string;

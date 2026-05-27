@@ -1,27 +1,29 @@
 # digients-preview
 
-Client-facing **data-preview portal** — clients enter a shared password, browse the
-embodied-AI data taxonomy (`Domain → Scenario → Task → Skill`), and play short video
-demos per skill. Built to give buyers a polished preview instead of a raw S3 / Cyberduck
-file dump.
+Client-facing **data-preview portal** — clients enter a shared password, browse the data
+taxonomy (`Domain → Scenario`, matching the Capture App's `scene_major` / `scene_minor`),
+and preview a video demo per scenario. Built to give buyers a polished preview instead of
+a raw S3 / Cyberduck file dump.
 
 Single repo, single always-on Node process: a [Hono](https://hono.dev) server serves the
-built React frontend, the JSON catalog API, and the on-disk preview videos.
+built React frontend, the catalog API, and the on-disk preview videos + posters.
 
 ```
 digients-preview/
+├── catalog.json   the taxonomy + demo content (edit this — no code change / rebuild)
 ├── web/        React + Vite + TypeScript frontend (no UI framework — bespoke CSS)
 │   └── src/
 │       ├── App.tsx                  auth flow + layout
-│       └── components/              tabs, taxonomy browser, connectors, stat cards, video modal
+│       └── components/              tabs, 2-column browser, connectors, inline preview, stat cards
 ├── server/     Hono backend (run directly with tsx, no build step)
 │   ├── src/
 │   │   ├── index.ts                 routes + static serving
 │   │   ├── auth.ts                  shared-password gate (signed cookie)
-│   │   ├── data.ts                  catalog seed (swap for real data later)
-│   │   └── videos.ts                ranged video streaming + path-traversal guard
-│   └── scripts/gen-sample-videos.ts ffmpeg placeholder clip generator
-└── videos/     preview .mp4 files (gitignored; live on the server disk)
+│   │   ├── data.ts                  loads + validates catalog.json (mtime-cached)
+│   │   └── videos.ts                ranged video + poster serving, path-traversal guard
+│   └── scripts/                     ffmpeg placeholder clip + poster generators
+├── videos/     preview .mp4 files (gitignored; live on the server disk)
+└── posters/    generated keyframe .jpg posters (gitignored)
 ```
 
 ## Quick start
@@ -66,15 +68,17 @@ per-user auth (invite codes / OTP via the main `digients-api`) when needed.
 
 ## Catalog data
 
-The taxonomy is hand-authored in [`server/src/data.ts`](server/src/data.ts) as a curated
-presentation layer. Each skill has a `recordingCount` (the green badge) and a few
-`previews` (viewable clips). Replace this seed with submission-derived data later; the API
-shape (`GET /api/catalog`) is what the frontend depends on.
+The taxonomy lives in [`catalog.json`](catalog.json) — **edit that file, no code change or
+rebuild**. Two levels: `domain` (scene_major) → `scenario` (scene_minor); each scenario has
+a `recordingCount` (the green badge) and `previews` (viewable clips). The server validates
+the file and caches it by mtime, so a save is picked up on the next request. The Ego
+taxonomy mirrors the Capture App's `SCENE_CATALOG`; later this file can be generated from
+real submission data. The API shape (`GET /api/catalog`) is what the frontend depends on.
 
 ## Adding real videos
 
-Preview files are matched by name to `previews[].file` in the seed. Drop an mp4 of the
-matching name into `VIDEOS_DIR` and it plays; a missing file degrades to a "no preview
+Preview files are matched by name to `previews[].file` in `catalog.json`. Drop an mp4 of
+the matching name into `VIDEOS_DIR` and it plays; a missing file degrades to a "no preview
 yet" placeholder. Videos are streamed with HTTP Range support so the player can seek.
 Re-generate the throwaway placeholders any time with `pnpm gen:samples`.
 
