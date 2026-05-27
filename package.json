@@ -9,7 +9,8 @@
     "build": "pnpm -C web build",
     "start": "pnpm -C server start",
     "typecheck": "pnpm -C web typecheck && pnpm -C server typecheck",
-    "gen:samples": "pnpm -C server gen:samples"
+    "gen:samples": "pnpm -C server gen:samples",
+    "gen:posters": "pnpm -C server gen:posters"
   },
   "devDependencies": {
     "concurrently": "^9.1.0"

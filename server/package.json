@@ -7,7 +7,8 @@
     "dev": "tsx watch src/index.ts",
     "start": "tsx src/index.ts",
     "typecheck": "tsc --noEmit",
-    "gen:samples": "tsx scripts/gen-sample-videos.ts"
+    "gen:samples": "tsx scripts/gen-sample-videos.ts",
+    "gen:posters": "tsx scripts/gen-posters.ts"
   },
   "dependencies": {
     "@hono/node-server": "^1.13.7",

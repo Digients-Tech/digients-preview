@@ -18,7 +18,7 @@ import {
   requireAuth,
 } from "./auth.js";
 import { buildCatalog } from "./data.js";
-import { serveVideo, VIDEOS_DIR } from "./videos.js";
+import { serveVideo, servePoster, VIDEOS_DIR } from "./videos.js";
 
 const app = new Hono();
 
@@ -52,8 +52,9 @@ app.get("/api/session", (c) => c.json({ authed: isAuthed(c) }));
 // --- Catalog (protected) ---
 app.get("/api/catalog", requireAuth, (c) => c.json(buildCatalog()));
 
-// --- Videos (protected, ranged) ---
+// --- Videos + poster frames (protected) ---
 app.get("/videos/:file", requireAuth, (c) => serveVideo(c, c.req.param("file")));
+app.get("/posters/:file", requireAuth, (c) => servePoster(c, c.req.param("file")));
 
 // --- Static frontend (production only) ---
 const STATIC_ROOT = process.env.STATIC_ROOT ?? "../web/dist";

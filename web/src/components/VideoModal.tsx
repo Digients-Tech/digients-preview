@@ -1,9 +1,28 @@
 import { useEffect, useState } from "react";
-import type { Skill } from "../types.ts";
-import { videoUrl } from "../api.ts";
+import type { Clip, Skill } from "../types.ts";
+import { posterUrl, videoUrl } from "../api.ts";
 import { CloseIcon, PlayIcon, BoltIcon } from "./Icons.tsx";
 
 type Props = { skill: Skill; onClose: () => void };
+
+// Small 16:9 poster thumbnail for a clip row; falls back to a play icon if the poster
+// frame is missing.
+function Thumb({ clip }: { clip: Clip }) {
+  const [ok, setOk] = useState(true);
+  if (!ok) {
+    return (
+      <span className="cliprow__thumb cliprow__thumb--empty">
+        <PlayIcon className="cliprow__play" />
+      </span>
+    );
+  }
+  return (
+    <span className="cliprow__thumb">
+      <img src={posterUrl(clip.file)} alt="" loading="lazy" onError={() => setOk(false)} />
+      <PlayIcon className="cliprow__play" />
+    </span>
+  );
+}
 
 export function VideoModal({ skill, onClose }: Props) {
   const [activeIdx, setActiveIdx] = useState(0);
@@ -38,12 +57,14 @@ export function VideoModal({ skill, onClose }: Props) {
         <div className="modal__body">
           <div className="player">
             {clip && !errored ? (
+              // No autoplay: the poster frame is shown first, the client presses play.
               <video
                 key={clip.id}
                 src={videoUrl(clip.file)}
+                poster={posterUrl(clip.file)}
                 controls
-                autoPlay
                 playsInline
+                preload="metadata"
                 onError={() => setErrored(true)}
               />
             ) : (
@@ -63,7 +84,7 @@ export function VideoModal({ skill, onClose }: Props) {
                   className={`cliprow ${i === activeIdx ? "cliprow--active" : ""}`}
                   onClick={() => setActiveIdx(i)}
                 >
-                  <PlayIcon className="cliprow__icon" />
+                  <Thumb clip={p} />
                   <span className="cliprow__label">{p.label}</span>
                   <span className="cliprow__dur">{p.durationSec}s</span>
                 </button>

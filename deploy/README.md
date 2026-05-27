@@ -64,6 +64,7 @@ Placeholder clips are generated on setup. Replace them by name-matching
 
 ```bash
 rsync -avz ./videos/ ubuntu@<box-ip>:/opt/digients-preview/videos/
+ssh ubuntu@<box-ip> 'cd /opt/digients-preview && pnpm gen:posters'   # poster frames
 ```
 
 Missing files degrade gracefully to a "no preview yet" placeholder in the UI.

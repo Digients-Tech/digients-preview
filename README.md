@@ -78,6 +78,10 @@ matching name into `VIDEOS_DIR` and it plays; a missing file degrades to a "no p
 yet" placeholder. Videos are streamed with HTTP Range support so the player can seek.
 Re-generate the throwaway placeholders any time with `pnpm gen:samples`.
 
+After adding or replacing videos, generate their **poster frames** (shown before
+playback and as thumbnails in the clip list) with `pnpm gen:posters` — it extracts a
+keyframe per clip into `posters/` (gitignored, served from `/posters/:file`).
+
 ## Deployment notes
 
 Designed for a small always-on AWS instance (Lightsail / small EC2) in the same account as

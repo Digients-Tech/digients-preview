@@ -38,10 +38,11 @@ echo "==> [4/7] Install deps + build frontend"
 pnpm install --frozen-lockfile
 pnpm build
 
-echo "==> [5/7] Placeholder videos (if none present)"
+echo "==> [5/7] Placeholder videos (if none present) + poster frames"
 if ! ls videos/*.mp4 >/dev/null 2>&1; then
   pnpm gen:samples || echo "  (skipped — drop real mp4s into ${APP_DIR}/videos later)"
 fi
+pnpm gen:posters || echo "  (poster generation skipped)"
 
 echo "==> [6/7] Env file + systemd service"
 if [ ! -f /etc/digients-preview.env ]; then

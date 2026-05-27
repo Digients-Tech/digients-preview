@@ -13,9 +13,11 @@ server/dist/
 .vite/
 
 # Data
-# Preview videos live on the server disk, not in git (regenerate samples via `pnpm gen:samples`)
+# Preview videos + generated poster frames live on the server disk, not in git
+# (regenerate via `pnpm gen:samples` and `pnpm gen:posters`)
 videos/*
 !videos/.gitkeep
+posters/
 
 # Cache
 .DS_Store

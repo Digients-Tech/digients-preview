@@ -32,3 +32,8 @@ export async function getCatalog(): Promise<Catalog> {
 export function videoUrl(file: string): string {
   return `/videos/${encodeURIComponent(file)}`;
 }
+
+// Poster frames are generated alongside videos, same base name with a .jpg extension.
+export function posterUrl(file: string): string {
+  return `/posters/${encodeURIComponent(file.replace(/\.[^.]+$/, ".jpg"))}`;
+}
