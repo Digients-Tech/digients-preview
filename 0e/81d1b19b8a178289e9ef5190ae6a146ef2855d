@@ -1,0 +1,19 @@
+deploy/digients-preview.service
+  s_e4806683d572e3::t_f670c8337412f1 3
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.2",
+  "base_commit_sha": "0e81d1b19b8a178289e9ef5190ae6a146ef2855d",
+  "prompts": {},
+  "sessions": {
+    "s_e4806683d572e3": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "fe43ba7a-41dd-4ea6-8174-c67608e63c7f",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "wyf-ACCEPT <importwyf@gmail.com>"
+    }
+  }
+}
