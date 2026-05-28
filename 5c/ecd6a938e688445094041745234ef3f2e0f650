@@ -1,0 +1,31 @@
+server/package.json
+  s_2105b1640aa52a::t_128f00765bbc86 12
+  s_2105b1640aa52a::t_f96cd257ad342d 11
+package.json
+  s_2105b1640aa52a::t_45d3fb40043874 13-14
+README.md
+  s_2105b1640aa52a::t_6e7ea5c690ebeb 71-97
+server/scripts/sync-from-cos.ts
+  s_2105b1640aa52a::t_dc64103ac239c1 15
+  s_2105b1640aa52a::t_4044742e18d5c6 168,180-183,186-188,190-191,196
+  s_2105b1640aa52a::t_f59e492cfe8002 1-14,16-66,69,73-114,151-167,169-179,184-185,189,192-195,197-221,223,229-231
+  s_2105b1640aa52a::t_9b2ed6878d3f12 67-68,70-72
+  s_2105b1640aa52a::t_8a891ac510a271 115-150
+  s_2105b1640aa52a::t_70d57bd3110535 222,224-228
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.2",
+  "base_commit_sha": "5cecd6a938e688445094041745234ef3f2e0f650",
+  "prompts": {},
+  "sessions": {
+    "s_2105b1640aa52a": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "ad8f6419-9ff9-47b6-91c4-57ea078c2ed3",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "wyf-ACCEPT <importwyf@gmail.com>"
+    }
+  }
+}
