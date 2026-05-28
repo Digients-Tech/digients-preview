@@ -10,7 +10,8 @@
     "start": "pnpm -C server start",
     "typecheck": "pnpm -C web typecheck && pnpm -C server typecheck",
     "gen:samples": "pnpm -C server gen:samples",
-    "gen:posters": "pnpm -C server gen:posters"
+    "gen:posters": "pnpm -C server gen:posters",
+    "sync:cos": "pnpm -C server sync:cos"
   },
   "devDependencies": {
     "concurrently": "^9.1.0"
