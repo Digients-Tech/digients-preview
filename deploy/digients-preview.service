@@ -1,6 +1,6 @@
 [Unit]
 Description=Digients data-preview portal
-Documentation=https://github.com/wyf-ACCEPT/digients-preview
+Documentation=https://github.com/Digients-Tech/digients-preview
 After=network.target
 
 [Service]
