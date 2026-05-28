@@ -5,7 +5,7 @@
 # or, after cloning: bash deploy/setup.sh
 #
 # Override defaults with env vars, e.g.:
-#   PREVIEW_DOMAIN=preview.digients.tech NODE_MAJOR=22 bash deploy/setup.sh
+#   PREVIEW_DOMAIN=sample.digients.tech NODE_MAJOR=22 bash deploy/setup.sh
 set -euo pipefail
 
 REPO_URL="${REPO_URL:-https://github.com/wyf-ACCEPT/digients-preview.git}"
@@ -58,7 +58,7 @@ sudo systemctl enable --now digients-preview
 echo "==> [7/7] Caddy config"
 sudo cp deploy/Caddyfile /etc/caddy/Caddyfile
 if [ -n "${PREVIEW_DOMAIN:-}" ]; then
-  sudo sed -i "s#preview.digients.tech#${PREVIEW_DOMAIN}#g" /etc/caddy/Caddyfile
+  sudo sed -i "s#sample.digients.tech#${PREVIEW_DOMAIN}#g" /etc/caddy/Caddyfile
 fi
 sudo systemctl reload caddy || sudo systemctl restart caddy
 
@@ -71,7 +71,7 @@ Remaining manual steps:
   1. Set PREVIEW_PASSWORD + SESSION_SECRET in /etc/digients-preview.env, then:
        sudo systemctl restart digients-preview
   2. Point your domain's DNS A record at this box, set the domain in
-     /etc/caddy/Caddyfile (default: preview.digients.tech), then:
+     /etc/caddy/Caddyfile (default: sample.digients.tech), then:
        sudo systemctl reload caddy
   3. Open ports 80 + 443 in the Lightsail/EC2 firewall.
   4. Upload real demo clips:

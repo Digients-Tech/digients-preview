@@ -21,7 +21,12 @@ import { fileURLToPath } from "node:url";
 const BUCKET = process.env.COS_BUCKET ?? "smaller-sample-1302052962";
 const REGION = process.env.COS_REGION ?? "ap-beijing";
 const ENDPOINT = process.env.COS_ENDPOINT ?? `https://cos.${REGION}.myqcloud.com`;
-const PER_SCENE = Math.max(1, parseInt(process.env.PER_SCENE ?? "1", 10));
+// PER_SCENE controls how many clips to keep per (scene_major, scene_minor).
+// Accepts "all" / "max" / positive integer; defaults to 1.
+const perSceneRaw = (process.env.PER_SCENE ?? "1").trim().toLowerCase();
+const PER_SCENE = perSceneRaw === "all" || perSceneRaw === "max"
+  ? Number.POSITIVE_INFINITY
+  : Math.max(1, parseInt(perSceneRaw, 10) || 1);
 
 const REPO = resolve(fileURLToPath(new URL("../../", import.meta.url)));
 const VIDEOS_DIR = process.env.VIDEOS_DIR ?? resolve(REPO, "videos");

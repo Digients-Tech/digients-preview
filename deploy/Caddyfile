@@ -4,7 +4,7 @@
 # Point that domain's DNS A record at this box's public IP, and open ports
 # 80 + 443 in the Lightsail/EC2 firewall — Caddy handles certs from there.
 
-{$PREVIEW_DOMAIN:preview.digients.tech} {
+{$PREVIEW_DOMAIN:sample.digients.tech} {
 	encode zstd gzip
 	reverse_proxy localhost:8787
 }

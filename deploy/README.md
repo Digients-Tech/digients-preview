@@ -46,11 +46,11 @@ Generate a session secret: `node -e "console.log(require('crypto').randomBytes(3
 
 ## 4. Domain + HTTPS
 
-Point a DNS A record (e.g. `preview.digients.tech` — DNS is on GoDaddy) at the instance's
+Point a DNS A record (e.g. `sample.digients.tech` — DNS is on GoDaddy) at the instance's
 static IP. Then set the domain in Caddy and reload:
 
 ```bash
-sudo sed -i 's/preview.digients.tech/YOUR.DOMAIN/' /etc/caddy/Caddyfile
+sudo sed -i 's/sample.digients.tech/YOUR.DOMAIN/' /etc/caddy/Caddyfile
 sudo systemctl reload caddy
 ```
 
