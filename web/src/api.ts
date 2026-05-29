@@ -1,4 +1,4 @@
-import type { Catalog } from "./types.ts";
+import type { Catalog, Caption } from "./types.ts";
 
 // All requests are same-origin (dev goes through the Vite proxy), so cookies ride along.
 const opts: RequestInit = { credentials: "same-origin" };
@@ -36,4 +36,15 @@ export function videoUrl(file: string): string {
 // Poster frames are generated alongside videos, same base name with a .jpg extension.
 export function posterUrl(file: string): string {
   return `/posters/${encodeURIComponent(file.replace(/\.[^.]+$/, ".jpg"))}`;
+}
+
+// Caption sidecars are synced alongside videos, same base name with .json.
+// Resolves to `null` (not throw) when the bucket didn't ship one for this clip
+// so the panel can render an empty state without breaking the preview.
+export async function getCaption(file: string): Promise<Caption | null> {
+  const url = `/captions/${encodeURIComponent(file.replace(/\.[^.]+$/, ".json"))}`;
+  const r = await fetch(url, opts);
+  if (r.status === 404) return null;
+  if (!r.ok) throw new Error(`caption failed: ${r.status}`);
+  return r.json();
 }

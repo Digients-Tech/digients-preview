@@ -17,6 +17,7 @@ function dirFromEnv(envVar: string, fallbackRelative: string): string {
 
 export const VIDEOS_DIR = dirFromEnv("VIDEOS_DIR", "videos");
 export const POSTERS_DIR = dirFromEnv("POSTERS_DIR", "posters");
+export const CAPTIONS_DIR = dirFromEnv("CAPTIONS_DIR", "captions");
 
 // Resolve a request file name to a safe absolute path inside baseDir (no traversal).
 function safePath(baseDir: string, name: string): string | null {
@@ -73,5 +74,17 @@ export function servePoster(c: Context, name: string): Response {
   return new Response(body, {
     status: 200,
     headers: { "Content-Type": "image/jpeg", "Cache-Control": "private, max-age=3600" },
+  });
+}
+
+export function serveCaption(c: Context, name: string): Response {
+  const path = safePath(CAPTIONS_DIR, name);
+  if (!path || !existsSync(path) || !statSync(path).isFile()) {
+    return c.json({ error: "not_found", file: name }, 404);
+  }
+  const body = readFileSync(path);
+  return new Response(body, {
+    status: 200,
+    headers: { "Content-Type": "application/json", "Cache-Control": "private, max-age=3600" },
   });
 }

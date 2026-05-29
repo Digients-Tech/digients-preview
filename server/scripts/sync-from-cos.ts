@@ -30,6 +30,7 @@ const PER_SCENE = perSceneRaw === "all" || perSceneRaw === "max"
 
 const REPO = resolve(fileURLToPath(new URL("../../", import.meta.url)));
 const VIDEOS_DIR = process.env.VIDEOS_DIR ?? resolve(REPO, "videos");
+const CAPTIONS_DIR = process.env.CAPTIONS_DIR ?? resolve(REPO, "captions");
 const CATALOG_PATH = resolve(REPO, "catalog.json");
 
 const SID = process.env.TENCENT_SECRET_ID ?? process.env.AWS_ACCESS_KEY_ID;
@@ -103,6 +104,15 @@ function localFilename(r: Recording): string {
   return `${slug(r.major)}__${slug(r.minor)}__${r.uuid}.mp4`;
 }
 
+// Per-clip caption sidecar lives next to the mp4 in COS under the same uuid
+// directory, with a .json extension. We mirror that here as captions/<flat>.json.
+function localCaptionFilename(r: Recording): string {
+  return `${slug(r.major)}__${slug(r.minor)}__${r.uuid}.json`;
+}
+function captionCosPath(r: Recording): string {
+  return r.cosPath.replace(/\.mp4$/i, ".json");
+}
+
 function durationSec(path: string): number {
   try {
     const out = execFileSync(
@@ -138,11 +148,11 @@ function awsCp(srcPath: string, dst: string): { ok: boolean; err?: string } {
   return { ok: false, err };
 }
 
-function download(r: Recording, dst: string): { ok: boolean; err?: string } {
+function download(srcPath: string, dst: string): { ok: boolean; err?: string } {
   if (existsSync(dst) && statSync(dst).size > 0) return { ok: true };
   const attempts = 3;
   for (let i = 1; i <= attempts; i++) {
-    const res = awsCp(r.cosPath, dst);
+    const res = awsCp(srcPath, dst);
     if (res.ok) return res;
     if (i < attempts) {
       const wait = i * 5;
@@ -158,6 +168,7 @@ function download(r: Recording, dst: string): { ok: boolean; err?: string } {
 // --- Main ---
 function main() {
   if (!existsSync(VIDEOS_DIR)) mkdirSync(VIDEOS_DIR, { recursive: true });
+  if (!existsSync(CAPTIONS_DIR)) mkdirSync(CAPTIONS_DIR, { recursive: true });
 
   const groups = groupByScene(listAll());
   const sceneKeys = Array.from(groups.keys()).sort();
@@ -182,7 +193,7 @@ function main() {
       const file = localFilename(r);
       const dst = join(VIDEOS_DIR, file);
       const wasPresent = existsSync(dst) && statSync(dst).size > 0;
-      const res = download(r, dst);
+      const res = download(r.cosPath, dst);
       if (wasPresent) {
         skipped++;
       } else if (res.ok) {
@@ -192,6 +203,19 @@ function main() {
         failures.push({ cosPath: r.cosPath, err: res.err ?? "" });
         console.error(`[sync]  ✗ FAILED  ${major}/${minor}  -> ${file}\n         ${(res.err ?? "").split("\n")[0]?.slice(0, 200)}`);
       }
+
+      // Fetch the per-clip caption sidecar (.json next to .mp4 in COS).
+      // Non-fatal: a missing caption just means the right-panel renders empty.
+      const captionFile = localCaptionFilename(r);
+      const captionDst = join(CAPTIONS_DIR, captionFile);
+      const captionWasPresent = existsSync(captionDst) && statSync(captionDst).size > 0;
+      if (!captionWasPresent) {
+        const cres = download(captionCosPath(r), captionDst);
+        if (!cres.ok) {
+          console.warn(`[sync]  ⚠ caption missing ${major}/${minor} -> ${captionFile}\n         ${(cres.err ?? "").split("\n")[0]?.slice(0, 200)}`);
+        }
+      }
+
       // Add to previews regardless — frontend degrades gracefully for missing files,
       // and a follow-up `pnpm sync:cos` will idempotently pick up what failed.
       previews.push({
