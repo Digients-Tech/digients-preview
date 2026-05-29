@@ -13,7 +13,7 @@
 // so we write a temp AWS config forcing `addressing_style = virtual`.
 
 import { execFileSync, spawnSync } from "node:child_process";
-import { existsSync, mkdirSync, statSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -32,6 +32,26 @@ const REPO = resolve(fileURLToPath(new URL("../../", import.meta.url)));
 const VIDEOS_DIR = process.env.VIDEOS_DIR ?? resolve(REPO, "videos");
 const CAPTIONS_DIR = process.env.CAPTIONS_DIR ?? resolve(REPO, "captions");
 const CATALOG_PATH = resolve(REPO, "catalog.json");
+const CURATED_PATH = resolve(REPO, "curated.json");
+
+// Per-scenario clip override: scenario_id -> uuid. When present, that uuid is
+// the one preview we surface in catalog.json. Missing entries fall back to the
+// lowest-uuid clip in the bucket so picks stay stable across syncs.
+type CuratedMap = Record<string, string>;
+function loadCurated(): CuratedMap {
+  if (!existsSync(CURATED_PATH)) return {};
+  try {
+    const raw = JSON.parse(readFileSync(CURATED_PATH, "utf8"));
+    const out: CuratedMap = {};
+    for (const [k, v] of Object.entries(raw)) {
+      if (typeof v === "string" && !k.startsWith("_")) out[k] = v;
+    }
+    return out;
+  } catch (e) {
+    console.warn(`[sync] failed to parse ${CURATED_PATH}: ${e}`);
+    return {};
+  }
+}
 
 const SID = process.env.TENCENT_SECRET_ID ?? process.env.AWS_ACCESS_KEY_ID;
 const SKEY = process.env.TENCENT_SECRET_KEY ?? process.env.AWS_SECRET_ACCESS_KEY;
@@ -170,6 +190,10 @@ function main() {
   if (!existsSync(VIDEOS_DIR)) mkdirSync(VIDEOS_DIR, { recursive: true });
   if (!existsSync(CAPTIONS_DIR)) mkdirSync(CAPTIONS_DIR, { recursive: true });
 
+  const curated = loadCurated();
+  const curatedCount = Object.keys(curated).length;
+  if (curatedCount > 0) console.log(`[sync] curated overrides: ${curatedCount}`);
+
   const groups = groupByScene(listAll());
   const sceneKeys = Array.from(groups.keys()).sort();
   const totalToFetch = sceneKeys.reduce((n, k) => n + Math.min(PER_SCENE, groups.get(k)!.length), 0);
@@ -185,9 +209,24 @@ function main() {
   for (const key of sceneKeys) {
     const all = groups.get(key)!;
     const [major, minor] = key.split("/") as [string, string];
-    const picks = all.slice(0, PER_SCENE);
+    const scenarioId = `${slug(major)}-${slug(minor)}`;
 
-    const previews: ScenarioOut["previews"] = [];
+    // Choose the single clip that surfaces in catalog.json for this scenario.
+    // Curated override wins; otherwise the lowest-uuid clip (deterministic
+    // across syncs so the same arbitrary pick stays visible).
+    let chosen = all[0]!;
+    const curatedUuid = curated[scenarioId];
+    if (curatedUuid) {
+      const found = all.find((r) => r.uuid === curatedUuid);
+      if (found) chosen = found;
+      else console.warn(`[sync]  ⚠ curated uuid ${curatedUuid} not in bucket for ${scenarioId} — falling back to ${chosen.uuid}`);
+    }
+
+    // Always download the chosen clip so the catalog points at a file that's
+    // really on disk, even when PER_SCENE=1 happens to skip it.
+    const picks = all.slice(0, PER_SCENE);
+    if (!picks.some((p) => p.uuid === chosen.uuid)) picks.push(chosen);
+
     for (let i = 0; i < picks.length; i++) {
       const r = picks[i]!;
       const file = localFilename(r);
@@ -215,21 +254,24 @@ function main() {
           console.warn(`[sync]  ⚠ caption missing ${major}/${minor} -> ${captionFile}\n         ${(cres.err ?? "").split("\n")[0]?.slice(0, 200)}`);
         }
       }
-
-      // Add to previews regardless — frontend degrades gracefully for missing files,
-      // and a follow-up `pnpm sync:cos` will idempotently pick up what failed.
-      previews.push({
-        id: `${slug(major)}-${slug(minor)}-${i + 1}`,
-        label: minor,
-        file,
-        durationSec: existsSync(dst) ? durationSec(dst) : 0,
-      });
     }
+
+    // Single preview per scenario in the catalog (curated or auto-picked).
+    const chosenFile = localFilename(chosen);
+    const chosenDst = join(VIDEOS_DIR, chosenFile);
+    const previews: ScenarioOut["previews"] = [
+      {
+        id: `${scenarioId}-1`,
+        label: minor,
+        file: chosenFile,
+        durationSec: existsSync(chosenDst) ? durationSec(chosenDst) : 0,
+      },
+    ];
 
     let arr = byMajor.get(major);
     if (!arr) byMajor.set(major, (arr = []));
     arr.push({
-      id: `${slug(major)}-${slug(minor)}`,
+      id: scenarioId,
       name: minor,
       recordingCount: all.length, // real bucket count
       previews,

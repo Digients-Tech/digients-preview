@@ -1,0 +1,5 @@
+{
+  "_comment": "Per-scenario clip override for catalog.json. Map scenario_id -> uuid. The uuid is the directory name between <scene_major>/<scene_minor>/<uuid>/<uuid>.mp4 in Dylan's COS bucket. When a scenario_id is missing from this map, sync:cos falls back to the lowest-uuid clip from the bucket so picks stay stable across syncs. Edit this file and re-run `pnpm sync:cos` to regenerate catalog.json. Keys starting with _ are treated as comments and ignored.",
+  "_format_example": "counter-bookkeeping-cashiering: 07b4649b-e635-4d95-9208-a6b691c0232f",
+  "_team_status": "Team is selecting the best clip per scenario. Populate this file as picks arrive."
+}
