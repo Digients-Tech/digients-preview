@@ -45,7 +45,7 @@ export function App() {
       <header className="topbar">
         <div className="topbar__brand">
           <span className="topbar__logo">D</span>
-          <span>Digients · Data Preview</span>
+          <span>Digients Tech · Data Preview</span>
         </div>
         {/* Only show the modality switcher when there's more than one modality. */}
         {catalog.modalities.length > 1 ? (

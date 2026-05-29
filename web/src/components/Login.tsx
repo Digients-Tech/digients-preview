@@ -19,7 +19,7 @@ export function Login({ onAuthed }: { onAuthed: () => void }) {
   return (
     <div className="login">
       <form className="login__card" onSubmit={submit}>
-        <div className="login__brand">Digients</div>
+        <div className="login__brand">Digients Tech</div>
         <h1 className="login__title">Data Preview</h1>
         <p className="login__hint">Enter the access password to browse the dataset.</p>
         <input
