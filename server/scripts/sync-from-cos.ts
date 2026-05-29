@@ -34,17 +34,20 @@ const CAPTIONS_DIR = process.env.CAPTIONS_DIR ?? resolve(REPO, "captions");
 const CATALOG_PATH = resolve(REPO, "catalog.json");
 const CURATED_PATH = resolve(REPO, "curated.json");
 
-// Per-scenario clip override: scenario_id -> uuid. When present, that uuid is
-// the one preview we surface in catalog.json. Missing entries fall back to the
-// lowest-uuid clip in the bucket so picks stay stable across syncs.
-type CuratedMap = Record<string, string>;
+// Per-scenario override map. Three states for a given scenario_id:
+//   * uuid string -> use that specific clip as the catalog preview
+//   * null         -> drop this scenario entirely from catalog.json
+//   * absent       -> auto-pick (lowest-uuid clip)
+type CuratedEntry = string | null;
+type CuratedMap = Record<string, CuratedEntry>;
 function loadCurated(): CuratedMap {
   if (!existsSync(CURATED_PATH)) return {};
   try {
     const raw = JSON.parse(readFileSync(CURATED_PATH, "utf8"));
     const out: CuratedMap = {};
     for (const [k, v] of Object.entries(raw)) {
-      if (typeof v === "string" && !k.startsWith("_")) out[k] = v;
+      if (k.startsWith("_")) continue;
+      if (typeof v === "string" || v === null) out[k] = v as CuratedEntry;
     }
     return out;
   } catch (e) {
@@ -211,12 +214,18 @@ function main() {
     const [major, minor] = key.split("/") as [string, string];
     const scenarioId = `${slug(major)}-${slug(minor)}`;
 
+    // Explicit drop: skip download + don't emit a catalog entry.
+    if (scenarioId in curated && curated[scenarioId] === null) {
+      console.log(`[sync]  [dropped] ${major}/${minor}`);
+      continue;
+    }
+
     // Choose the single clip that surfaces in catalog.json for this scenario.
     // Curated override wins; otherwise the lowest-uuid clip (deterministic
     // across syncs so the same arbitrary pick stays visible).
     let chosen = all[0]!;
     const curatedUuid = curated[scenarioId];
-    if (curatedUuid) {
+    if (typeof curatedUuid === "string") {
       const found = all.find((r) => r.uuid === curatedUuid);
       if (found) chosen = found;
       else console.warn(`[sync]  ⚠ curated uuid ${curatedUuid} not in bucket for ${scenarioId} — falling back to ${chosen.uuid}`);

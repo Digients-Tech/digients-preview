@@ -1,5 +1,36 @@
 {
-  "_comment": "Per-scenario clip override for catalog.json. Map scenario_id -> uuid. The uuid is the directory name between <scene_major>/<scene_minor>/<uuid>/<uuid>.mp4 in Dylan's COS bucket. When a scenario_id is missing from this map, sync:cos falls back to the lowest-uuid clip from the bucket so picks stay stable across syncs. Edit this file and re-run `pnpm sync:cos` to regenerate catalog.json. Keys starting with _ are treated as comments and ignored.",
-  "_format_example": "counter-bookkeeping-cashiering: 07b4649b-e635-4d95-9208-a6b691c0232f",
-  "_team_status": "Team is selecting the best clip per scenario. Populate this file as picks arrive."
+  "_comment": "Per-scenario clip override for catalog.json. Map scenario_id -> uuid. The uuid is the directory name between <scene_major>/<scene_minor>/<uuid>/<uuid>.mp4 in Dylan's COS bucket. Three states per scenario_id: (1) uuid string => use that clip as the catalog preview; (2) null => drop this scenario from catalog entirely; (3) absent => fall back to lowest-uuid clip. Edit this file and re-run `pnpm sync:cos` to regenerate catalog.json. Keys starting with _ are treated as comments and ignored.",
+  "_format_example": "counter-bookkeeping-cashiering: 07b4649b-e635-4d95-9208-a6b691c0232f  // pick this clip\ncounter-computer-peripheral-maintenance: null                                    // hide scenario",
+  "_status": "2026-05-29: Counter / Courier Point / Cybercafe curated by team. Kitchen / Laundry Room / Shopping Mall pending — they auto-pick until lists arrive.",
+
+  "counter-bookkeeping-cashiering": "67186366-ccb1-481a-866a-9ec766b58c7a",
+  "counter-cloth-rag-washing": "a7e1ff2d-19c8-4a45-84a1-f9a038509f54",
+  "counter-computer-peripheral-maintenance": null,
+  "counter-desk-counter-tidying": "e79f222e-0a42-420c-ba9d-f9494167d40d",
+  "counter-digital-device-operation": "13ed333d-7bd2-4697-81b8-216c26d1d513",
+  "counter-drink-preparation-serving": "6d727c55-d883-40f1-9407-f287e5267ed7",
+  "counter-light-meal-cooking-food-prep": "b1d4d365-1149-4be0-a016-c34170ae2661",
+  "counter-personal-hygiene": null,
+
+  "courier-point-desk-counter-tidying": "0c7ebfb4-0ca8-439b-81f5-80d970e866a6",
+  "courier-point-digital-device-operation": "0fba79d6-07fa-4ae1-b7b9-e4031fb303be",
+  "courier-point-drink-preparation-serving": "97e86fc9-f304-4366-82da-5536e628d474",
+  "courier-point-express-parcel-handling": "2c8e992e-aceb-4911-9e1e-b07b3d771e69",
+  "courier-point-floor-cleaning-trash-handling": null,
+  "courier-point-item-placement-display": "1f0a8aa2-d305-4b67-bb11-770551828216",
+  "courier-point-small-goods-sorting-packing": "a25a824c-f84e-4a77-92ec-18618e2e94cf",
+
+  "cybercafe-bookkeeping-cashiering": "c811426c-12a3-475d-9228-7cba6ee0e24a",
+  "cybercafe-cloth-rag-washing": "657d3604-2132-40db-a20c-9be99bd4f33f",
+  "cybercafe-computer-peripheral-maintenance": "0c686198-f71e-4504-9a88-83a05b5a2fdc",
+  "cybercafe-desk-counter-tidying": "41edf2cc-5b11-4706-bc4b-14bbcf182047",
+  "cybercafe-digital-device-operation": "2ce60bf0-23ab-468a-b353-d266e4da5eec",
+  "cybercafe-dishware-kitchenware-washing": "6fe8c508-a711-4f70-93c8-2b057f5b16b9",
+  "cybercafe-drink-preparation-serving": "066c4446-fdd0-44f0-94f1-44034d92814c",
+  "cybercafe-express-parcel-handling": "1412c603-e1b5-4ed5-b3ad-144785f9a370",
+  "cybercafe-floor-cleaning-trash-handling": "16d62844-515f-4796-adde-7a758aef30e1",
+  "cybercafe-item-placement-display": "08c6b5b1-6703-40e2-a7cd-c44a394a1d53",
+  "cybercafe-light-meal-cooking-food-prep": "8e29ae9f-c6db-4e62-8f71-f044a9fb13c6",
+  "cybercafe-personal-hygiene": "cef9fa94-0bb3-46e7-89c2-33064e37dac9",
+  "cybercafe-small-goods-sorting-packing": null
 }
