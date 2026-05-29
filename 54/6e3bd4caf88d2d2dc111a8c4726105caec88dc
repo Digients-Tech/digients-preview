@@ -1,0 +1,46 @@
+web/src/components/CaptionPanel.tsx
+  s_e4806683d572e3::t_1e7a64612abe36 1-164
+web/src/types.ts
+  s_e4806683d572e3::t_e572822a3f76a8 30-62
+server/src/index.ts
+  s_e4806683d572e3::t_919ff506b06b40 21
+  s_e4806683d572e3::t_e21798d49aa7c9 55,58
+web/src/components/ScenarioPreview.tsx
+  s_e4806683d572e3::t_4f2effea2d603f 1,5,30,46-67,70-87,89-91
+web/src/index.css
+  s_e4806683d572e3::t_9f13ae912a9270 364,366
+  s_e4806683d572e3::t_dca3fbd6baaf2f 322-323,328-329,334
+  s_e4806683d572e3::t_8e770276c7fff8 324-327,330-333,335-363,365,367-427
+server/scripts/sync-from-cos.ts
+  s_e4806683d572e3::t_5533495de9f0d7 171
+  s_e4806683d572e3::t_41164e8de62dec 151,155
+  s_e4806683d572e3::t_fa0cc38dbc97fb 107-115
+  s_e4806683d572e3::t_dc5a4a79cb006c 196,206-218
+  s_e4806683d572e3::t_93380f11e5adca 33
+web/src/api.ts
+  s_e4806683d572e3::t_ab4d66f952e639 1
+  s_e4806683d572e3::t_5f61817e472f2b 40-50
+web/vite.config.ts
+  s_e4806683d572e3::t_1fe5b282790e54 13-14
+.gitignore
+  s_e4806683d572e3::t_680bc9dcfcd0b7 21
+server/src/videos.ts
+  s_e4806683d572e3::t_008eb6389f2570 20
+  s_e4806683d572e3::t_b566340f4323c1 79-90
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.2",
+  "base_commit_sha": "546e3bd4caf88d2d2dc111a8c4726105caec88dc",
+  "prompts": {},
+  "sessions": {
+    "s_e4806683d572e3": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "fe43ba7a-41dd-4ea6-8174-c67608e63c7f",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "wyf-ACCEPT <importwyf@gmail.com>"
+    }
+  }
+}
