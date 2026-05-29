@@ -86,7 +86,6 @@ export function TaxonomyBrowser({ modality }: { modality: Modality }) {
               <span className="card__body">
                 <span className="card__name">{s.name}</span>
               </span>
-              <span className="card__badge">{s.recordingCount}</span>
             </button>
           ))}
         </div>
