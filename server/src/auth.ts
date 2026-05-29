@@ -1,7 +1,9 @@
-// Shared-password gate. One password (PREVIEW_PASSWORD) lets a client in; on success
-// we set a signed, httpOnly cookie. Verification is stateless — the cookie value is an
-// HMAC over a constant, so any valid cookie proves the holder knew the password.
-// This is deliberately lightweight; upgrade to per-user auth (invite codes / OTP) later.
+// Shared-password gate. One or more passwords (PREVIEW_PASSWORD, comma-separated)
+// let a client in; on success we set a signed, httpOnly cookie. Verification is
+// stateless — the cookie value is an HMAC over a constant, so any valid cookie
+// proves the holder knew *some* password. Multi-value lets us hand out a separate
+// password per audience (internal vs external) and rotate one without disturbing
+// the other. Upgrade to per-user auth (invite codes / OTP) later.
 
 import { createHmac, timingSafeEqual } from "node:crypto";
 import type { Context, MiddlewareHandler } from "hono";
@@ -12,9 +14,11 @@ const SESSION_TTL_DAYS = 7;
 
 const IS_PROD = process.env.NODE_ENV === "production";
 
-const PASSWORD =
-  process.env.PREVIEW_PASSWORD ??
-  (IS_PROD ? "" : "digients-demo");
+const PASSWORDS =
+  (process.env.PREVIEW_PASSWORD ?? (IS_PROD ? "" : "digients-demo"))
+    .split(",")
+    .map((s) => s.trim())
+    .filter((s) => s.length > 0);
 
 // Stable signing secret. A random per-boot fallback is fine for a shared-password gate
 // (it just means existing sessions are invalidated on restart).
@@ -24,6 +28,8 @@ const SECRET =
 if (!process.env.PREVIEW_PASSWORD) {
   if (IS_PROD) console.error("[auth] FATAL: PREVIEW_PASSWORD is not set in production");
   else console.warn('[auth] PREVIEW_PASSWORD not set — using dev default "digients-demo"');
+} else if (PASSWORDS.length > 1) {
+  console.log(`[auth] accepting ${PASSWORDS.length} shared passwords`);
 }
 
 // The constant token we sign. Knowing the password is the only way to obtain a valid cookie.
@@ -39,8 +45,13 @@ function safeEqual(a: string, b: string): boolean {
 }
 
 export function checkPassword(input: unknown): boolean {
-  if (typeof input !== "string" || PASSWORD === "") return false;
-  return safeEqual(input, PASSWORD);
+  if (typeof input !== "string" || PASSWORDS.length === 0) return false;
+  // Walk every configured password so timing doesn't leak which one matched.
+  let matched = false;
+  for (const pw of PASSWORDS) {
+    if (safeEqual(input, pw)) matched = true;
+  }
+  return matched;
 }
 
 export function issueSession(c: Context): void {
