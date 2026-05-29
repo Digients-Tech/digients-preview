@@ -4,7 +4,6 @@ import { getCatalog, getSession, logout } from "./api.ts";
 import { Login } from "./components/Login.tsx";
 import { ModalityTabs } from "./components/ModalityTabs.tsx";
 import { TaxonomyBrowser } from "./components/TaxonomyBrowser.tsx";
-import { StatCards } from "./components/StatCards.tsx";
 import { CameraIcon, CubeIcon } from "./components/Icons.tsx";
 
 export function App() {
@@ -70,8 +69,6 @@ export function App() {
           )}
 
           <TaxonomyBrowser key={active.id} modality={active} />
-
-          <StatCards stats={active.stats} />
         </main>
       )}
     </div>
