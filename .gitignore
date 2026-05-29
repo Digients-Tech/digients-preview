@@ -20,6 +20,9 @@ videos/*
 posters/
 captions/
 
+# Runtime state — login counts per password slot
+.stats/
+
 # Cache
 .DS_Store
 *.log

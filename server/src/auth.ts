@@ -6,6 +6,9 @@
 // the other. Upgrade to per-user auth (invite codes / OTP) later.
 
 import { createHmac, timingSafeEqual } from "node:crypto";
+import { existsSync, mkdirSync, readFileSync, renameSync, writeFileSync } from "node:fs";
+import { dirname, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 import type { Context, MiddlewareHandler } from "hono";
 import { getCookie, setCookie, deleteCookie } from "hono/cookie";
 
@@ -32,6 +35,59 @@ if (!process.env.PREVIEW_PASSWORD) {
   console.log(`[auth] accepting ${PASSWORDS.length} shared passwords`);
 }
 
+// --- Login counts per password slot ---------------------------------------
+// Slot index matches the position of the password in PREVIEW_PASSWORD (env).
+// Persisted to disk so a service restart doesn't reset the tally. File path
+// can be overridden via STATS_PATH; default is <repo>/.stats/login-counts.json.
+
+const STATS_PATH =
+  process.env.STATS_PATH ?? resolve(fileURLToPath(new URL("../../.stats/login-counts.json", import.meta.url)));
+
+type StatsFile = { loginCounts: number[]; since: string };
+
+function loadStats(): StatsFile {
+  if (existsSync(STATS_PATH)) {
+    try {
+      const parsed = JSON.parse(readFileSync(STATS_PATH, "utf8")) as Partial<StatsFile>;
+      const counts = Array.isArray(parsed.loginCounts)
+        ? parsed.loginCounts.map((n) => (Number.isFinite(n) ? Number(n) : 0))
+        : [];
+      // Resize to current PASSWORDS length so a slot added/removed in env stays consistent.
+      while (counts.length < PASSWORDS.length) counts.push(0);
+      counts.length = PASSWORDS.length;
+      return { loginCounts: counts, since: parsed.since ?? new Date().toISOString() };
+    } catch (e) {
+      console.warn(`[auth] failed to read ${STATS_PATH}: ${(e as Error).message} — starting fresh`);
+    }
+  }
+  return { loginCounts: PASSWORDS.map(() => 0), since: new Date().toISOString() };
+}
+
+const stats = loadStats();
+
+function persistStats(): void {
+  try {
+    mkdirSync(dirname(STATS_PATH), { recursive: true });
+    const tmp = STATS_PATH + ".tmp";
+    writeFileSync(tmp, JSON.stringify(stats, null, 2));
+    renameSync(tmp, STATS_PATH);
+  } catch (e) {
+    console.warn(`[auth] failed to persist ${STATS_PATH}: ${(e as Error).message}`);
+  }
+}
+
+export function getLoginStats(): {
+  slots: { index: number; count: number }[];
+  total: number;
+  since: string;
+} {
+  return {
+    slots: stats.loginCounts.map((count, index) => ({ index, count })),
+    total: stats.loginCounts.reduce((a, b) => a + b, 0),
+    since: stats.since,
+  };
+}
+
 // The constant token we sign. Knowing the password is the only way to obtain a valid cookie.
 function sessionToken(): string {
   return createHmac("sha256", SECRET).update("preview-session-v1").digest("hex");
@@ -47,11 +103,15 @@ function safeEqual(a: string, b: string): boolean {
 export function checkPassword(input: unknown): boolean {
   if (typeof input !== "string" || PASSWORDS.length === 0) return false;
   // Walk every configured password so timing doesn't leak which one matched.
-  let matched = false;
-  for (const pw of PASSWORDS) {
-    if (safeEqual(input, pw)) matched = true;
+  let matchedSlot = -1;
+  for (let i = 0; i < PASSWORDS.length; i++) {
+    if (safeEqual(input, PASSWORDS[i]!)) matchedSlot = i;
   }
-  return matched;
+  if (matchedSlot < 0) return false;
+  stats.loginCounts[matchedSlot]! += 1;
+  persistStats();
+  console.log(`[auth] login OK via slot ${matchedSlot} (count=${stats.loginCounts[matchedSlot]})`);
+  return true;
 }
 
 export function issueSession(c: Context): void {

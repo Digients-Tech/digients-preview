@@ -13,6 +13,7 @@ import { resolve } from "node:path";
 import {
   checkPassword,
   clearSession,
+  getLoginStats,
   issueSession,
   isAuthed,
   requireAuth,
@@ -48,6 +49,10 @@ app.post("/api/logout", (c) => {
 });
 
 app.get("/api/session", (c) => c.json({ authed: isAuthed(c) }));
+
+// Login-count stats per password slot. Slot index matches PREVIEW_PASSWORD order
+// in the env. Behind requireAuth so the tally isn't a public guestbook.
+app.get("/api/stats", requireAuth, (c) => c.json(getLoginStats()));
 
 // --- Catalog (protected) ---
 app.get("/api/catalog", requireAuth, (c) => c.json(buildCatalog()));
