@@ -1,7 +1,7 @@
 {
   "_comment": "Per-scenario clip override for catalog.json. Map scenario_id -> uuid. The uuid is the directory name between <scene_major>/<scene_minor>/<uuid>/<uuid>.mp4 in Dylan's COS bucket. Three states per scenario_id: (1) uuid string => use that clip as the catalog preview; (2) null => drop this scenario from catalog entirely; (3) absent => fall back to lowest-uuid clip. Edit this file and re-run `pnpm sync:cos` to regenerate catalog.json. Keys starting with _ are treated as comments and ignored.",
   "_format_example": "counter-bookkeeping-cashiering: 07b4649b-e635-4d95-9208-a6b691c0232f  // pick this clip\ncounter-computer-peripheral-maintenance: null                                    // hide scenario",
-  "_status": "2026-05-29: Counter / Courier Point / Cybercafe curated by team. Kitchen / Laundry Room / Shopping Mall pending — they auto-pick until lists arrive.",
+  "_status": "2026-05-29: Counter / Courier Point / Cybercafe curated by Matt; Kitchen / Laundry Room / Shopping Mall curated by Alex (Kitchen 5 picks delivered as out-of-band local-only files, Shopping Mall dropped entirely).",
 
   "counter-bookkeeping-cashiering": "67186366-ccb1-481a-866a-9ec766b58c7a",
   "counter-cloth-rag-washing": "a7e1ff2d-19c8-4a45-84a1-f9a038509f54",
@@ -32,5 +32,28 @@
   "cybercafe-item-placement-display": "08c6b5b1-6703-40e2-a7cd-c44a394a1d53",
   "cybercafe-light-meal-cooking-food-prep": "8e29ae9f-c6db-4e62-8f71-f044a9fb13c6",
   "cybercafe-personal-hygiene": "cef9fa94-0bb3-46e7-89c2-33064e37dac9",
-  "cybercafe-small-goods-sorting-packing": null
+  "cybercafe-small-goods-sorting-packing": null,
+
+  "kitchen-bookkeeping-cashiering": null,
+  "kitchen-computer-peripheral-maintenance": null,
+  "kitchen-desk-counter-tidying": "8dcc69fe-e3c0-4da2-80d8-c130bd3bff15",
+  "kitchen-digital-device-operation": null,
+  "kitchen-dishware-kitchenware-washing": "28dfca7b-51a1-44b3-9a2a-a03151638ebd",
+  "kitchen-drink-preparation-serving": "4dc32096-7d56-4f77-9f60-5be7be740e92",
+  "kitchen-express-parcel-handling": null,
+  "kitchen-floor-cleaning-trash-handling": "0c881613-5777-497e-ac5c-871cc8c8ebff",
+  "kitchen-item-placement-display": null,
+  "kitchen-light-meal-cooking-food-prep": "77e4faa7-3055-4402-bf19-30793fd4e0db",
+  "kitchen-personal-hygiene": null,
+  "kitchen-small-goods-sorting-packing": null,
+
+  "laundry-room-cloth-rag-washing": null,
+  "laundry-room-item-placement-display": "a01d8386-5565-40b2-bbc4-676597db569c",
+
+  "shopping-mall-desk-counter-tidying": null,
+  "shopping-mall-digital-device-operation": null,
+  "shopping-mall-dishware-kitchenware-washing": null,
+  "shopping-mall-drink-preparation-serving": null,
+  "shopping-mall-item-placement-display": null,
+  "shopping-mall-small-goods-sorting-packing": null
 }

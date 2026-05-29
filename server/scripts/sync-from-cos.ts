@@ -222,13 +222,27 @@ function main() {
 
     // Choose the single clip that surfaces in catalog.json for this scenario.
     // Curated override wins; otherwise the lowest-uuid clip (deterministic
-    // across syncs so the same arbitrary pick stays visible).
+    // across syncs so the same arbitrary pick stays visible). When a curated
+    // uuid is not in the bucket but a matching file already exists on disk
+    // (out-of-band package from a colleague), trust the uuid as a local-only
+    // pick and synthesize a Recording stub so catalog emits the entry; the
+    // download attempt becomes a skip-if-exists no-op.
     let chosen = all[0]!;
     const curatedUuid = curated[scenarioId];
     if (typeof curatedUuid === "string") {
       const found = all.find((r) => r.uuid === curatedUuid);
-      if (found) chosen = found;
-      else console.warn(`[sync]  ⚠ curated uuid ${curatedUuid} not in bucket for ${scenarioId} — falling back to ${chosen.uuid}`);
+      if (found) {
+        chosen = found;
+      } else {
+        const [major, minor] = key.split("/") as [string, string];
+        const localPath = join(VIDEOS_DIR, `${slug(major)}__${slug(minor)}__${curatedUuid}.mp4`);
+        if (existsSync(localPath)) {
+          chosen = { major, minor, uuid: curatedUuid, cosPath: "" };
+          console.log(`[sync]  local-only ${scenarioId} -> ${curatedUuid}`);
+        } else {
+          console.warn(`[sync]  ⚠ curated uuid ${curatedUuid} not in bucket and not on disk for ${scenarioId} — falling back to ${chosen.uuid}`);
+        }
+      }
     }
 
     // Always download the chosen clip so the catalog points at a file that's
