@@ -48,3 +48,27 @@ export async function getCaption(file: string): Promise<Caption | null> {
   if (!r.ok) throw new Error(`caption failed: ${r.status}`);
   return r.json();
 }
+
+// --- Request Data Access form submission ---
+export type RequestAccessPayload = {
+  fullName: string;
+  organization: string;
+  email: string;
+  role: string;
+  country: string;
+  useCase: string;
+  estimatedScale?: string;
+  ndaRequired?: boolean;
+};
+
+export async function submitRequestAccess(p: RequestAccessPayload): Promise<{ ok: boolean; error?: string }> {
+  const r = await fetch("/api/request-access", {
+    ...opts,
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(p),
+  });
+  if (r.ok) return { ok: true };
+  const body = await r.json().catch(() => ({} as { error?: string }));
+  return { ok: false, error: body.error ?? `submission failed (${r.status})` };
+}

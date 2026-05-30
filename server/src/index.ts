@@ -18,6 +18,7 @@ import {
   isAuthed,
   requireAuth,
 } from "./auth.js";
+import { sendRequest, validatePayload } from "./contact.js";
 import { buildCatalog } from "./data.js";
 import { serveVideo, servePoster, serveCaption, VIDEOS_DIR } from "./videos.js";
 
@@ -56,6 +57,18 @@ app.get("/api/stats", requireAuth, (c) => c.json(getLoginStats()));
 
 // --- Catalog (protected) ---
 app.get("/api/catalog", requireAuth, (c) => c.json(buildCatalog()));
+
+// --- Dataset access request form (protected; only signed-in portal users) ---
+// Body fields validated server-side; submission is emailed to CONTACT_EMAIL via
+// Resend with the submitter's address in Reply-To.
+app.post("/api/request-access", requireAuth, async (c) => {
+  const body = await c.req.json().catch(() => null);
+  const v = validatePayload(body);
+  if (typeof v === "string") return c.json({ ok: false, error: v }, 400);
+  const res = await sendRequest(v);
+  if (!res.ok) return c.json({ ok: false, error: res.error }, res.status as 502 | 503);
+  return c.json({ ok: true });
+});
 
 // --- Videos + poster frames + caption sidecars (protected) ---
 app.get("/videos/:file", requireAuth, (c) => serveVideo(c, c.req.param("file")));

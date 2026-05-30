@@ -5,12 +5,14 @@ import { Login } from "./components/Login.tsx";
 import { ModalityTabs } from "./components/ModalityTabs.tsx";
 import { TaxonomyBrowser } from "./components/TaxonomyBrowser.tsx";
 import { CameraIcon, CubeIcon } from "./components/Icons.tsx";
+import { RequestAccessModal } from "./components/RequestAccessModal.tsx";
 
 export function App() {
   const [authed, setAuthed] = useState<boolean | null>(null);
   const [catalog, setCatalog] = useState<Catalog | null>(null);
   const [activeId, setActiveId] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
+  const [requestOpen, setRequestOpen] = useState(false);
 
   useEffect(() => {
     getSession().then(setAuthed).catch(() => setAuthed(false));
@@ -56,8 +58,15 @@ export function App() {
         ) : (
           <span />
         )}
-        <button className="topbar__logout" onClick={doLogout}>Sign out</button>
+        <div className="topbar__actions">
+          <button className="topbar__cta" onClick={() => setRequestOpen(true)}>
+            Request Data Access
+          </button>
+          <button className="topbar__logout" onClick={doLogout}>Sign out</button>
+        </div>
       </header>
+
+      {requestOpen && <RequestAccessModal onClose={() => setRequestOpen(false)} />}
 
       {active && (
         <main className="content">
