@@ -1,0 +1,31 @@
+web/src/index.css
+  s_e4806683d572e3::t_7b91e2f86989a9 269,276-300
+catalog.json
+  s_e4806683d572e3::t_a5f48195b9fbf7 21-23,25-28,40-41,66-67,98-100,102-123,137-142,154-161,179-180,192-199,213-218,230-237,275-282,307-308,320-321,333-334,365-366,378-379,391-392,404-405,417-418
+curated.json
+  s_e4806683d572e3::t_d2b5013bec5f54 2-4,6,18,20-21,24-26,28-29,31-32
+web/src/components/ScenarioPreview.tsx
+  s_e4806683d572e3::t_014dbc0e4aa379 2,7-10,17-20,26,32-42
+server/scripts/sync-from-cos.ts
+  s_e4806683d572e3::t_a2fabe05c33c53 34-38
+  s_e4806683d572e3::t_a8652ace8e4060 238,247
+  s_e4806683d572e3::t_843f5889d2b507 296-301,303-306
+  s_e4806683d572e3::t_915eb99120cec0 40-45,54-58
+  s_e4806683d572e3::t_aa3e3e3714f6c1 231-237,239-240,242-245,248-257,260-261,263-265
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.2",
+  "base_commit_sha": "15e423f699083fb6ab1f4b20adce52aa8b62c600",
+  "prompts": {},
+  "sessions": {
+    "s_e4806683d572e3": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "fe43ba7a-41dd-4ea6-8174-c67608e63c7f",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "wyf-ACCEPT <importwyf@gmail.com>"
+    }
+  }
+}
