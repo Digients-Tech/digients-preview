@@ -1,0 +1,19 @@
+server/scripts/sync-from-cos.ts
+  s_e4806683d572e3::t_e78bef24644c1b 318-321,323-330
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.2",
+  "base_commit_sha": "b250d7f68f8c24f61166b5e035bd59cf7c902faa",
+  "prompts": {},
+  "sessions": {
+    "s_e4806683d572e3": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "fe43ba7a-41dd-4ea6-8174-c67608e63c7f",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "wyf-ACCEPT <importwyf@gmail.com>"
+    }
+  }
+}
