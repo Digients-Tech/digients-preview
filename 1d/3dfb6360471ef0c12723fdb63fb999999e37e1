@@ -1,0 +1,38 @@
+package.json
+  ai_agent 18-19
+server/src/contact.ts
+  s_e4806683d572e3::t_e6378937d10dd1 1-132
+server/src/index.ts
+  s_e4806683d572e3::t_5c38aaf6fe6fb2 61-72
+  s_e4806683d572e3::t_75995ab0d3149f 21
+server/package.json
+  s_e4806683d572e3::t_b9a4fa13f70861 16-17
+web/src/components/RequestAccessModal.tsx
+  s_e4806683d572e3::t_7eb3c7de383d8a 1-149
+web/src/index.css
+  s_e4806683d572e3::t_d0cab4bbe3ffc2 563-697
+  s_e4806683d572e3::t_239e9948340986 78,80-96
+web/src/api.ts
+  s_e4806683d572e3::t_ac67e5f3b9a144 51-74
+pnpm-lock.yaml
+  ai_agent 23-25,481-487,629-631,720-736,743-746,761-763,794-800,818-820,836-841,853-857,863-865,878-881,893-895,1306-1313,1391-1395,1495-1514,1519-1520,1581-1582,1598-1612,1621-1622,1633-1639,1650-1651,1657-1660,1667-1673,1711-1713
+web/src/App.tsx
+  s_e4806683d572e3::t_707ae02d007852 61-66,69
+  s_e4806683d572e3::t_310319642bf2e2 8,15
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.2",
+  "base_commit_sha": "1d3dfb6360471ef0c12723fdb63fb999999e37e1",
+  "prompts": {},
+  "sessions": {
+    "s_e4806683d572e3": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "fe43ba7a-41dd-4ea6-8174-c67608e63c7f",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "wyf-ACCEPT <importwyf@gmail.com>"
+    }
+  }
+}
