@@ -18,34 +18,14 @@
                 {
                   "id": "counter-bookkeeping-cashiering-1",
                   "label": "Bookkeeping & Cashiering",
-                  "file": "counter__bookkeeping-cashiering__07b4649b-e635-4d95-9208-a6b691c0232f.mp4",
-                  "durationSec": 16
-                }
-              ]
-            },
-            {
-              "id": "counter-cloth-rag-washing",
-              "name": "Cloth & Rag Washing",
-              "recordingCount": 1,
-              "previews": [
+                  "file": "counter__bookkeeping-cashiering__67186366-ccb1-481a-866a-9ec766b58c7a.mp4",
+                  "durationSec": 25
+                },
                 {
-                  "id": "counter-cloth-rag-washing-1",
-                  "label": "Cloth & Rag Washing",
-                  "file": "counter__cloth-rag-washing__a7e1ff2d-19c8-4a45-84a1-f9a038509f54.mp4",
-                  "durationSec": 30
-                }
-              ]
-            },
-            {
-              "id": "counter-computer-peripheral-maintenance",
-              "name": "Computer Peripheral Maintenance",
-              "recordingCount": 1,
-              "previews": [
-                {
-                  "id": "counter-computer-peripheral-maintenance-1",
-                  "label": "Computer Peripheral Maintenance",
-                  "file": "counter__computer-peripheral-maintenance__f542f472-8cd8-4d13-8128-66f7bbc1dd26.mp4",
-                  "durationSec": 18
+                  "id": "counter-bookkeeping-cashiering-2",
+                  "label": "Bookkeeping & Cashiering",
+                  "file": "counter__bookkeeping-cashiering__7c56093f-0311-4e25-a1c3-7f96a9bca586.mp4",
+                  "durationSec": 20
                 }
               ]
             },
@@ -57,8 +37,8 @@
                 {
                   "id": "counter-desk-counter-tidying-1",
                   "label": "Desk & Counter Tidying",
-                  "file": "counter__desk-counter-tidying__0558aac0-121e-4b74-a5ad-02701bdd78f8.mp4",
-                  "durationSec": 15
+                  "file": "counter__desk-counter-tidying__e79f222e-0a42-420c-ba9d-f9494167d40d.mp4",
+                  "durationSec": 16
                 }
               ]
             },
@@ -83,34 +63,8 @@
                 {
                   "id": "counter-drink-preparation-serving-1",
                   "label": "Drink Preparation & Serving",
-                  "file": "counter__drink-preparation-serving__58c510c0-f606-44a8-9514-546917ad373a.mp4",
-                  "durationSec": 44
-                }
-              ]
-            },
-            {
-              "id": "counter-light-meal-cooking-food-prep",
-              "name": "Light Meal Cooking & Food Prep",
-              "recordingCount": 2,
-              "previews": [
-                {
-                  "id": "counter-light-meal-cooking-food-prep-1",
-                  "label": "Light Meal Cooking & Food Prep",
-                  "file": "counter__light-meal-cooking-food-prep__29db3269-2437-4f8f-87af-02f040d09ff9.mp4",
-                  "durationSec": 23
-                }
-              ]
-            },
-            {
-              "id": "counter-personal-hygiene",
-              "name": "Personal Hygiene",
-              "recordingCount": 2,
-              "previews": [
-                {
-                  "id": "counter-personal-hygiene-1",
-                  "label": "Personal Hygiene",
-                  "file": "counter__personal-hygiene__aba58651-58e4-4eef-b585-890d9f0ce359.mp4",
-                  "durationSec": 15
+                  "file": "counter__drink-preparation-serving__6d727c55-d883-40f1-9407-f287e5267ed7.mp4",
+                  "durationSec": 29
                 }
               ]
             }
@@ -134,32 +88,6 @@
               ]
             },
             {
-              "id": "courier-point-digital-device-operation",
-              "name": "Digital Device Operation",
-              "recordingCount": 9,
-              "previews": [
-                {
-                  "id": "courier-point-digital-device-operation-1",
-                  "label": "Digital Device Operation",
-                  "file": "courier-point__digital-device-operation__0fba79d6-07fa-4ae1-b7b9-e4031fb303be.mp4",
-                  "durationSec": 16
-                }
-              ]
-            },
-            {
-              "id": "courier-point-drink-preparation-serving",
-              "name": "Drink Preparation & Serving",
-              "recordingCount": 2,
-              "previews": [
-                {
-                  "id": "courier-point-drink-preparation-serving-1",
-                  "label": "Drink Preparation & Serving",
-                  "file": "courier-point__drink-preparation-serving__97e86fc9-f304-4366-82da-5536e628d474.mp4",
-                  "durationSec": 17
-                }
-              ]
-            },
-            {
               "id": "courier-point-express-parcel-handling",
               "name": "Express Parcel Handling",
               "recordingCount": 10,
@@ -167,21 +95,32 @@
                 {
                   "id": "courier-point-express-parcel-handling-1",
                   "label": "Express Parcel Handling",
-                  "file": "courier-point__express-parcel-handling__077a3ba5-0641-40b0-bfac-5719f6b8bd52.mp4",
-                  "durationSec": 16
-                }
-              ]
-            },
-            {
-              "id": "courier-point-floor-cleaning-trash-handling",
-              "name": "Floor Cleaning & Trash Handling",
-              "recordingCount": 1,
-              "previews": [
+                  "file": "courier-point__express-parcel-handling__2c8e992e-aceb-4911-9e1e-b07b3d771e69.mp4",
+                  "durationSec": 39
+                },
                 {
-                  "id": "courier-point-floor-cleaning-trash-handling-1",
-                  "label": "Floor Cleaning & Trash Handling",
-                  "file": "courier-point__floor-cleaning-trash-handling__cacd6e1f-6766-4ac5-9a16-de1bfa5d02b4.mp4",
-                  "durationSec": 26
+                  "id": "courier-point-express-parcel-handling-2",
+                  "label": "Express Parcel Handling",
+                  "file": "courier-point__express-parcel-handling__0eac75b4-2ec3-407d-ad5f-47339b6cb264.mp4",
+                  "durationSec": 36
+                },
+                {
+                  "id": "courier-point-express-parcel-handling-3",
+                  "label": "Express Parcel Handling",
+                  "file": "courier-point__express-parcel-handling__1eb8ecc8-aa1e-4651-a9d8-e61869883a46.mp4",
+                  "durationSec": 22
+                },
+                {
+                  "id": "courier-point-express-parcel-handling-4",
+                  "label": "Express Parcel Handling",
+                  "file": "courier-point__express-parcel-handling__5689e65c-3e49-48c8-8092-d65b113f104e.mp4",
+                  "durationSec": 27
+                },
+                {
+                  "id": "courier-point-express-parcel-handling-5",
+                  "label": "Express Parcel Handling",
+                  "file": "courier-point__express-parcel-handling__54d043a8-220a-4f7d-aa72-b222c5a7d899.mp4",
+                  "durationSec": 22
                 }
               ]
             },
@@ -195,6 +134,12 @@
                   "label": "Item Placement & Display",
                   "file": "courier-point__item-placement-display__1f0a8aa2-d305-4b67-bb11-770551828216.mp4",
                   "durationSec": 25
+                },
+                {
+                  "id": "courier-point-item-placement-display-2",
+                  "label": "Item Placement & Display",
+                  "file": "courier-point__item-placement-display__0c7ebfb4-0ca8-439b-81f5-80d970e866a6.mp4",
+                  "durationSec": 15
                 }
               ]
             },
@@ -206,8 +151,14 @@
                 {
                   "id": "courier-point-small-goods-sorting-packing-1",
                   "label": "Small Goods Sorting & Packing",
-                  "file": "courier-point__small-goods-sorting-packing__1a77ed49-72d6-4499-bb69-f5e8eca0c9af.mp4",
-                  "durationSec": 21
+                  "file": "courier-point__small-goods-sorting-packing__a25a824c-f84e-4a77-92ec-18618e2e94cf.mp4",
+                  "durationSec": 63
+                },
+                {
+                  "id": "courier-point-small-goods-sorting-packing-2",
+                  "label": "Small Goods Sorting & Packing",
+                  "file": "courier-point__small-goods-sorting-packing__2c81011a-25e7-4cf2-a54d-a52f4e8e0481.mp4",
+                  "durationSec": 19
                 }
               ]
             }
@@ -225,8 +176,8 @@
                 {
                   "id": "cybercafe-bookkeeping-cashiering-1",
                   "label": "Bookkeeping & Cashiering",
-                  "file": "cybercafe__bookkeeping-cashiering__2a09cc9e-0299-4d8d-ac04-a447eaab15c3.mp4",
-                  "durationSec": 54
+                  "file": "cybercafe__bookkeeping-cashiering__c811426c-12a3-475d-9228-7cba6ee0e24a.mp4",
+                  "durationSec": 44
                 }
               ]
             },
@@ -238,8 +189,14 @@
                 {
                   "id": "cybercafe-cloth-rag-washing-1",
                   "label": "Cloth & Rag Washing",
-                  "file": "cybercafe__cloth-rag-washing__048d06e1-8065-4b7c-99a4-99b890a47edd.mp4",
-                  "durationSec": 81
+                  "file": "cybercafe__cloth-rag-washing__657d3604-2132-40db-a20c-9be99bd4f33f.mp4",
+                  "durationSec": 88
+                },
+                {
+                  "id": "cybercafe-cloth-rag-washing-2",
+                  "label": "Cloth & Rag Washing",
+                  "file": "cybercafe__cloth-rag-washing__b67080ca-224c-44f8-a275-6164e77b5a4c.mp4",
+                  "durationSec": 25
                 }
               ]
             },
@@ -253,6 +210,12 @@
                   "label": "Computer Peripheral Maintenance",
                   "file": "cybercafe__computer-peripheral-maintenance__0c686198-f71e-4504-9a88-83a05b5a2fdc.mp4",
                   "durationSec": 17
+                },
+                {
+                  "id": "cybercafe-computer-peripheral-maintenance-2",
+                  "label": "Computer Peripheral Maintenance",
+                  "file": "cybercafe__computer-peripheral-maintenance__aefafa18-6b1c-407d-a9d3-e838ef341b4a.mp4",
+                  "durationSec": 18
                 }
               ]
             },
@@ -264,8 +227,14 @@
                 {
                   "id": "cybercafe-desk-counter-tidying-1",
                   "label": "Desk & Counter Tidying",
-                  "file": "cybercafe__desk-counter-tidying__0f78cebe-01a8-4fda-9fb9-01cfa49ad1df.mp4",
-                  "durationSec": 20
+                  "file": "cybercafe__desk-counter-tidying__41edf2cc-5b11-4706-bc4b-14bbcf182047.mp4",
+                  "durationSec": 29
+                },
+                {
+                  "id": "cybercafe-desk-counter-tidying-2",
+                  "label": "Desk & Counter Tidying",
+                  "file": "cybercafe__desk-counter-tidying__4d1a233c-1807-4dbc-bb75-c5d01ad839af.mp4",
+                  "durationSec": 32
                 }
               ]
             },
@@ -303,8 +272,14 @@
                 {
                   "id": "cybercafe-drink-preparation-serving-1",
                   "label": "Drink Preparation & Serving",
-                  "file": "cybercafe__drink-preparation-serving__0440cee8-c237-4cd4-862d-d113d887ee32.mp4",
-                  "durationSec": 16
+                  "file": "cybercafe__drink-preparation-serving__066c4446-fdd0-44f0-94f1-44034d92814c.mp4",
+                  "durationSec": 17
+                },
+                {
+                  "id": "cybercafe-drink-preparation-serving-2",
+                  "label": "Drink Preparation & Serving",
+                  "file": "cybercafe__drink-preparation-serving__80e58f7d-085e-4b66-8888-ab12e9db3656.mp4",
+                  "durationSec": 35
                 }
               ]
             },
@@ -329,8 +304,8 @@
                 {
                   "id": "cybercafe-floor-cleaning-trash-handling-1",
                   "label": "Floor Cleaning & Trash Handling",
-                  "file": "cybercafe__floor-cleaning-trash-handling__13ca24b5-fccb-4c0f-ba3c-c5889e33b1ec.mp4",
-                  "durationSec": 29
+                  "file": "cybercafe__floor-cleaning-trash-handling__2f258c79-a2af-4798-b2b2-9009cbfb90ff.mp4",
+                  "durationSec": 19
                 }
               ]
             },
@@ -342,8 +317,8 @@
                 {
                   "id": "cybercafe-item-placement-display-1",
                   "label": "Item Placement & Display",
-                  "file": "cybercafe__item-placement-display__08c6b5b1-6703-40e2-a7cd-c44a394a1d53.mp4",
-                  "durationSec": 17
+                  "file": "cybercafe__item-placement-display__4fa6cfb3-e6b3-4de5-a922-14ea84e5486d.mp4",
+                  "durationSec": 20
                 }
               ]
             },
@@ -355,34 +330,8 @@
                 {
                   "id": "cybercafe-light-meal-cooking-food-prep-1",
                   "label": "Light Meal Cooking & Food Prep",
-                  "file": "cybercafe__light-meal-cooking-food-prep__08226ff5-3b1c-443e-94bf-3967d6d70778.mp4",
-                  "durationSec": 39
-                }
-              ]
-            },
-            {
-              "id": "cybercafe-personal-hygiene",
-              "name": "Personal Hygiene",
-              "recordingCount": 4,
-              "previews": [
-                {
-                  "id": "cybercafe-personal-hygiene-1",
-                  "label": "Personal Hygiene",
-                  "file": "cybercafe__personal-hygiene__272b25b7-b9dc-41ad-8b7b-81134a53a326.mp4",
-                  "durationSec": 22
-                }
-              ]
-            },
-            {
-              "id": "cybercafe-small-goods-sorting-packing",
-              "name": "Small Goods Sorting & Packing",
-              "recordingCount": 3,
-              "previews": [
-                {
-                  "id": "cybercafe-small-goods-sorting-packing-1",
-                  "label": "Small Goods Sorting & Packing",
-                  "file": "cybercafe__small-goods-sorting-packing__6c6daa60-28c4-4d42-8fc2-955f8bda1022.mp4",
-                  "durationSec": 19
+                  "file": "cybercafe__light-meal-cooking-food-prep__8e29ae9f-c6db-4e62-8f71-f044a9fb13c6.mp4",
+                  "durationSec": 83
                 }
               ]
             }
@@ -392,19 +341,6 @@
           "id": "kitchen",
           "name": "Kitchen",
           "scenarios": [
-            {
-              "id": "kitchen-bookkeeping-cashiering",
-              "name": "Bookkeeping & Cashiering",
-              "recordingCount": 1,
-              "previews": [
-                {
-                  "id": "kitchen-bookkeeping-cashiering-1",
-                  "label": "Bookkeeping & Cashiering",
-                  "file": "kitchen__bookkeeping-cashiering__08f2318e-4964-485d-b0d0-b2feb50b25b2.mp4",
-                  "durationSec": 21
-                }
-              ]
-            },
             {
               "id": "kitchen-cloth-rag-washing",
               "name": "Cloth & Rag Washing",
@@ -419,19 +355,6 @@
               ]
             },
             {
-              "id": "kitchen-computer-peripheral-maintenance",
-              "name": "Computer Peripheral Maintenance",
-              "recordingCount": 10,
-              "previews": [
-                {
-                  "id": "kitchen-computer-peripheral-maintenance-1",
-                  "label": "Computer Peripheral Maintenance",
-                  "file": "kitchen__computer-peripheral-maintenance__077aa7d8-2b90-405d-b890-3216cf3f8b5d.mp4",
-                  "durationSec": 21
-                }
-              ]
-            },
-            {
               "id": "kitchen-desk-counter-tidying",
               "name": "Desk & Counter Tidying",
               "recordingCount": 10,
@@ -439,21 +362,8 @@
                 {
                   "id": "kitchen-desk-counter-tidying-1",
                   "label": "Desk & Counter Tidying",
-                  "file": "kitchen__desk-counter-tidying__02aa6078-4a9a-4dd2-939b-569583ee5d4d.mp4",
-                  "durationSec": 59
-                }
-              ]
-            },
-            {
-              "id": "kitchen-digital-device-operation",
-              "name": "Digital Device Operation",
-              "recordingCount": 5,
-              "previews": [
-                {
-                  "id": "kitchen-digital-device-operation-1",
-                  "label": "Digital Device Operation",
-                  "file": "kitchen__digital-device-operation__0447c88d-36c0-431c-a501-56d0daf7e510.mp4",
-                  "durationSec": 17
+                  "file": "kitchen__desk-counter-tidying__8dcc69fe-e3c0-4da2-80d8-c130bd3bff15.mp4",
+                  "durationSec": 30
                 }
               ]
             },
@@ -465,8 +375,8 @@
                 {
                   "id": "kitchen-dishware-kitchenware-washing-1",
                   "label": "Dishware & Kitchenware Washing",
-                  "file": "kitchen__dishware-kitchenware-washing__23460b9c-6de1-4e0a-91f9-eb9bc0fdb11e.mp4",
-                  "durationSec": 17
+                  "file": "kitchen__dishware-kitchenware-washing__28dfca7b-51a1-44b3-9a2a-a03151638ebd.mp4",
+                  "durationSec": 26
                 }
               ]
             },
@@ -478,21 +388,8 @@
                 {
                   "id": "kitchen-drink-preparation-serving-1",
                   "label": "Drink Preparation & Serving",
-                  "file": "kitchen__drink-preparation-serving__2152d4c1-906e-426c-afab-ac416e39c859.mp4",
-                  "durationSec": 32
-                }
-              ]
-            },
-            {
-              "id": "kitchen-express-parcel-handling",
-              "name": "Express Parcel Handling",
-              "recordingCount": 1,
-              "previews": [
-                {
-                  "id": "kitchen-express-parcel-handling-1",
-                  "label": "Express Parcel Handling",
-                  "file": "kitchen__express-parcel-handling__c96c74b0-3de5-421d-9d89-7d9fa6339688.mp4",
-                  "durationSec": 18
+                  "file": "kitchen__drink-preparation-serving__4dc32096-7d56-4f77-9f60-5be7be740e92.mp4",
+                  "durationSec": 24
                 }
               ]
             },
@@ -504,21 +401,8 @@
                 {
                   "id": "kitchen-floor-cleaning-trash-handling-1",
                   "label": "Floor Cleaning & Trash Handling",
-                  "file": "kitchen__floor-cleaning-trash-handling__0dce5b33-8295-4c7a-8515-01df7dcbda83.mp4",
-                  "durationSec": 16
-                }
-              ]
-            },
-            {
-              "id": "kitchen-item-placement-display",
-              "name": "Item Placement & Display",
-              "recordingCount": 9,
-              "previews": [
-                {
-                  "id": "kitchen-item-placement-display-1",
-                  "label": "Item Placement & Display",
-                  "file": "kitchen__item-placement-display__15f2ff2f-40ca-4865-8e1d-954f6a35e6a5.mp4",
-                  "durationSec": 25
+                  "file": "kitchen__floor-cleaning-trash-handling__0c881613-5777-497e-ac5c-871cc8c8ebff.mp4",
+                  "durationSec": 20
                 }
               ]
             },
@@ -530,34 +414,8 @@
                 {
                   "id": "kitchen-light-meal-cooking-food-prep-1",
                   "label": "Light Meal Cooking & Food Prep",
-                  "file": "kitchen__light-meal-cooking-food-prep__18d9a47d-119c-4e1b-9b7d-682b4cb94006.mp4",
-                  "durationSec": 21
-                }
-              ]
-            },
-            {
-              "id": "kitchen-personal-hygiene",
-              "name": "Personal Hygiene",
-              "recordingCount": 10,
-              "previews": [
-                {
-                  "id": "kitchen-personal-hygiene-1",
-                  "label": "Personal Hygiene",
-                  "file": "kitchen__personal-hygiene__24875f1d-827a-42e1-ac8f-190d388aee88.mp4",
-                  "durationSec": 18
-                }
-              ]
-            },
-            {
-              "id": "kitchen-small-goods-sorting-packing",
-              "name": "Small Goods Sorting & Packing",
-              "recordingCount": 2,
-              "previews": [
-                {
-                  "id": "kitchen-small-goods-sorting-packing-1",
-                  "label": "Small Goods Sorting & Packing",
-                  "file": "kitchen__small-goods-sorting-packing__0305426f-476c-465d-801f-a27fa5184d58.mp4",
-                  "durationSec": 35
+                  "file": "kitchen__light-meal-cooking-food-prep__77e4faa7-3055-4402-bf19-30793fd4e0db.mp4",
+                  "durationSec": 23
                 }
               ]
             }
@@ -568,19 +426,6 @@
           "name": "Laundry Room",
           "scenarios": [
             {
-              "id": "laundry-room-cloth-rag-washing",
-              "name": "Cloth & Rag Washing",
-              "recordingCount": 1,
-              "previews": [
-                {
-                  "id": "laundry-room-cloth-rag-washing-1",
-                  "label": "Cloth & Rag Washing",
-                  "file": "laundry-room__cloth-rag-washing__69ae12fd-6c35-4bf3-8679-f9606cca56ab.mp4",
-                  "durationSec": 16
-                }
-              ]
-            },
-            {
               "id": "laundry-room-item-placement-display",
               "name": "Item Placement & Display",
               "recordingCount": 1,
@@ -590,90 +435,6 @@
                   "label": "Item Placement & Display",
                   "file": "laundry-room__item-placement-display__a01d8386-5565-40b2-bbc4-676597db569c.mp4",
                   "durationSec": 19
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "id": "shopping-mall",
-          "name": "Shopping Mall",
-          "scenarios": [
-            {
-              "id": "shopping-mall-desk-counter-tidying",
-              "name": "Desk & Counter Tidying",
-              "recordingCount": 3,
-              "previews": [
-                {
-                  "id": "shopping-mall-desk-counter-tidying-1",
-                  "label": "Desk & Counter Tidying",
-                  "file": "shopping-mall__desk-counter-tidying__199db578-fc91-439b-9750-bfe4abd42e26.mp4",
-                  "durationSec": 16
-                }
-              ]
-            },
-            {
-              "id": "shopping-mall-digital-device-operation",
-              "name": "Digital Device Operation",
-              "recordingCount": 5,
-              "previews": [
-                {
-                  "id": "shopping-mall-digital-device-operation-1",
-                  "label": "Digital Device Operation",
-                  "file": "shopping-mall__digital-device-operation__4221b09e-11bf-425c-b7e8-20231410c735.mp4",
-                  "durationSec": 24
-                }
-              ]
-            },
-            {
-              "id": "shopping-mall-dishware-kitchenware-washing",
-              "name": "Dishware & Kitchenware Washing",
-              "recordingCount": 8,
-              "previews": [
-                {
-                  "id": "shopping-mall-dishware-kitchenware-washing-1",
-                  "label": "Dishware & Kitchenware Washing",
-                  "file": "shopping-mall__dishware-kitchenware-washing__3a183efd-7fb5-4f30-b465-ef9056aaebbe.mp4",
-                  "durationSec": 16
-                }
-              ]
-            },
-            {
-              "id": "shopping-mall-drink-preparation-serving",
-              "name": "Drink Preparation & Serving",
-              "recordingCount": 6,
-              "previews": [
-                {
-                  "id": "shopping-mall-drink-preparation-serving-1",
-                  "label": "Drink Preparation & Serving",
-                  "file": "shopping-mall__drink-preparation-serving__5088f935-bf2a-438a-90e1-769f7cee77ca.mp4",
-                  "durationSec": 19
-                }
-              ]
-            },
-            {
-              "id": "shopping-mall-item-placement-display",
-              "name": "Item Placement & Display",
-              "recordingCount": 2,
-              "previews": [
-                {
-                  "id": "shopping-mall-item-placement-display-1",
-                  "label": "Item Placement & Display",
-                  "file": "shopping-mall__item-placement-display__08c6b5b1-6703-40e2-a7cd-c44a394a1d53.mp4",
-                  "durationSec": 17
-                }
-              ]
-            },
-            {
-              "id": "shopping-mall-small-goods-sorting-packing",
-              "name": "Small Goods Sorting & Packing",
-              "recordingCount": 3,
-              "previews": [
-                {
-                  "id": "shopping-mall-small-goods-sorting-packing-1",
-                  "label": "Small Goods Sorting & Packing",
-                  "file": "shopping-mall__small-goods-sorting-packing__6a487555-a0ef-448a-bfa4-f1444c2128c4.mp4",
-                  "durationSec": 21
                 }
               ]
             }

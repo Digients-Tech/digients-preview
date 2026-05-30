@@ -31,14 +31,18 @@ const PER_SCENE = perSceneRaw === "all" || perSceneRaw === "max"
 const REPO = resolve(fileURLToPath(new URL("../../", import.meta.url)));
 const VIDEOS_DIR = process.env.VIDEOS_DIR ?? resolve(REPO, "videos");
 const CAPTIONS_DIR = process.env.CAPTIONS_DIR ?? resolve(REPO, "captions");
-const CATALOG_PATH = resolve(REPO, "catalog.json");
-const CURATED_PATH = resolve(REPO, "curated.json");
+// CURATED_PATH / CATALOG_PATH are overridable so we can do dry-runs that
+// generate a side catalog (e.g. for local UI preview) without disturbing the
+// repo's checked-in catalog.json or the live curated.json.
+const CATALOG_PATH = process.env.CATALOG_PATH ?? resolve(REPO, "catalog.json");
+const CURATED_PATH = process.env.CURATED_PATH ?? resolve(REPO, "curated.json");
 
-// Per-scenario override map. Three states for a given scenario_id:
-//   * uuid string -> use that specific clip as the catalog preview
-//   * null         -> drop this scenario entirely from catalog.json
-//   * absent       -> auto-pick (lowest-uuid clip)
-type CuratedEntry = string | null;
+// Per-scenario override map. States for a given scenario_id:
+//   * uuid string      -> single preview, use that clip
+//   * uuid string[]    -> multiple previews in given order (frontend renders ◀ / ▶)
+//   * null             -> drop this scenario entirely from catalog.json
+//   * absent           -> auto-pick (lowest-uuid clip)
+type CuratedEntry = string | string[] | null;
 type CuratedMap = Record<string, CuratedEntry>;
 function loadCurated(): CuratedMap {
   if (!existsSync(CURATED_PATH)) return {};
@@ -47,7 +51,11 @@ function loadCurated(): CuratedMap {
     const out: CuratedMap = {};
     for (const [k, v] of Object.entries(raw)) {
       if (k.startsWith("_")) continue;
-      if (typeof v === "string" || v === null) out[k] = v as CuratedEntry;
+      if (v === null || typeof v === "string") {
+        out[k] = v as CuratedEntry;
+      } else if (Array.isArray(v) && v.every((x) => typeof x === "string")) {
+        out[k] = v as string[];
+      }
     }
     return out;
   } catch (e) {
@@ -220,35 +228,41 @@ function main() {
       continue;
     }
 
-    // Choose the single clip that surfaces in catalog.json for this scenario.
-    // Curated override wins; otherwise the lowest-uuid clip (deterministic
-    // across syncs so the same arbitrary pick stays visible). When a curated
-    // uuid is not in the bucket but a matching file already exists on disk
-    // (out-of-band package from a colleague), trust the uuid as a local-only
-    // pick and synthesize a Recording stub so catalog emits the entry; the
-    // download attempt becomes a skip-if-exists no-op.
-    let chosen = all[0]!;
-    const curatedUuid = curated[scenarioId];
-    if (typeof curatedUuid === "string") {
-      const found = all.find((r) => r.uuid === curatedUuid);
-      if (found) {
-        chosen = found;
+    // Resolve curated uuid(s) into Recording(s). Curated override wins; absent
+    // falls back to the lowest-uuid auto-pick (deterministic across syncs).
+    // When a curated uuid is not in the bucket but a matching file exists on
+    // disk (out-of-band package), trust the uuid as a local-only pick.
+    const resolveUuid = (uuid: string): Recording => {
+      const found = all.find((r) => r.uuid === uuid);
+      if (found) return found;
+      const localPath = join(VIDEOS_DIR, `${slug(major)}__${slug(minor)}__${uuid}.mp4`);
+      if (existsSync(localPath)) {
+        console.log(`[sync]  local-only ${scenarioId} -> ${uuid}`);
       } else {
-        const [major, minor] = key.split("/") as [string, string];
-        const localPath = join(VIDEOS_DIR, `${slug(major)}__${slug(minor)}__${curatedUuid}.mp4`);
-        if (existsSync(localPath)) {
-          chosen = { major, minor, uuid: curatedUuid, cosPath: "" };
-          console.log(`[sync]  local-only ${scenarioId} -> ${curatedUuid}`);
-        } else {
-          console.warn(`[sync]  ⚠ curated uuid ${curatedUuid} not in bucket and not on disk for ${scenarioId} — falling back to ${chosen.uuid}`);
-        }
+        // Still emit the entry — the player UI shows a clear "no preview file
+        // yet" placeholder, which is more honest than silently substituting
+        // the wrong clip when a curator typo'd a uuid.
+        console.warn(`[sync]  ⚠ curated uuid ${uuid} for ${scenarioId} — not in bucket, not on disk; catalog will emit, playback will be empty`);
       }
+      return { major, minor, uuid, cosPath: "" };
+    };
+
+    const cur = curated[scenarioId];
+    let chosenList: Recording[];
+    if (Array.isArray(cur)) {
+      chosenList = cur.map(resolveUuid);
+    } else if (typeof cur === "string") {
+      chosenList = [resolveUuid(cur)];
+    } else {
+      chosenList = [all[0]!];
     }
 
-    // Always download the chosen clip so the catalog points at a file that's
-    // really on disk, even when PER_SCENE=1 happens to skip it.
+    // Always download chosen clips so the catalog points at files really on
+    // disk, even when PER_SCENE=1 happens to skip them. Skip-if-exists.
     const picks = all.slice(0, PER_SCENE);
-    if (!picks.some((p) => p.uuid === chosen.uuid)) picks.push(chosen);
+    for (const c of chosenList) {
+      if (c.cosPath && !picks.some((p) => p.uuid === c.uuid)) picks.push(c);
+    }
 
     for (let i = 0; i < picks.length; i++) {
       const r = picks[i]!;
@@ -279,17 +293,17 @@ function main() {
       }
     }
 
-    // Single preview per scenario in the catalog (curated or auto-picked).
-    const chosenFile = localFilename(chosen);
-    const chosenDst = join(VIDEOS_DIR, chosenFile);
-    const previews: ScenarioOut["previews"] = [
-      {
-        id: `${scenarioId}-1`,
+    // One preview per chosen clip; frontend pages between them with ◀ / ▶.
+    const previews: ScenarioOut["previews"] = chosenList.map((c, i) => {
+      const file = localFilename(c);
+      const dst = join(VIDEOS_DIR, file);
+      return {
+        id: `${scenarioId}-${i + 1}`,
         label: minor,
-        file: chosenFile,
-        durationSec: existsSync(chosenDst) ? durationSec(chosenDst) : 0,
-      },
-    ];
+        file,
+        durationSec: existsSync(dst) ? durationSec(dst) : 0,
+      };
+    });
 
     let arr = byMajor.get(major);
     if (!arr) byMajor.set(major, (arr = []));
