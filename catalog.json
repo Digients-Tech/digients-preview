@@ -7,6 +7,90 @@
       "icon": "ego",
       "domains": [
         {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "scenarios": [
+            {
+              "id": "kitchen-cloth-rag-washing",
+              "name": "Cloth & Rag Washing",
+              "recordingCount": 10,
+              "previews": [
+                {
+                  "id": "kitchen-cloth-rag-washing-1",
+                  "label": "Cloth & Rag Washing",
+                  "file": "kitchen__cloth-rag-washing__1a59b7d4-2c3e-4126-a720-235e0f7e9589.mp4",
+                  "durationSec": 46
+                }
+              ]
+            },
+            {
+              "id": "kitchen-desk-counter-tidying",
+              "name": "Desk & Counter Tidying",
+              "recordingCount": 10,
+              "previews": [
+                {
+                  "id": "kitchen-desk-counter-tidying-1",
+                  "label": "Desk & Counter Tidying",
+                  "file": "kitchen__desk-counter-tidying__8dcc69fe-e3c0-4da2-80d8-c130bd3bff15.mp4",
+                  "durationSec": 30
+                }
+              ]
+            },
+            {
+              "id": "kitchen-dishware-kitchenware-washing",
+              "name": "Dishware & Kitchenware Washing",
+              "recordingCount": 10,
+              "previews": [
+                {
+                  "id": "kitchen-dishware-kitchenware-washing-1",
+                  "label": "Dishware & Kitchenware Washing",
+                  "file": "kitchen__dishware-kitchenware-washing__28dfca7b-51a1-44b3-9a2a-a03151638ebd.mp4",
+                  "durationSec": 26
+                }
+              ]
+            },
+            {
+              "id": "kitchen-drink-preparation-serving",
+              "name": "Drink Preparation & Serving",
+              "recordingCount": 10,
+              "previews": [
+                {
+                  "id": "kitchen-drink-preparation-serving-1",
+                  "label": "Drink Preparation & Serving",
+                  "file": "kitchen__drink-preparation-serving__4dc32096-7d56-4f77-9f60-5be7be740e92.mp4",
+                  "durationSec": 24
+                }
+              ]
+            },
+            {
+              "id": "kitchen-floor-cleaning-trash-handling",
+              "name": "Floor Cleaning & Trash Handling",
+              "recordingCount": 10,
+              "previews": [
+                {
+                  "id": "kitchen-floor-cleaning-trash-handling-1",
+                  "label": "Floor Cleaning & Trash Handling",
+                  "file": "kitchen__floor-cleaning-trash-handling__0c881613-5777-497e-ac5c-871cc8c8ebff.mp4",
+                  "durationSec": 20
+                }
+              ]
+            },
+            {
+              "id": "kitchen-light-meal-cooking-food-prep",
+              "name": "Light Meal Cooking & Food Prep",
+              "recordingCount": 10,
+              "previews": [
+                {
+                  "id": "kitchen-light-meal-cooking-food-prep-1",
+                  "label": "Light Meal Cooking & Food Prep",
+                  "file": "kitchen__light-meal-cooking-food-prep__77e4faa7-3055-4402-bf19-30793fd4e0db.mp4",
+                  "durationSec": 23
+                }
+              ]
+            }
+          ]
+        },
+        {
           "id": "counter",
           "name": "Counter",
           "scenarios": [
@@ -332,90 +416,6 @@
                   "label": "Light Meal Cooking & Food Prep",
                   "file": "cybercafe__light-meal-cooking-food-prep__8e29ae9f-c6db-4e62-8f71-f044a9fb13c6.mp4",
                   "durationSec": 83
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "id": "kitchen",
-          "name": "Kitchen",
-          "scenarios": [
-            {
-              "id": "kitchen-cloth-rag-washing",
-              "name": "Cloth & Rag Washing",
-              "recordingCount": 10,
-              "previews": [
-                {
-                  "id": "kitchen-cloth-rag-washing-1",
-                  "label": "Cloth & Rag Washing",
-                  "file": "kitchen__cloth-rag-washing__1a59b7d4-2c3e-4126-a720-235e0f7e9589.mp4",
-                  "durationSec": 46
-                }
-              ]
-            },
-            {
-              "id": "kitchen-desk-counter-tidying",
-              "name": "Desk & Counter Tidying",
-              "recordingCount": 10,
-              "previews": [
-                {
-                  "id": "kitchen-desk-counter-tidying-1",
-                  "label": "Desk & Counter Tidying",
-                  "file": "kitchen__desk-counter-tidying__8dcc69fe-e3c0-4da2-80d8-c130bd3bff15.mp4",
-                  "durationSec": 30
-                }
-              ]
-            },
-            {
-              "id": "kitchen-dishware-kitchenware-washing",
-              "name": "Dishware & Kitchenware Washing",
-              "recordingCount": 10,
-              "previews": [
-                {
-                  "id": "kitchen-dishware-kitchenware-washing-1",
-                  "label": "Dishware & Kitchenware Washing",
-                  "file": "kitchen__dishware-kitchenware-washing__28dfca7b-51a1-44b3-9a2a-a03151638ebd.mp4",
-                  "durationSec": 26
-                }
-              ]
-            },
-            {
-              "id": "kitchen-drink-preparation-serving",
-              "name": "Drink Preparation & Serving",
-              "recordingCount": 10,
-              "previews": [
-                {
-                  "id": "kitchen-drink-preparation-serving-1",
-                  "label": "Drink Preparation & Serving",
-                  "file": "kitchen__drink-preparation-serving__4dc32096-7d56-4f77-9f60-5be7be740e92.mp4",
-                  "durationSec": 24
-                }
-              ]
-            },
-            {
-              "id": "kitchen-floor-cleaning-trash-handling",
-              "name": "Floor Cleaning & Trash Handling",
-              "recordingCount": 10,
-              "previews": [
-                {
-                  "id": "kitchen-floor-cleaning-trash-handling-1",
-                  "label": "Floor Cleaning & Trash Handling",
-                  "file": "kitchen__floor-cleaning-trash-handling__0c881613-5777-497e-ac5c-871cc8c8ebff.mp4",
-                  "durationSec": 20
-                }
-              ]
-            },
-            {
-              "id": "kitchen-light-meal-cooking-food-prep",
-              "name": "Light Meal Cooking & Food Prep",
-              "recordingCount": 10,
-              "previews": [
-                {
-                  "id": "kitchen-light-meal-cooking-food-prep-1",
-                  "label": "Light Meal Cooking & Food Prep",
-                  "file": "kitchen__light-meal-cooking-food-prep__77e4faa7-3055-4402-bf19-30793fd4e0db.mp4",
-                  "durationSec": 23
                 }
               ]
             }

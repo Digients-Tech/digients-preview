@@ -315,8 +315,19 @@ function main() {
     });
   }
 
+  // Domain display order: priority names land first in the listed order; the
+  // remainder sorts alphabetically. Kitchen is pinned to position 0 because the
+  // team considers its scenarios the highest quality showcase.
+  const PRIORITY_DOMAINS = ["Kitchen"];
   const domains = Array.from(byMajor.keys())
-    .sort()
+    .sort((a, b) => {
+      const ai = PRIORITY_DOMAINS.indexOf(a);
+      const bi = PRIORITY_DOMAINS.indexOf(b);
+      if (ai !== -1 && bi !== -1) return ai - bi;
+      if (ai !== -1) return -1;
+      if (bi !== -1) return 1;
+      return a.localeCompare(b);
+    })
     .map((m) => ({ id: slug(m), name: m, scenarios: byMajor.get(m)! }));
 
   const catalog = {
