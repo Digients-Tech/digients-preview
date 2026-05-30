@@ -159,19 +159,6 @@
           "name": "Courier Point",
           "scenarios": [
             {
-              "id": "courier-point-desk-counter-tidying",
-              "name": "Desk & Counter Tidying",
-              "recordingCount": 4,
-              "previews": [
-                {
-                  "id": "courier-point-desk-counter-tidying-1",
-                  "label": "Desk & Counter Tidying",
-                  "file": "courier-point__desk-counter-tidying__0c7ebfb4-0ca8-439b-81f5-80d970e866a6.mp4",
-                  "durationSec": 15
-                }
-              ]
-            },
-            {
               "id": "courier-point-express-parcel-handling",
               "name": "Express Parcel Handling",
               "recordingCount": 10,
