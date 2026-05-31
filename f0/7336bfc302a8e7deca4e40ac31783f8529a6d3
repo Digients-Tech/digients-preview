@@ -1,0 +1,40 @@
+server/scripts/sync-handhead-s3.ts
+  s_e4806683d572e3::t_ea03424b6be219 219-224
+  s_e4806683d572e3::t_0aa524d2a46511 188
+server/scripts/gen-posters.ts
+  s_e4806683d572e3::t_9e3d025cad632a 56
+catalog.json
+  s_e4806683d572e3::t_d4929b1e280998 24-25,40-41,56-57,72-73,88-89,104-105,126-127,135-136,151-152,167-168,183-184,205-206,214-215,223-224,232-233,241-242,257-258,266-267,282-283,291-292,313-314,329-330,338-339,354-355,363-364,379-380,388-389,404-405,420-421,436-437,445-446,461-462,477-478,493-494,509-510,531-532
+package.json
+  s_e4806683d572e3::t_befb214cfe4666 14
+server/scripts/gen-combos.ts
+  s_e4806683d572e3::t_23a8eb5204b413 1-107
+server/src/data.ts
+  s_e4806683d572e3::t_08f3a995f67fca 76
+  s_e4806683d572e3::t_bce105a44777d2 23-25
+server/package.json
+  s_e4806683d572e3::t_d3aaec4665275a 12
+web/src/types.ts
+  s_e4806683d572e3::t_15463bb20a0bf6 11-15,18
+web/src/components/ScenarioPreview.tsx
+  s_e4806683d572e3::t_86ba3b7bb2a82b 58
+  s_e4806683d572e3::t_a9b78bd81fb144 1,9-14,16-18,30-31
+web/src/index.css
+  s_e4806683d572e3::t_cfb8a80c609042 444-448,454,458-459
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.2",
+  "base_commit_sha": "f07336bfc302a8e7deca4e40ac31783f8529a6d3",
+  "prompts": {},
+  "sessions": {
+    "s_e4806683d572e3": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "fe43ba7a-41dd-4ea6-8174-c67608e63c7f",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "wyf-ACCEPT <importwyf@gmail.com>"
+    }
+  }
+}
