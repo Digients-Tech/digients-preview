@@ -8,6 +8,13 @@ export type Clip = {
   label: string;
   file: string;
   durationSec: number;
+  // Optional pose-reconstruction visualisations rendered side-by-side with the
+  // primary view. The hand viz is the ego frame with hand-skeleton overlay (a
+  // strict superset of the original clip's info, so it replaces it when present);
+  // the head viz is a separate 3D head-pose panel. Either may be absent if
+  // Albert's pipeline hasn't produced it for that uuid yet.
+  handFile?: string;
+  headFile?: string;
 };
 
 export type Scenario = {

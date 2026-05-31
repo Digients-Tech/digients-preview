@@ -19,7 +19,9 @@
                   "id": "kitchen-cloth-rag-washing-1",
                   "label": "Cloth & Rag Washing",
                   "file": "kitchen__cloth-rag-washing__1a59b7d4-2c3e-4126-a720-235e0f7e9589.mp4",
-                  "durationSec": 46
+                  "durationSec": 46,
+                  "handFile": "kitchen__cloth-rag-washing__1a59b7d4-2c3e-4126-a720-235e0f7e9589.hand.mp4",
+                  "headFile": "kitchen__cloth-rag-washing__1a59b7d4-2c3e-4126-a720-235e0f7e9589.head.mp4"
                 }
               ]
             },
@@ -32,7 +34,9 @@
                   "id": "kitchen-desk-counter-tidying-1",
                   "label": "Desk & Counter Tidying",
                   "file": "kitchen__desk-counter-tidying__8dcc69fe-e3c0-4da2-80d8-c130bd3bff15.mp4",
-                  "durationSec": 30
+                  "durationSec": 30,
+                  "handFile": "kitchen__desk-counter-tidying__8dcc69fe-e3c0-4da2-80d8-c130bd3bff15.hand.mp4",
+                  "headFile": "kitchen__desk-counter-tidying__8dcc69fe-e3c0-4da2-80d8-c130bd3bff15.head.mp4"
                 }
               ]
             },
@@ -45,7 +49,9 @@
                   "id": "kitchen-dishware-kitchenware-washing-1",
                   "label": "Dishware & Kitchenware Washing",
                   "file": "kitchen__dishware-kitchenware-washing__28dfca7b-51a1-44b3-9a2a-a03151638ebd.mp4",
-                  "durationSec": 26
+                  "durationSec": 26,
+                  "handFile": "kitchen__dishware-kitchenware-washing__28dfca7b-51a1-44b3-9a2a-a03151638ebd.hand.mp4",
+                  "headFile": "kitchen__dishware-kitchenware-washing__28dfca7b-51a1-44b3-9a2a-a03151638ebd.head.mp4"
                 }
               ]
             },
@@ -58,7 +64,9 @@
                   "id": "kitchen-drink-preparation-serving-1",
                   "label": "Drink Preparation & Serving",
                   "file": "kitchen__drink-preparation-serving__4dc32096-7d56-4f77-9f60-5be7be740e92.mp4",
-                  "durationSec": 24
+                  "durationSec": 24,
+                  "handFile": "kitchen__drink-preparation-serving__4dc32096-7d56-4f77-9f60-5be7be740e92.hand.mp4",
+                  "headFile": "kitchen__drink-preparation-serving__4dc32096-7d56-4f77-9f60-5be7be740e92.head.mp4"
                 }
               ]
             },
@@ -71,7 +79,9 @@
                   "id": "kitchen-floor-cleaning-trash-handling-1",
                   "label": "Floor Cleaning & Trash Handling",
                   "file": "kitchen__floor-cleaning-trash-handling__0c881613-5777-497e-ac5c-871cc8c8ebff.mp4",
-                  "durationSec": 20
+                  "durationSec": 20,
+                  "handFile": "kitchen__floor-cleaning-trash-handling__0c881613-5777-497e-ac5c-871cc8c8ebff.hand.mp4",
+                  "headFile": "kitchen__floor-cleaning-trash-handling__0c881613-5777-497e-ac5c-871cc8c8ebff.head.mp4"
                 }
               ]
             },
@@ -84,7 +94,9 @@
                   "id": "kitchen-light-meal-cooking-food-prep-1",
                   "label": "Light Meal Cooking & Food Prep",
                   "file": "kitchen__light-meal-cooking-food-prep__77e4faa7-3055-4402-bf19-30793fd4e0db.mp4",
-                  "durationSec": 23
+                  "durationSec": 23,
+                  "handFile": "kitchen__light-meal-cooking-food-prep__77e4faa7-3055-4402-bf19-30793fd4e0db.hand.mp4",
+                  "headFile": "kitchen__light-meal-cooking-food-prep__77e4faa7-3055-4402-bf19-30793fd4e0db.head.mp4"
                 }
               ]
             }
@@ -103,13 +115,17 @@
                   "id": "counter-bookkeeping-cashiering-1",
                   "label": "Bookkeeping & Cashiering",
                   "file": "counter__bookkeeping-cashiering__67186366-ccb1-481a-866a-9ec766b58c7a.mp4",
-                  "durationSec": 25
+                  "durationSec": 25,
+                  "handFile": "counter__bookkeeping-cashiering__67186366-ccb1-481a-866a-9ec766b58c7a.hand.mp4",
+                  "headFile": "counter__bookkeeping-cashiering__67186366-ccb1-481a-866a-9ec766b58c7a.head.mp4"
                 },
                 {
                   "id": "counter-bookkeeping-cashiering-2",
                   "label": "Bookkeeping & Cashiering",
                   "file": "counter__bookkeeping-cashiering__7c56093f-0311-4e25-a1c3-7f96a9bca586.mp4",
-                  "durationSec": 20
+                  "durationSec": 20,
+                  "handFile": "counter__bookkeeping-cashiering__7c56093f-0311-4e25-a1c3-7f96a9bca586.hand.mp4",
+                  "headFile": "counter__bookkeeping-cashiering__7c56093f-0311-4e25-a1c3-7f96a9bca586.head.mp4"
                 }
               ]
             },
@@ -122,7 +138,9 @@
                   "id": "counter-desk-counter-tidying-1",
                   "label": "Desk & Counter Tidying",
                   "file": "counter__desk-counter-tidying__e79f222e-0a42-420c-ba9d-f9494167d40d.mp4",
-                  "durationSec": 16
+                  "durationSec": 16,
+                  "handFile": "counter__desk-counter-tidying__e79f222e-0a42-420c-ba9d-f9494167d40d.hand.mp4",
+                  "headFile": "counter__desk-counter-tidying__e79f222e-0a42-420c-ba9d-f9494167d40d.head.mp4"
                 }
               ]
             },
@@ -135,7 +153,9 @@
                   "id": "counter-digital-device-operation-1",
                   "label": "Digital Device Operation",
                   "file": "counter__digital-device-operation__13ed333d-7bd2-4697-81b8-216c26d1d513.mp4",
-                  "durationSec": 33
+                  "durationSec": 33,
+                  "handFile": "counter__digital-device-operation__13ed333d-7bd2-4697-81b8-216c26d1d513.hand.mp4",
+                  "headFile": "counter__digital-device-operation__13ed333d-7bd2-4697-81b8-216c26d1d513.head.mp4"
                 }
               ]
             },
@@ -148,7 +168,9 @@
                   "id": "counter-drink-preparation-serving-1",
                   "label": "Drink Preparation & Serving",
                   "file": "counter__drink-preparation-serving__6d727c55-d883-40f1-9407-f287e5267ed7.mp4",
-                  "durationSec": 29
+                  "durationSec": 29,
+                  "handFile": "counter__drink-preparation-serving__6d727c55-d883-40f1-9407-f287e5267ed7.hand.mp4",
+                  "headFile": "counter__drink-preparation-serving__6d727c55-d883-40f1-9407-f287e5267ed7.head.mp4"
                 }
               ]
             }
@@ -167,31 +189,41 @@
                   "id": "courier-point-express-parcel-handling-1",
                   "label": "Express Parcel Handling",
                   "file": "courier-point__express-parcel-handling__2c8e992e-aceb-4911-9e1e-b07b3d771e69.mp4",
-                  "durationSec": 39
+                  "durationSec": 39,
+                  "handFile": "courier-point__express-parcel-handling__2c8e992e-aceb-4911-9e1e-b07b3d771e69.hand.mp4",
+                  "headFile": "courier-point__express-parcel-handling__2c8e992e-aceb-4911-9e1e-b07b3d771e69.head.mp4"
                 },
                 {
                   "id": "courier-point-express-parcel-handling-2",
                   "label": "Express Parcel Handling",
                   "file": "courier-point__express-parcel-handling__0eac75b4-2ec3-407d-ad5f-47339b6cb264.mp4",
-                  "durationSec": 36
+                  "durationSec": 36,
+                  "handFile": "courier-point__express-parcel-handling__0eac75b4-2ec3-407d-ad5f-47339b6cb264.hand.mp4",
+                  "headFile": "courier-point__express-parcel-handling__0eac75b4-2ec3-407d-ad5f-47339b6cb264.head.mp4"
                 },
                 {
                   "id": "courier-point-express-parcel-handling-3",
                   "label": "Express Parcel Handling",
                   "file": "courier-point__express-parcel-handling__1eb8ecc8-aa1e-4651-a9d8-e61869883a46.mp4",
-                  "durationSec": 22
+                  "durationSec": 22,
+                  "handFile": "courier-point__express-parcel-handling__1eb8ecc8-aa1e-4651-a9d8-e61869883a46.hand.mp4",
+                  "headFile": "courier-point__express-parcel-handling__1eb8ecc8-aa1e-4651-a9d8-e61869883a46.head.mp4"
                 },
                 {
                   "id": "courier-point-express-parcel-handling-4",
                   "label": "Express Parcel Handling",
                   "file": "courier-point__express-parcel-handling__5689e65c-3e49-48c8-8092-d65b113f104e.mp4",
-                  "durationSec": 27
+                  "durationSec": 27,
+                  "handFile": "courier-point__express-parcel-handling__5689e65c-3e49-48c8-8092-d65b113f104e.hand.mp4",
+                  "headFile": "courier-point__express-parcel-handling__5689e65c-3e49-48c8-8092-d65b113f104e.head.mp4"
                 },
                 {
                   "id": "courier-point-express-parcel-handling-5",
                   "label": "Express Parcel Handling",
                   "file": "courier-point__express-parcel-handling__54d043a8-220a-4f7d-aa72-b222c5a7d899.mp4",
-                  "durationSec": 22
+                  "durationSec": 22,
+                  "handFile": "courier-point__express-parcel-handling__54d043a8-220a-4f7d-aa72-b222c5a7d899.hand.mp4",
+                  "headFile": "courier-point__express-parcel-handling__54d043a8-220a-4f7d-aa72-b222c5a7d899.head.mp4"
                 }
               ]
             },
@@ -204,13 +236,17 @@
                   "id": "courier-point-item-placement-display-1",
                   "label": "Item Placement & Display",
                   "file": "courier-point__item-placement-display__1f0a8aa2-d305-4b67-bb11-770551828216.mp4",
-                  "durationSec": 25
+                  "durationSec": 25,
+                  "handFile": "courier-point__item-placement-display__1f0a8aa2-d305-4b67-bb11-770551828216.hand.mp4",
+                  "headFile": "courier-point__item-placement-display__1f0a8aa2-d305-4b67-bb11-770551828216.head.mp4"
                 },
                 {
                   "id": "courier-point-item-placement-display-2",
                   "label": "Item Placement & Display",
                   "file": "courier-point__item-placement-display__0c7ebfb4-0ca8-439b-81f5-80d970e866a6.mp4",
-                  "durationSec": 15
+                  "durationSec": 15,
+                  "handFile": "courier-point__item-placement-display__0c7ebfb4-0ca8-439b-81f5-80d970e866a6.hand.mp4",
+                  "headFile": "courier-point__item-placement-display__0c7ebfb4-0ca8-439b-81f5-80d970e866a6.head.mp4"
                 }
               ]
             },
@@ -223,13 +259,17 @@
                   "id": "courier-point-small-goods-sorting-packing-1",
                   "label": "Small Goods Sorting & Packing",
                   "file": "courier-point__small-goods-sorting-packing__a25a824c-f84e-4a77-92ec-18618e2e94cf.mp4",
-                  "durationSec": 63
+                  "durationSec": 63,
+                  "handFile": "courier-point__small-goods-sorting-packing__a25a824c-f84e-4a77-92ec-18618e2e94cf.hand.mp4",
+                  "headFile": "courier-point__small-goods-sorting-packing__a25a824c-f84e-4a77-92ec-18618e2e94cf.head.mp4"
                 },
                 {
                   "id": "courier-point-small-goods-sorting-packing-2",
                   "label": "Small Goods Sorting & Packing",
                   "file": "courier-point__small-goods-sorting-packing__2c81011a-25e7-4cf2-a54d-a52f4e8e0481.mp4",
-                  "durationSec": 19
+                  "durationSec": 19,
+                  "handFile": "courier-point__small-goods-sorting-packing__2c81011a-25e7-4cf2-a54d-a52f4e8e0481.hand.mp4",
+                  "headFile": "courier-point__small-goods-sorting-packing__2c81011a-25e7-4cf2-a54d-a52f4e8e0481.head.mp4"
                 }
               ]
             }
@@ -248,7 +288,9 @@
                   "id": "cybercafe-bookkeeping-cashiering-1",
                   "label": "Bookkeeping & Cashiering",
                   "file": "cybercafe__bookkeeping-cashiering__c811426c-12a3-475d-9228-7cba6ee0e24a.mp4",
-                  "durationSec": 44
+                  "durationSec": 44,
+                  "handFile": "cybercafe__bookkeeping-cashiering__c811426c-12a3-475d-9228-7cba6ee0e24a.hand.mp4",
+                  "headFile": "cybercafe__bookkeeping-cashiering__c811426c-12a3-475d-9228-7cba6ee0e24a.head.mp4"
                 }
               ]
             },
@@ -261,13 +303,17 @@
                   "id": "cybercafe-cloth-rag-washing-1",
                   "label": "Cloth & Rag Washing",
                   "file": "cybercafe__cloth-rag-washing__657d3604-2132-40db-a20c-9be99bd4f33f.mp4",
-                  "durationSec": 88
+                  "durationSec": 88,
+                  "handFile": "cybercafe__cloth-rag-washing__657d3604-2132-40db-a20c-9be99bd4f33f.hand.mp4",
+                  "headFile": "cybercafe__cloth-rag-washing__657d3604-2132-40db-a20c-9be99bd4f33f.head.mp4"
                 },
                 {
                   "id": "cybercafe-cloth-rag-washing-2",
                   "label": "Cloth & Rag Washing",
                   "file": "cybercafe__cloth-rag-washing__b67080ca-224c-44f8-a275-6164e77b5a4c.mp4",
-                  "durationSec": 25
+                  "durationSec": 25,
+                  "handFile": "cybercafe__cloth-rag-washing__b67080ca-224c-44f8-a275-6164e77b5a4c.hand.mp4",
+                  "headFile": "cybercafe__cloth-rag-washing__b67080ca-224c-44f8-a275-6164e77b5a4c.head.mp4"
                 }
               ]
             },
@@ -280,13 +326,17 @@
                   "id": "cybercafe-computer-peripheral-maintenance-1",
                   "label": "Computer Peripheral Maintenance",
                   "file": "cybercafe__computer-peripheral-maintenance__0c686198-f71e-4504-9a88-83a05b5a2fdc.mp4",
-                  "durationSec": 17
+                  "durationSec": 17,
+                  "handFile": "cybercafe__computer-peripheral-maintenance__0c686198-f71e-4504-9a88-83a05b5a2fdc.hand.mp4",
+                  "headFile": "cybercafe__computer-peripheral-maintenance__0c686198-f71e-4504-9a88-83a05b5a2fdc.head.mp4"
                 },
                 {
                   "id": "cybercafe-computer-peripheral-maintenance-2",
                   "label": "Computer Peripheral Maintenance",
                   "file": "cybercafe__computer-peripheral-maintenance__aefafa18-6b1c-407d-a9d3-e838ef341b4a.mp4",
-                  "durationSec": 18
+                  "durationSec": 18,
+                  "handFile": "cybercafe__computer-peripheral-maintenance__aefafa18-6b1c-407d-a9d3-e838ef341b4a.hand.mp4",
+                  "headFile": "cybercafe__computer-peripheral-maintenance__aefafa18-6b1c-407d-a9d3-e838ef341b4a.head.mp4"
                 }
               ]
             },
@@ -299,13 +349,17 @@
                   "id": "cybercafe-desk-counter-tidying-1",
                   "label": "Desk & Counter Tidying",
                   "file": "cybercafe__desk-counter-tidying__41edf2cc-5b11-4706-bc4b-14bbcf182047.mp4",
-                  "durationSec": 29
+                  "durationSec": 29,
+                  "handFile": "cybercafe__desk-counter-tidying__41edf2cc-5b11-4706-bc4b-14bbcf182047.hand.mp4",
+                  "headFile": "cybercafe__desk-counter-tidying__41edf2cc-5b11-4706-bc4b-14bbcf182047.head.mp4"
                 },
                 {
                   "id": "cybercafe-desk-counter-tidying-2",
                   "label": "Desk & Counter Tidying",
                   "file": "cybercafe__desk-counter-tidying__4d1a233c-1807-4dbc-bb75-c5d01ad839af.mp4",
-                  "durationSec": 32
+                  "durationSec": 32,
+                  "handFile": "cybercafe__desk-counter-tidying__4d1a233c-1807-4dbc-bb75-c5d01ad839af.hand.mp4",
+                  "headFile": "cybercafe__desk-counter-tidying__4d1a233c-1807-4dbc-bb75-c5d01ad839af.head.mp4"
                 }
               ]
             },
@@ -318,7 +372,9 @@
                   "id": "cybercafe-digital-device-operation-1",
                   "label": "Digital Device Operation",
                   "file": "cybercafe__digital-device-operation__2ce60bf0-23ab-468a-b353-d266e4da5eec.mp4",
-                  "durationSec": 15
+                  "durationSec": 15,
+                  "handFile": "cybercafe__digital-device-operation__2ce60bf0-23ab-468a-b353-d266e4da5eec.hand.mp4",
+                  "headFile": "cybercafe__digital-device-operation__2ce60bf0-23ab-468a-b353-d266e4da5eec.head.mp4"
                 }
               ]
             },
@@ -331,7 +387,9 @@
                   "id": "cybercafe-dishware-kitchenware-washing-1",
                   "label": "Dishware & Kitchenware Washing",
                   "file": "cybercafe__dishware-kitchenware-washing__39068702-8a12-4f1a-b0a8-84960410faf2.mp4",
-                  "durationSec": 37
+                  "durationSec": 37,
+                  "handFile": "cybercafe__dishware-kitchenware-washing__39068702-8a12-4f1a-b0a8-84960410faf2.hand.mp4",
+                  "headFile": "cybercafe__dishware-kitchenware-washing__39068702-8a12-4f1a-b0a8-84960410faf2.head.mp4"
                 }
               ]
             },
@@ -344,13 +402,17 @@
                   "id": "cybercafe-drink-preparation-serving-1",
                   "label": "Drink Preparation & Serving",
                   "file": "cybercafe__drink-preparation-serving__066c4446-fdd0-44f0-94f1-44034d92814c.mp4",
-                  "durationSec": 17
+                  "durationSec": 17,
+                  "handFile": "cybercafe__drink-preparation-serving__066c4446-fdd0-44f0-94f1-44034d92814c.hand.mp4",
+                  "headFile": "cybercafe__drink-preparation-serving__066c4446-fdd0-44f0-94f1-44034d92814c.head.mp4"
                 },
                 {
                   "id": "cybercafe-drink-preparation-serving-2",
                   "label": "Drink Preparation & Serving",
                   "file": "cybercafe__drink-preparation-serving__80e58f7d-085e-4b66-8888-ab12e9db3656.mp4",
-                  "durationSec": 35
+                  "durationSec": 35,
+                  "handFile": "cybercafe__drink-preparation-serving__80e58f7d-085e-4b66-8888-ab12e9db3656.hand.mp4",
+                  "headFile": "cybercafe__drink-preparation-serving__80e58f7d-085e-4b66-8888-ab12e9db3656.head.mp4"
                 }
               ]
             },
@@ -363,7 +425,9 @@
                   "id": "cybercafe-express-parcel-handling-1",
                   "label": "Express Parcel Handling",
                   "file": "cybercafe__express-parcel-handling__1412c603-e1b5-4ed5-b3ad-144785f9a370.mp4",
-                  "durationSec": 17
+                  "durationSec": 17,
+                  "handFile": "cybercafe__express-parcel-handling__1412c603-e1b5-4ed5-b3ad-144785f9a370.hand.mp4",
+                  "headFile": "cybercafe__express-parcel-handling__1412c603-e1b5-4ed5-b3ad-144785f9a370.head.mp4"
                 }
               ]
             },
@@ -376,7 +440,9 @@
                   "id": "cybercafe-floor-cleaning-trash-handling-1",
                   "label": "Floor Cleaning & Trash Handling",
                   "file": "cybercafe__floor-cleaning-trash-handling__2f258c79-a2af-4798-b2b2-9009cbfb90ff.mp4",
-                  "durationSec": 19
+                  "durationSec": 19,
+                  "handFile": "cybercafe__floor-cleaning-trash-handling__2f258c79-a2af-4798-b2b2-9009cbfb90ff.hand.mp4",
+                  "headFile": "cybercafe__floor-cleaning-trash-handling__2f258c79-a2af-4798-b2b2-9009cbfb90ff.head.mp4"
                 }
               ]
             },
@@ -389,7 +455,9 @@
                   "id": "cybercafe-item-placement-display-1",
                   "label": "Item Placement & Display",
                   "file": "cybercafe__item-placement-display__4fa6cfb3-e6b3-4de5-a922-14ea84e5486d.mp4",
-                  "durationSec": 20
+                  "durationSec": 20,
+                  "handFile": "cybercafe__item-placement-display__4fa6cfb3-e6b3-4de5-a922-14ea84e5486d.hand.mp4",
+                  "headFile": "cybercafe__item-placement-display__4fa6cfb3-e6b3-4de5-a922-14ea84e5486d.head.mp4"
                 }
               ]
             },
@@ -402,7 +470,9 @@
                   "id": "cybercafe-light-meal-cooking-food-prep-1",
                   "label": "Light Meal Cooking & Food Prep",
                   "file": "cybercafe__light-meal-cooking-food-prep__8e29ae9f-c6db-4e62-8f71-f044a9fb13c6.mp4",
-                  "durationSec": 83
+                  "durationSec": 83,
+                  "handFile": "cybercafe__light-meal-cooking-food-prep__8e29ae9f-c6db-4e62-8f71-f044a9fb13c6.hand.mp4",
+                  "headFile": "cybercafe__light-meal-cooking-food-prep__8e29ae9f-c6db-4e62-8f71-f044a9fb13c6.head.mp4"
                 }
               ]
             }
@@ -421,7 +491,9 @@
                   "id": "laundry-room-item-placement-display-1",
                   "label": "Item Placement & Display",
                   "file": "laundry-room__item-placement-display__a01d8386-5565-40b2-bbc4-676597db569c.mp4",
-                  "durationSec": 19
+                  "durationSec": 19,
+                  "handFile": "laundry-room__item-placement-display__a01d8386-5565-40b2-bbc4-676597db569c.hand.mp4",
+                  "headFile": "laundry-room__item-placement-display__a01d8386-5565-40b2-bbc4-676597db569c.head.mp4"
                 }
               ]
             }

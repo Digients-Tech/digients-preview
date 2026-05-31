@@ -19,6 +19,16 @@ import { fileURLToPath } from "node:url";
 
 // --- Config ---
 const BUCKET = process.env.COS_BUCKET ?? "smaller-sample-1302052962";
+// NOTE (2026-05-31): Albert's hand+head pose-reconstruction visualisations USED to
+// live in a sibling COS bucket, but his re-run (white background, H.264 + faststart)
+// now delivers to AWS S3 instead. The hand+head pull therefore moved to its own
+// script — `scripts/sync-handhead-s3.ts` (`pnpm sync:handhead`) — which runs on the
+// machine's default AWS profile and patches catalog.json's handFile/headFile.
+// This COS sync only handles the original clips + taxonomy now; it still picks up
+// any .hand.mp4/.head.mp4 files already on disk when emitting the catalog (the
+// handExists/headExists checks below are disk-based, source-agnostic). Set
+// HANDHEAD_BUCKET to a non-empty COS bucket to re-enable the legacy COS pull.
+const HANDHEAD_BUCKET = process.env.HANDHEAD_BUCKET ?? "";
 const REGION = process.env.COS_REGION ?? "ap-beijing";
 const ENDPOINT = process.env.COS_ENDPOINT ?? `https://cos.${REGION}.myqcloud.com`;
 // PER_SCENE controls how many clips to keep per (scene_major, scene_minor).
@@ -135,6 +145,16 @@ function localFilename(r: Recording): string {
   return `${slug(r.major)}__${slug(r.minor)}__${r.uuid}.mp4`;
 }
 
+// Hand+head visualisation files share the original's base name with .hand.mp4 /
+// .head.mp4 suffixes so they sit next to the original clip in VIDEOS_DIR and are
+// addressable via the same /videos/:file route — no new server plumbing needed.
+function handVisFilename(r: Recording): string {
+  return `${slug(r.major)}__${slug(r.minor)}__${r.uuid}.hand.mp4`;
+}
+function headVisFilename(r: Recording): string {
+  return `${slug(r.major)}__${slug(r.minor)}__${r.uuid}.head.mp4`;
+}
+
 // Per-clip caption sidecar lives next to the mp4 in COS under the same uuid
 // directory, with a .json extension. We mirror that here as captions/<flat>.json.
 function localCaptionFilename(r: Recording): string {
@@ -164,11 +184,11 @@ function sleep(ms: number): void {
 
 // Download a single file. Returns ok=true if file already present or fetched successfully.
 // `--only-show-errors` keeps stderr useful (vs `--quiet`, which hides everything).
-function awsCp(srcPath: string, dst: string): { ok: boolean; err?: string } {
+function awsCp(bucket: string, srcPath: string, dst: string): { ok: boolean; err?: string } {
   const res = spawnSync(
     "aws",
     [
-      "s3", "cp", `s3://${BUCKET}/${srcPath}`, dst,
+      "s3", "cp", `s3://${bucket}/${srcPath}`, dst,
       "--endpoint-url", ENDPOINT, "--region", REGION,
       "--only-show-errors",
     ],
@@ -179,11 +199,11 @@ function awsCp(srcPath: string, dst: string): { ok: boolean; err?: string } {
   return { ok: false, err };
 }
 
-function download(srcPath: string, dst: string): { ok: boolean; err?: string } {
+function download(bucket: string, srcPath: string, dst: string): { ok: boolean; err?: string } {
   if (existsSync(dst) && statSync(dst).size > 0) return { ok: true };
   const attempts = 3;
   for (let i = 1; i <= attempts; i++) {
-    const res = awsCp(srcPath, dst);
+    const res = awsCp(bucket, srcPath, dst);
     if (res.ok) return res;
     if (i < attempts) {
       const wait = i * 5;
@@ -194,6 +214,45 @@ function download(srcPath: string, dst: string): { ok: boolean; err?: string } {
     }
   }
   return { ok: false, err: "unreachable" };
+}
+
+// Scan the hand+head bucket once to discover which uuids have which artefacts.
+// Layout is flat: <uuid>/vis_hand.mp4 and <uuid>/vis_head.mp4 (plus npz/json data
+// we ignore here). We tolerate either file being missing per uuid.
+type HandHeadPresence = { hasHand: boolean; hasHead: boolean };
+function listHandHead(): Map<string, HandHeadPresence> {
+  // Legacy COS hand+head pull is disabled by default (overlays moved to AWS S3 —
+  // see the HANDHEAD_BUCKET note above and scripts/sync-handhead-s3.ts).
+  if (!HANDHEAD_BUCKET) {
+    console.log("[sync] hand+head pull skipped (use `pnpm sync:handhead` for AWS S3 overlays)");
+    return new Map();
+  }
+  console.log(`[sync] listing s3://${HANDHEAD_BUCKET}/ ...`);
+  let out: string;
+  try {
+    out = execFileSync(
+      "aws",
+      ["s3", "ls", `s3://${HANDHEAD_BUCKET}/`, "--recursive",
+       "--endpoint-url", ENDPOINT, "--region", REGION],
+      { env: awsEnv, encoding: "utf8", maxBuffer: 64 * 1024 * 1024 }
+    );
+  } catch (e) {
+    console.warn(`[sync] hand-head bucket list failed; skipping pose visualisations: ${(e as Error).message}`);
+    return new Map();
+  }
+  const m = new Map<string, HandHeadPresence>();
+  for (const line of out.split("\n")) {
+    const match = /^\S+\s+\S+\s+\d+\s+(.+)$/.exec(line);
+    const path = match?.[1];
+    if (!path) continue;
+    const uuid = path.split("/")[0];
+    if (!uuid) continue;
+    let e = m.get(uuid);
+    if (!e) m.set(uuid, (e = { hasHand: false, hasHead: false }));
+    if (path.endsWith("/vis_hand.mp4")) e.hasHand = true;
+    if (path.endsWith("/vis_head.mp4")) e.hasHead = true;
+  }
+  return m;
 }
 
 // --- Main ---
@@ -210,8 +269,16 @@ function main() {
   const totalToFetch = sceneKeys.reduce((n, k) => n + Math.min(PER_SCENE, groups.get(k)!.length), 0);
   console.log(`[sync] ${groups.size} (major, minor) groups; fetching up to ${PER_SCENE}/scene = ${totalToFetch} clips`);
 
-  // Build domain -> scenarios catalog as we go.
-  type ScenarioOut = { id: string; name: string; recordingCount: number; previews: { id: string; label: string; file: string; durationSec: number }[] };
+  const handhead = listHandHead();
+  const handCount = [...handhead.values()].filter((v) => v.hasHand).length;
+  const headCount = [...handhead.values()].filter((v) => v.hasHead).length;
+  console.log(`[sync] hand-head bucket: ${handhead.size} uuid(s), ${handCount} with vis_hand, ${headCount} with vis_head`);
+
+  // Build domain -> scenarios catalog as we go. Each preview carries optional
+  // handFile / headFile so the frontend can render the pose-overlay videos side
+  // by side; absent means "not synced yet" → frontend falls back to original.
+  type PreviewOut = { id: string; label: string; file: string; durationSec: number; handFile?: string; headFile?: string };
+  type ScenarioOut = { id: string; name: string; recordingCount: number; previews: PreviewOut[] };
   const byMajor = new Map<string, ScenarioOut[]>();
 
   let fetched = 0;
@@ -269,7 +336,7 @@ function main() {
       const file = localFilename(r);
       const dst = join(VIDEOS_DIR, file);
       const wasPresent = existsSync(dst) && statSync(dst).size > 0;
-      const res = download(r.cosPath, dst);
+      const res = r.cosPath ? download(BUCKET, r.cosPath, dst) : { ok: existsSync(dst) };
       if (wasPresent) {
         skipped++;
       } else if (res.ok) {
@@ -286,22 +353,58 @@ function main() {
       const captionDst = join(CAPTIONS_DIR, captionFile);
       const captionWasPresent = existsSync(captionDst) && statSync(captionDst).size > 0;
       if (!captionWasPresent) {
-        const cres = download(captionCosPath(r), captionDst);
+        const cres = download(BUCKET, captionCosPath(r), captionDst);
         if (!cres.ok) {
           console.warn(`[sync]  ⚠ caption missing ${major}/${minor} -> ${captionFile}\n         ${(cres.err ?? "").split("\n")[0]?.slice(0, 200)}`);
+        }
+      }
+
+    }
+
+    // Hand+head pose-reconstruction visualisations (Albert's pipeline). Live in
+    // a sibling bucket, keyed by the original clip's uuid — INDEPENDENT of
+    // whether the original mp4 is in the smaller-sample bucket. We iterate
+    // chosenList (not picks) so curated uuids that are "local-only" on the
+    // original side still get their hand+head viz pulled.
+    for (const c of chosenList) {
+      const hh = handhead.get(c.uuid);
+      if (hh?.hasHand) {
+        const hf = handVisFilename(c);
+        const hfDst = join(VIDEOS_DIR, hf);
+        if (!existsSync(hfDst) || statSync(hfDst).size === 0) {
+          const hres = download(HANDHEAD_BUCKET, `${c.uuid}/vis_hand.mp4`, hfDst);
+          if (hres.ok) console.log(`[sync]    + hand vis -> ${hf}`);
+          else console.warn(`[sync]    ⚠ hand vis failed ${c.uuid}: ${(hres.err ?? "").split("\n")[0]?.slice(0, 160)}`);
+        }
+      }
+      if (hh?.hasHead) {
+        const hf = headVisFilename(c);
+        const hfDst = join(VIDEOS_DIR, hf);
+        if (!existsSync(hfDst) || statSync(hfDst).size === 0) {
+          const hres = download(HANDHEAD_BUCKET, `${c.uuid}/vis_head.mp4`, hfDst);
+          if (hres.ok) console.log(`[sync]    + head vis -> ${hf}`);
+          else console.warn(`[sync]    ⚠ head vis failed ${c.uuid}: ${(hres.err ?? "").split("\n")[0]?.slice(0, 160)}`);
         }
       }
     }
 
     // One preview per chosen clip; frontend pages between them with ◀ / ▶.
-    const previews: ScenarioOut["previews"] = chosenList.map((c, i) => {
+    // Emit handFile/headFile only when the file actually exists on disk so the
+    // frontend can degrade gracefully when a uuid's pose viz hasn't been synced.
+    const previews: PreviewOut[] = chosenList.map((c, i) => {
       const file = localFilename(c);
       const dst = join(VIDEOS_DIR, file);
+      const handFile = handVisFilename(c);
+      const headFile = headVisFilename(c);
+      const handExists = existsSync(join(VIDEOS_DIR, handFile));
+      const headExists = existsSync(join(VIDEOS_DIR, headFile));
       return {
         id: `${scenarioId}-${i + 1}`,
         label: minor,
         file,
         durationSec: existsSync(dst) ? durationSec(dst) : 0,
+        ...(handExists ? { handFile } : {}),
+        ...(headExists ? { headFile } : {}),
       };
     });
 

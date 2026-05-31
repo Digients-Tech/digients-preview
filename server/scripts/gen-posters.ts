@@ -45,20 +45,29 @@ function main() {
   if (!existsSync(POSTERS_DIR)) mkdirSync(POSTERS_DIR, { recursive: true });
 
   const clips = allPreviewClips();
+  // The player requests a poster for whichever file it actually renders: the hand
+  // overlay when present (it replaces the original), the head overlay, and the
+  // original. Generate one for every file that exists on disk so none 404.
+  const files = new Set<string>();
+  for (const clip of clips) {
+    files.add(clip.file);
+    if (clip.handFile) files.add(clip.handFile);
+    if (clip.headFile) files.add(clip.headFile);
+  }
   let made = 0;
   let skipped = 0;
-  for (const clip of clips) {
-    const video = `${VIDEOS_DIR}/${clip.file}`;
+  for (const file of files) {
+    const video = `${VIDEOS_DIR}/${file}`;
     if (!existsSync(video)) {
       skipped += 1;
       continue;
     }
-    const poster = `${POSTERS_DIR}/${clip.file.replace(/\.[^.]+$/, ".jpg")}`;
+    const poster = `${POSTERS_DIR}/${file.replace(/\.[^.]+$/, ".jpg")}`;
     if (extractFrame(video, poster)) {
       made += 1;
-      console.log(`[posters]  ${clip.file} -> ${poster.split("/").pop()}`);
+      console.log(`[posters]  ${file} -> ${poster.split("/").pop()}`);
     } else {
-      console.warn(`[posters]  FAILED ${clip.file}`);
+      console.warn(`[posters]  FAILED ${file}`);
     }
   }
   console.log(`[posters] done — ${made} generated, ${skipped} skipped (no video file).`);

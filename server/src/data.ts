@@ -12,7 +12,15 @@ import { fileURLToPath } from "node:url";
 
 export type ModalityIcon = "gripper" | "ego";
 
-export type Clip = { id: string; label: string; file: string; durationSec: number };
+export type Clip = {
+  id: string;
+  label: string;
+  file: string;
+  durationSec: number;
+  // Optional pose-reconstruction visualisations; either may be absent per uuid.
+  handFile?: string;
+  headFile?: string;
+};
 export type ScenarioDTO = { id: string; name: string; recordingCount: number; previews: Clip[] };
 export type DomainDTO = { id: string; name: string; scenarioCount: number; scenarios: ScenarioDTO[] };
 export type ModalityStats = { domains: number; scenarios: number; recordings: number };
@@ -60,6 +68,8 @@ function parseClip(raw: unknown, path: string): Clip {
     label: typeof c.label === "string" ? c.label : "",
     file: str(c.file, `${path}.file`),
     durationSec: num(c.durationSec, `${path}.durationSec`, 0),
+    ...(typeof c.handFile === "string" && c.handFile.length > 0 ? { handFile: c.handFile } : {}),
+    ...(typeof c.headFile === "string" && c.headFile.length > 0 ? { headFile: c.headFile } : {}),
   };
 }
 
