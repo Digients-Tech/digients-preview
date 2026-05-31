@@ -347,26 +347,31 @@ function main() {
         }
       }
 
-      // Hand+head pose-reconstruction visualisations (Albert's pipeline). Live
-      // in a sibling bucket, keyed by the original clip's uuid. Both files are
-      // optional — a uuid with neither present just falls back to the original.
-      const hh = handhead.get(r.uuid);
+    }
+
+    // Hand+head pose-reconstruction visualisations (Albert's pipeline). Live in
+    // a sibling bucket, keyed by the original clip's uuid — INDEPENDENT of
+    // whether the original mp4 is in the smaller-sample bucket. We iterate
+    // chosenList (not picks) so curated uuids that are "local-only" on the
+    // original side still get their hand+head viz pulled.
+    for (const c of chosenList) {
+      const hh = handhead.get(c.uuid);
       if (hh?.hasHand) {
-        const hf = handVisFilename(r);
+        const hf = handVisFilename(c);
         const hfDst = join(VIDEOS_DIR, hf);
         if (!existsSync(hfDst) || statSync(hfDst).size === 0) {
-          const hres = download(HANDHEAD_BUCKET, `${r.uuid}/vis_hand.mp4`, hfDst);
+          const hres = download(HANDHEAD_BUCKET, `${c.uuid}/vis_hand.mp4`, hfDst);
           if (hres.ok) console.log(`[sync]    + hand vis -> ${hf}`);
-          else console.warn(`[sync]    ⚠ hand vis failed ${r.uuid}: ${(hres.err ?? "").split("\n")[0]?.slice(0, 160)}`);
+          else console.warn(`[sync]    ⚠ hand vis failed ${c.uuid}: ${(hres.err ?? "").split("\n")[0]?.slice(0, 160)}`);
         }
       }
       if (hh?.hasHead) {
-        const hf = headVisFilename(r);
+        const hf = headVisFilename(c);
         const hfDst = join(VIDEOS_DIR, hf);
         if (!existsSync(hfDst) || statSync(hfDst).size === 0) {
-          const hres = download(HANDHEAD_BUCKET, `${r.uuid}/vis_head.mp4`, hfDst);
+          const hres = download(HANDHEAD_BUCKET, `${c.uuid}/vis_head.mp4`, hfDst);
           if (hres.ok) console.log(`[sync]    + head vis -> ${hf}`);
-          else console.warn(`[sync]    ⚠ head vis failed ${r.uuid}: ${(hres.err ?? "").split("\n")[0]?.slice(0, 160)}`);
+          else console.warn(`[sync]    ⚠ head vis failed ${c.uuid}: ${(hres.err ?? "").split("\n")[0]?.slice(0, 160)}`);
         }
       }
     }
