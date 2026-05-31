@@ -18,6 +18,14 @@ export type RequestPayload = {
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
 const RESEND_FROM = process.env.RESEND_FROM ?? "Digients Preview <noreply@mail.digients.tech>";
 const CONTACT_EMAIL = process.env.CONTACT_EMAIL ?? "contact@digients.tech";
+// Team distribution list — cc'd on every submission so the whole team sees
+// inbound interest. One Resend send = one billed email regardless of how many
+// to/cc/bcc recipients, so this stays in the 100/day free tier.
+const CONTACT_CC = (process.env.CONTACT_CC ??
+  "shawn@digients.tech,dylanliang@digients.tech,jasonwang@digients.tech")
+  .split(",")
+  .map((s) => s.trim())
+  .filter(Boolean);
 
 if (!RESEND_API_KEY) {
   console.warn("[contact] RESEND_API_KEY not set — /api/request-access will fail with 503 until it's configured");
@@ -113,6 +121,7 @@ export async function sendRequest(
     const res = await c.emails.send({
       from: RESEND_FROM,
       to: [CONTACT_EMAIL],
+      cc: CONTACT_CC.length ? CONTACT_CC : undefined,
       replyTo: p.email,
       subject: `[Sample Portal] Dataset request from ${p.organization}`,
       html: buildHtml(p),

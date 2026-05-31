@@ -80,7 +80,7 @@ export function RequestAccessModal({ onClose }: { onClose: () => void }) {
                 value={form.country} onChange={(v) => set("country", v)} required />
               <Field label="Estimated Data Scale"
                 value={form.estimatedScale ?? ""} onChange={(v) => set("estimatedScale", v)}
-                placeholder="e.g. ~100h, production training set" />
+                placeholder="e.g. ~100h" />
             </div>
 
             <Field label="Use Case / Purpose *" textarea
