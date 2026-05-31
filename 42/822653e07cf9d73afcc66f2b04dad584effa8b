@@ -1,0 +1,13 @@
+web/src/components/ScenarioPreview.tsx
+  ai_agent 1,7-10,14,45-49,51-55,58,60-65,68,70
+server/scripts/sync-from-cos.ts
+  ai_agent 167,171,182,186,213-214,272,289,297
+server/src/data.ts
+  ai_agent 15
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.2",
+  "base_commit_sha": "42822653e07cf9d73afcc66f2b04dad584effa8b",
+  "prompts": {}
+}
