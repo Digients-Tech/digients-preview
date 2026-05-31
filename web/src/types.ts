@@ -8,13 +8,14 @@ export type Clip = {
   label: string;
   file: string;
   durationSec: number;
-  // Optional pose-reconstruction visualisations rendered side-by-side with the
-  // primary view. The hand viz is the ego frame with hand-skeleton overlay (a
-  // strict superset of the original clip's info, so it replaces it when present);
-  // the head viz is a separate 3D head-pose panel. Either may be absent if
-  // Albert's pipeline hasn't produced it for that uuid yet.
+  // Optional pose-reconstruction visualisations. The hand viz is the ego frame
+  // with hand-skeleton overlay (a strict superset of the original clip's info);
+  // the head viz is a 3D head-pose panel. When `comboFile` is present (a single
+  // hstacked hand|head video) the player renders just that for frame-perfect
+  // sync; handFile/headFile are kept as provenance + graceful fallback.
   handFile?: string;
   headFile?: string;
+  comboFile?: string;
 };
 
 export type Scenario = {

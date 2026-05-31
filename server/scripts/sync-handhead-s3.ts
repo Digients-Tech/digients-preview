@@ -185,6 +185,7 @@ function main() {
           // removed-upstream overlay doesn't linger as a dangling reference.
           delete prev.handFile;
           delete prev.headFile;
+          delete prev.comboFile;
 
           if (!hh) {
             missing.push(`${scn.id} -> ${uuid}`);
@@ -215,6 +216,12 @@ function main() {
               failures.push(`${uuid}/vis_head.mp4: ${res.err}`);
             }
           }
+          // When both overlays exist we serve a single hstacked composite
+          // (hand | head) for frame-perfect sync — see scripts/gen-combos.ts,
+          // which materialises <base>.combo.mp4 from the two files. The frontend
+          // prefers comboFile; handFile/headFile stay as provenance + fallback.
+          if (prev.handFile && prev.headFile) prev.comboFile = `${base}.combo.mp4`;
+
           if (prev.handFile || prev.headFile) patched++;
         }
       }

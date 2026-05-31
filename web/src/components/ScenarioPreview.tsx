@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import type { Scenario } from "../types.ts";
 import { posterUrl, videoUrl } from "../api.ts";
 import { PlayIcon, BoltIcon } from "./Icons.tsx";
@@ -6,23 +6,20 @@ import { CaptionPanel } from "./CaptionPanel.tsx";
 
 // Inline preview of the selected scenario.
 //
-// When the clip has `handFile`, the hand-pose visualisation REPLACES the
-// original (Albert's overlay is a strict superset of the original ego frame).
-// When `headFile` is also present, it renders next to the hand video in a
-// 16:9 + 1:1 grid sized so both videos share the same display height. The
-// caption panel always sits below the combined video row.
+// Preferred source is `comboFile` — a single video with the hand-pose overlay
+// and the head-pose trajectory hstacked side by side (25:9). Baking them into
+// one file makes playback frame-perfect (no drift while the larger hand view
+// buffers) and lets us reserve the right height before load via a fixed
+// aspect ratio, so the placeholder doesn't jump. Falls back to handFile, then
+// the original clip, for any preview whose composite hasn't been built yet.
 //
-// Playback authority is the primary (hand) video — the head video mirrors its
-// play / pause / seek / rate changes so the two stay in lockstep. The caption
-// panel hooks the primary video's timeupdate to drive step highlighting.
-//
-// Multi-pick scenarios still page through clips with a ◀ / ▶ chrome; state
-// resets per scenario via the parent `key={scenario.id}`.
+// The caption panel below hooks the video's timeupdate to drive step
+// highlighting. Multi-pick scenarios page through clips with a ◀ / ▶ chrome;
+// state resets per scenario via the parent `key={scenario.id}`.
 export function ScenarioPreview({ scenario, domainName }: { scenario: Scenario; domainName: string }) {
   const [activeIdx, setActiveIdx] = useState(0);
   const [errored, setErrored] = useState(false);
   const primaryRef = useRef<HTMLVideoElement | null>(null);
-  const headRef = useRef<HTMLVideoElement | null>(null);
   const clip = scenario.previews[activeIdx];
   const n = scenario.previews.length;
   const step = (delta: number) => {
@@ -30,38 +27,8 @@ export function ScenarioPreview({ scenario, domainName }: { scenario: Scenario; 
     setErrored(false);
   };
 
-  // Falls back to the original file when the hand viz hasn't been synced yet
-  // (graceful degrade during partial syncs).
-  const primaryFile = clip?.handFile ?? clip?.file;
-  const headFile = clip?.headFile;
-  const hasDuo = Boolean(clip?.handFile && clip?.headFile);
-
-  // Mirror primary playback into the head video. Drift correction on timeupdate
-  // keeps them aligned without re-seeking every frame (only when > 150 ms off).
-  useEffect(() => {
-    const p = primaryRef.current;
-    const h = headRef.current;
-    if (!p || !h) return;
-    const sync = () => {
-      if (Math.abs(h.currentTime - p.currentTime) > 0.15) h.currentTime = p.currentTime;
-    };
-    const onPlay = () => { void h.play().catch(() => {}); };
-    const onPause = () => { h.pause(); };
-    const onRate = () => { h.playbackRate = p.playbackRate; };
-    p.addEventListener("play", onPlay);
-    p.addEventListener("pause", onPause);
-    p.addEventListener("seeked", sync);
-    p.addEventListener("timeupdate", sync);
-    p.addEventListener("ratechange", onRate);
-    return () => {
-      p.removeEventListener("play", onPlay);
-      p.removeEventListener("pause", onPause);
-      p.removeEventListener("seeked", sync);
-      p.removeEventListener("timeupdate", sync);
-      p.removeEventListener("ratechange", onRate);
-    };
-    // headFile in deps so we rebind whenever the head element appears/disappears.
-  }, [clip?.id, headFile]);
+  const primaryFile = clip?.comboFile ?? clip?.handFile ?? clip?.file;
+  const isCombo = Boolean(clip?.comboFile);
 
   return (
     <div className="preview">
@@ -88,7 +55,7 @@ export function ScenarioPreview({ scenario, domainName }: { scenario: Scenario; 
 
       <div className="preview__body preview__body--stacked">
         {clip && !errored && primaryFile ? (
-          <div className={`preview__videos ${hasDuo ? "preview__videos--duo" : "preview__videos--solo"}`}>
+          <div className={`preview__videos ${isCombo ? "preview__videos--combo" : "preview__videos--solo"}`}>
             <video
               key={`${clip.id}-primary`}
               ref={primaryRef}
@@ -99,17 +66,6 @@ export function ScenarioPreview({ scenario, domainName }: { scenario: Scenario; 
               preload="metadata"
               onError={() => setErrored(true)}
             />
-            {hasDuo && headFile && (
-              <video
-                key={`${clip.id}-head`}
-                ref={headRef}
-                src={videoUrl(headFile)}
-                muted
-                playsInline
-                preload="metadata"
-                aria-label="Head-pose visualisation (synced with primary video)"
-              />
-            )}
           </div>
         ) : (
           <div className="player">

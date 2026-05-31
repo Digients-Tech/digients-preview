@@ -9,6 +9,7 @@
     "typecheck": "tsc --noEmit",
     "gen:samples": "tsx scripts/gen-sample-videos.ts",
     "gen:posters": "tsx scripts/gen-posters.ts",
+    "gen:combos": "tsx scripts/gen-combos.ts",
     "sync:cos": "tsx --env-file-if-exists=../../.env --env-file-if-exists=../.env --env-file-if-exists=/etc/digients-preview.env scripts/sync-from-cos.ts",
     "sync:handhead": "tsx --env-file-if-exists=../../.env --env-file-if-exists=../.env --env-file-if-exists=/etc/digients-preview.env scripts/sync-handhead-s3.ts"
   },

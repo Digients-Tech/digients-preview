@@ -53,6 +53,7 @@ function main() {
     files.add(clip.file);
     if (clip.handFile) files.add(clip.handFile);
     if (clip.headFile) files.add(clip.headFile);
+    if (clip.comboFile) files.add(clip.comboFile);
   }
   let made = 0;
   let skipped = 0;

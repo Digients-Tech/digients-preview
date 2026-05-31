@@ -20,6 +20,9 @@ export type Clip = {
   // Optional pose-reconstruction visualisations; either may be absent per uuid.
   handFile?: string;
   headFile?: string;
+  // Single hstacked hand|head composite (frame-perfect sync). When present the
+  // player renders just this; handFile/headFile remain as provenance/fallback.
+  comboFile?: string;
 };
 export type ScenarioDTO = { id: string; name: string; recordingCount: number; previews: Clip[] };
 export type DomainDTO = { id: string; name: string; scenarioCount: number; scenarios: ScenarioDTO[] };
@@ -70,6 +73,7 @@ function parseClip(raw: unknown, path: string): Clip {
     durationSec: num(c.durationSec, `${path}.durationSec`, 0),
     ...(typeof c.handFile === "string" && c.handFile.length > 0 ? { handFile: c.handFile } : {}),
     ...(typeof c.headFile === "string" && c.headFile.length > 0 ? { headFile: c.headFile } : {}),
+    ...(typeof c.comboFile === "string" && c.comboFile.length > 0 ? { comboFile: c.comboFile } : {}),
   };
 }
 

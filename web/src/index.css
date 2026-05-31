@@ -441,32 +441,22 @@ body {
 }
 .player__empty-hint { font-size: 11px !important; color: var(--text-faint); }
 
-/* hand+head pose-viz row: 16:9 hand video alongside 1:1 head video, sized so
-   both display at equal height. The trick: width ratio 16fr:9fr makes the
-   hand (aspect 16/9) and head (aspect 1/1) render at the same pixel height
-   (both = 9W/25 where W is the row width). Solo path is just full-width. */
+/* Preview video box. The video carries a fixed `aspect-ratio` so the element
+   reserves the correct height BEFORE metadata loads — no layout jump between the
+   black poster placeholder and the loaded frame. Combo = the hstacked hand|head
+   composite (1920x1080 hand + 1080x1080 head = 3000x1080 → 25:9); solo = a plain
+   16:9 clip (fallback when no composite exists yet). */
 .preview__videos {
   background: var(--bg-2);
   min-width: 0;
-}
-.preview__videos--solo {
   display: block;
 }
-.preview__videos--solo video {
+.preview__videos video {
   width: 100%; height: auto; display: block;
   background: #000;
 }
-.preview__videos--duo {
-  display: grid;
-  grid-template-columns: 16fr 9fr;
-  gap: 1px;
-  background: var(--border);
-}
-.preview__videos--duo video {
-  width: 100%; height: auto; display: block;
-  background: #000;
-  min-width: 0;
-}
+.preview__videos--combo video { aspect-ratio: 3000 / 1080; }
+.preview__videos--solo video { aspect-ratio: 16 / 9; }
 
 /* ===================== caption panel ===================== */
 .preview__body { display: flex; flex-direction: column; }
