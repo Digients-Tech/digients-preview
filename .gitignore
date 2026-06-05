@@ -19,6 +19,9 @@ videos/*
 !videos/.gitkeep
 posters/
 captions/
+# Client delivery staging (hardlinked subset for Google Drive hand-off)
+delivery-web36/
+delivery-*/
 
 # Runtime state — login counts per password slot
 .stats/
