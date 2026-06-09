@@ -92,6 +92,11 @@ export function ActionTimeline({
 
   if (duration <= 0 || (steps.length === 0 && actions.length === 0)) return null;
 
+  // The per-hand action lanes (Left / Right / Both) read as too much at a glance,
+  // so they're hidden for now — the Steps overview + playhead stay. Flip this to
+  // re-enable the action gantt (or replace with a dedicated action panel later).
+  const SHOW_ACTION_LANES = false;
+
   const playPct = Math.max(0, Math.min(100, pct(now, duration)));
   const BAR_H = 18;
   const ROW_GAP = 3;
@@ -149,7 +154,7 @@ export function ActionTimeline({
         </Track>
       </div>
 
-      {lanes.map(({ hand, packed, rowCount }) => (
+      {SHOW_ACTION_LANES && lanes.map(({ hand, packed, rowCount }) => (
         <div className="tl-row" key={hand}>
           <div className={`tl-label tl-label--${hand}`}>{HAND_LABEL[hand]}</div>
           <Track

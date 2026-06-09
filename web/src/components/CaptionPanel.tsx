@@ -182,22 +182,27 @@ export function CaptionPanel({
 
       {norm.steps.length > 0 ? (
         <div className="caption__steps" ref={stepsBoxRef}>
-          {norm.steps.map((s, i) => (
-            <div key={s.id} data-step-idx={i} className={`step ${i === activeIdx ? "step--active" : ""}`}>
+          {norm.steps.map((s, i) => {
+            // Accordion: only the playing step expands its detail; the rest stay
+            // a one-line time+name. The active step auto-scrolls into view, so the
+            // detail rolls with playback instead of expanding the whole panel.
+            const isActive = i === activeIdx;
+            return (
+            <div key={s.id} data-step-idx={i} className={`step ${isActive ? "step--active" : ""}`}>
               <button className="step__head" onClick={() => seekTo(s.start)} title={`Seek to ${fmtSec(s.start)}`}>
                 <div className="step__bar" aria-hidden="true" />
                 <div className="step__body">
                   <div className="step__time">
                     {fmtSec(s.start)} – {fmtSec(s.end)}
-                    {s.subtask && <span className="step__subtask">{s.subtask}</span>}
+                    {isActive && s.subtask && <span className="step__subtask">{s.subtask}</span>}
                   </div>
                   <div className="step__name">{s.name}</div>
-                  {s.visualContext && <div className="step__ctx">{s.visualContext}</div>}
-                  {s.description && <div className="step__desc">{s.description}</div>}
+                  {isActive && s.visualContext && <div className="step__ctx">{s.visualContext}</div>}
+                  {isActive && s.description && <div className="step__desc">{s.description}</div>}
                 </div>
               </button>
 
-              {s.objects.length > 0 && (
+              {isActive && s.objects.length > 0 && (
                 <div className="step__objs">
                   {s.objects.map((o, j) => (
                     <span key={j} className="obj" title={o.stateChange}>
@@ -208,7 +213,7 @@ export function CaptionPanel({
                 </div>
               )}
 
-              {s.reasoning && (
+              {isActive && s.reasoning && (
                 <details className="step__reasoning">
                   <summary>{lang === "zh" ? "推理" : "Reasoning"}</summary>
                   {s.reasoning.current && (
@@ -232,7 +237,8 @@ export function CaptionPanel({
                 </details>
               )}
             </div>
-          ))}
+            );
+          })}
         </div>
       ) : (
         <div className="caption__placeholder caption__placeholder--inset">No step-level annotations.</div>
