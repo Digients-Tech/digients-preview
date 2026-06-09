@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import type { Catalog } from "./types.ts";
+import type { Lang } from "./caption.ts";
+import { LangContext } from "./lang.ts";
 import { getCatalog, getSession, logout } from "./api.ts";
 import { Login } from "./components/Login.tsx";
 import { ModalityTabs } from "./components/ModalityTabs.tsx";
@@ -13,6 +15,7 @@ export function App() {
   const [activeId, setActiveId] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
   const [requestOpen, setRequestOpen] = useState(false);
+  const [lang, setLang] = useState<Lang>("en");
 
   useEffect(() => {
     getSession().then(setAuthed).catch(() => setAuthed(false));
@@ -42,6 +45,7 @@ export function App() {
   };
 
   return (
+    <LangContext.Provider value={lang}>
     <div className="app">
       <header className="topbar">
         <div className="topbar__brand">
@@ -59,6 +63,10 @@ export function App() {
           <span />
         )}
         <div className="topbar__actions">
+          <div className="topbar__lang" role="group" aria-label="Language">
+            <button className={lang === "en" ? "is-on" : ""} onClick={() => setLang("en")}>EN</button>
+            <button className={lang === "zh" ? "is-on" : ""} onClick={() => setLang("zh")}>中</button>
+          </div>
           <button className="topbar__cta" onClick={() => setRequestOpen(true)}>
             Request Data Access
           </button>
@@ -81,5 +89,6 @@ export function App() {
         </main>
       )}
     </div>
+    </LangContext.Provider>
   );
 }

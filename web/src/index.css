@@ -106,6 +106,19 @@ body {
 .topbar__logout:hover {
   background: var(--text); color: var(--bg);
 }
+/* EN / 中 language toggle (global, lives in the top bar) */
+.topbar__lang {
+  display: inline-flex;
+  border: 1px solid var(--border-strong); border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+.topbar__lang button {
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em;
+  padding: 5px 10px; background: var(--card); color: var(--text-dim);
+  border: 0; cursor: pointer;
+}
+.topbar__lang button.is-on { background: var(--text); color: var(--bg); }
+.topbar__lang button + button { border-left: 1px solid var(--border-strong); }
 
 .tabs {
   justify-self: center;

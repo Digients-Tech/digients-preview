@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState, type RefObject } from "react";
 import type { Caption } from "../types.ts";
-import { normalizeCaption, type Lang } from "../caption.ts";
+import { normalizeCaption } from "../caption.ts";
+import { useLang } from "../lang.ts";
 import { getCaption } from "../api.ts";
 import { ActionTimeline } from "./ActionTimeline.tsx";
 import { ActionTable } from "./ActionTable.tsx";
@@ -19,7 +20,7 @@ export function CaptionPanel({
   const [caption, setCaption] = useState<Caption | null>(null);
   const [loading, setLoading] = useState(true);
   const [activeIdx, setActiveIdx] = useState(-1);
-  const [lang, setLang] = useState<Lang>("en");
+  const lang = useLang();
   const stepsBoxRef = useRef<HTMLDivElement>(null);
 
   // Fetch caption when the selected clip changes. Resolves to null on 404 so
@@ -107,10 +108,6 @@ export function CaptionPanel({
       <div className="caption__head">
         <div className="caption__headrow">
           <div className="caption__label">CAPTION</div>
-          <div className="caption__lang" role="group" aria-label="Caption language">
-            <button className={lang === "en" ? "is-on" : ""} onClick={() => setLang("en")}>EN</button>
-            <button className={lang === "zh" ? "is-on" : ""} onClick={() => setLang("zh")}>中</button>
-          </div>
         </div>
 
         {crumbs.length > 0 && (
