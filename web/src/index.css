@@ -532,6 +532,7 @@ body {
 
 .caption__steps {
   min-height: 0;
+  max-height: 420px; overflow-y: auto;
   padding: 12px 14px 16px;
   display: flex; flex-direction: column; gap: 6px;
   scrollbar-width: thin;
