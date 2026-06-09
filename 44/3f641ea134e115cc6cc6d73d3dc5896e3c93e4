@@ -1,0 +1,45 @@
+package.json
+  s_3b84479f3786b4::t_6d65e4a3286ed4 16-17
+web/src/types.ts
+  s_3b84479f3786b4::t_fa27b476ccf020 24,29
+server/package.json
+  s_3b84479f3786b4::t_6d65e4a3286ed4 14-15
+web/src/components/TaxonomyBrowser.tsx
+  s_3b84479f3786b4::t_30e6d33d1bef36 105
+  s_3b84479f3786b4::t_05f8995ea81e91 93
+  s_3b84479f3786b4::t_f2972ff0ccda58 2-3,12-15,17
+  s_3b84479f3786b4::t_c32569da9a4224 72
+server/scripts/taxonomy-canon.json
+  s_3b84479f3786b4::t_2abbe8beaa9ae8 27-28
+  s_3b84479f3786b4::t_47478577d19a44 1-26,29-30
+server/scripts/gen-catalog-from-taxonomy.ts
+  s_3b84479f3786b4::t_a7f2736825d883 31-32,34-37
+  s_3b84479f3786b4::t_c5c6da4aed0ac0 1-30,33,38-119
+catalog.json
+  s_3b84479f3786b4::t_3f1c8de3d3f51a 244,317
+  s_3b84479f3786b4::t_6d65e4a3286ed4 2,10-12,15-132,142,151,160,169,180-187,189-195,200-203,206-212,217-220,223-225,227-229,236-238,241-243,281,308-316,319-325,332-334,337-340,343,345,347-349,352-358,370-377,379-382,385-391,403-410,412-414,418-425
+server/src/data.ts
+  s_3b84479f3786b4::t_5157bf9e440ad2 27-28
+  s_3b84479f3786b4::t_ba5f6ed4472946 94-100
+  s_3b84479f3786b4::t_30c39f7a47cb12 85
+web/src/components/ScenarioPreview.tsx
+  s_3b84479f3786b4::t_50c6b2fc12cea2 41
+  s_3b84479f3786b4::t_48a9216651a89e 21-22
+  s_3b84479f3786b4::t_12e3125de0c50e 4
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "443f641ea134e115cc6cc6d73d3dc5896e3c93e4",
+  "prompts": {},
+  "sessions": {
+    "s_3b84479f3786b4": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "e15ac59a-d1c2-46e4-9760-4b896dabf2ef",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "wyf-ACCEPT <importwyf@gmail.com>"
+    }
+  }
+}
