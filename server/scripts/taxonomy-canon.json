@@ -1,0 +1,30 @@
+{
+  "_comment": "Canonical display names for the per-clip taxonomy. The raw industry_en / scene_en strings from the annotation pipeline are free-text and inconsistent (synonyms, trailing punctuation), so the catalog groups by these canonical values instead. KEY = raw string (exact, then trimmed/trailing-'.'-stripped fallback); VALUE = { en, zh }. Maintained by hand: when gen:catalog logs an unmapped raw string, add an entry here and re-run. industry -> L1 Domain, scene -> L2 Scenario.",
+  "industry": {
+    "Service": { "en": "Service", "zh": "服务" },
+    "Home care": { "en": "Home Care", "zh": "家政" },
+    "Warehousing": { "en": "Warehousing", "zh": "仓储物流" },
+    "Office work": { "en": "Office Work", "zh": "办公" },
+    "Retail": { "en": "Retail", "zh": "零售" },
+    "Dining": { "en": "Food & Beverage", "zh": "餐饮" },
+    "Food and beverage": { "en": "Food & Beverage", "zh": "餐饮" }
+  },
+  "scene": {
+    "Internet cafe": { "en": "Internet Cafe", "zh": "网吧" },
+    "Kitchen": { "en": "Kitchen", "zh": "厨房" },
+    "Bedroom": { "en": "Bedroom", "zh": "卧室" },
+    "Study room": { "en": "Study Room", "zh": "书房" },
+    "Office": { "en": "Office", "zh": "办公室" },
+    "Shop": { "en": "Store", "zh": "商店" },
+    "Store": { "en": "Store", "zh": "商店" },
+    "Restaurant": { "en": "Restaurant", "zh": "餐厅" },
+    "Warehouse / Courier Hub / Sorting Station": { "en": "Warehouse · Sorting Station", "zh": "仓库·分拣站" },
+    "Warehouse / Courier depot / Sorting station": { "en": "Warehouse · Sorting Station", "zh": "仓库·分拣站" },
+    "Warehouse/Courier depot/Sorting station": { "en": "Warehouse · Sorting Station", "zh": "仓库·分拣站" },
+    "Warehouse/Delivery hub/Sorting station": { "en": "Warehouse · Sorting Station", "zh": "仓库·分拣站" },
+    "Warehouse/Express depot/Sorting station": { "en": "Warehouse · Sorting Station", "zh": "仓库·分拣站" },
+    "Warehouse/Logistics center/Sorting station": { "en": "Warehouse · Sorting Station", "zh": "仓库·分拣站" },
+    "Warehouse/shipping depot/sorting station": { "en": "Warehouse · Sorting Station", "zh": "仓库·分拣站" },
+    "Warehouse / Express depot / Sorting station": { "en": "Warehouse · Sorting Station", "zh": "仓库·分拣站" }
+  }
+}

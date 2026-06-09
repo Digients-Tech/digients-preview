@@ -13,7 +13,8 @@
     "gen:posters": "pnpm -C server gen:posters",
     "gen:combos": "pnpm -C server gen:combos",
     "sync:cos": "pnpm -C server sync:cos",
-    "sync:handhead": "pnpm -C server sync:handhead"
+    "sync:handhead": "pnpm -C server sync:handhead",
+    "gen:catalog": "pnpm -C server gen:catalog"
   },
   "devDependencies": {
     "concurrently": "^9.1.0"

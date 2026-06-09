@@ -11,7 +11,8 @@
     "gen:posters": "tsx scripts/gen-posters.ts",
     "gen:combos": "tsx scripts/gen-combos.ts",
     "sync:cos": "tsx --env-file-if-exists=../../.env --env-file-if-exists=../.env --env-file-if-exists=/etc/digients-preview.env scripts/sync-from-cos.ts",
-    "sync:handhead": "tsx --env-file-if-exists=../../.env --env-file-if-exists=../.env --env-file-if-exists=/etc/digients-preview.env scripts/sync-handhead-s3.ts"
+    "sync:handhead": "tsx --env-file-if-exists=../../.env --env-file-if-exists=../.env --env-file-if-exists=/etc/digients-preview.env scripts/sync-handhead-s3.ts",
+    "gen:catalog": "tsx scripts/gen-catalog-from-taxonomy.ts"
   },
   "dependencies": {
     "@hono/node-server": "^1.13.7",

@@ -21,11 +21,12 @@ export type Clip = {
 export type Scenario = {
   id: string;
   name: string;
+  nameZh?: string;
   recordingCount: number;
   previews: Clip[];
 };
 
-export type Domain = { id: string; name: string; scenarioCount: number; scenarios: Scenario[] };
+export type Domain = { id: string; name: string; nameZh?: string; scenarioCount: number; scenarios: Scenario[] };
 export type ModalityStats = { domains: number; scenarios: number; recordings: number };
 export type Modality = {
   id: string;
