@@ -1,0 +1,19 @@
+web/src/index.css
+  s_3b84479f3786b4::t_b2376dfe8a44db 535
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "fa9dcddaf8fd3de17f8c19d2e238bcf136a6c798",
+  "prompts": {},
+  "sessions": {
+    "s_3b84479f3786b4": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "e15ac59a-d1c2-46e4-9760-4b896dabf2ef",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "wyf-ACCEPT <importwyf@gmail.com>"
+    }
+  }
+}
