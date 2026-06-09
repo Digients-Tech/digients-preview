@@ -1,5 +1,6 @@
 import { useMemo, useRef, useState } from "react";
-import type { Modality } from "../types.ts";
+import type { Domain, Modality, Scenario } from "../types.ts";
+import { useLang } from "../lang.ts";
 import { Connectors, type Edge } from "./Connectors.tsx";
 import { ScenarioPreview } from "./ScenarioPreview.tsx";
 import { ChevronIcon, DomainIcon } from "./Icons.tsx";
@@ -8,7 +9,12 @@ import { ChevronIcon, DomainIcon } from "./Icons.tsx";
 const COLOR = { scenario: "#a972ff", preview: "#34d8a0" };
 const PREVIEW_NODE = "__preview__";
 
+// Localized display name — falls back to English when a zh name is absent.
+const dispName = (x: Domain | Scenario, lang: "en" | "zh") =>
+  lang === "zh" && x.nameZh ? x.nameZh : x.name;
+
 export function TaxonomyBrowser({ modality }: { modality: Modality }) {
+  const lang = useLang();
   const firstDomain = modality.domains[0];
   const firstScenario = firstDomain?.scenarios[0];
 
@@ -63,7 +69,7 @@ export function TaxonomyBrowser({ modality }: { modality: Modality }) {
             >
               <span className="card__iconbox icon--domain"><DomainIcon className="icon" /></span>
               <span className="card__body">
-                <span className="card__name">{d.name}</span>
+                <span className="card__name">{dispName(d, lang)}</span>
                 <span className="card__sub">{d.scenarioCount} SCENARIOS</span>
               </span>
               <ChevronIcon className="card__chevron" />
@@ -84,7 +90,7 @@ export function TaxonomyBrowser({ modality }: { modality: Modality }) {
               onClick={() => setScenarioId(s.id)}
             >
               <span className="card__body">
-                <span className="card__name">{s.name}</span>
+                <span className="card__name">{dispName(s, lang)}</span>
               </span>
             </button>
           ))}
@@ -96,7 +102,7 @@ export function TaxonomyBrowser({ modality }: { modality: Modality }) {
         <div className="col__chip chip--skill">PREVIEW</div>
         <div ref={registerCard(PREVIEW_NODE)} className="previewpanel">
           {scenario ? (
-            <ScenarioPreview key={scenario.id} scenario={scenario} domainName={domain?.name ?? ""} />
+            <ScenarioPreview key={scenario.id} scenario={scenario} domainName={domain ? dispName(domain, lang) : ""} />
           ) : (
             <div className="previewpanel__empty">Select a scenario to preview</div>
           )}

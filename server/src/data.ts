@@ -24,8 +24,8 @@ export type Clip = {
   // player renders just this; handFile/headFile remain as provenance/fallback.
   comboFile?: string;
 };
-export type ScenarioDTO = { id: string; name: string; recordingCount: number; previews: Clip[] };
-export type DomainDTO = { id: string; name: string; scenarioCount: number; scenarios: ScenarioDTO[] };
+export type ScenarioDTO = { id: string; name: string; nameZh?: string; recordingCount: number; previews: Clip[] };
+export type DomainDTO = { id: string; name: string; nameZh?: string; scenarioCount: number; scenarios: ScenarioDTO[] };
 export type ModalityStats = { domains: number; scenarios: number; recordings: number };
 export type ModalityDTO = {
   id: string;
@@ -82,6 +82,7 @@ function parseScenario(raw: unknown, path: string): ScenarioDTO {
   return {
     id: str(s.id, `${path}.id`),
     name: str(s.name, `${path}.name`),
+    ...(typeof s.nameZh === "string" && s.nameZh.length > 0 ? { nameZh: s.nameZh } : {}),
     recordingCount: num(s.recordingCount, `${path}.recordingCount`, 0),
     previews: arr(s.previews ?? [], `${path}.previews`).map((p, i) => parseClip(p, `${path}.previews[${i}]`)),
   };
@@ -90,7 +91,13 @@ function parseScenario(raw: unknown, path: string): ScenarioDTO {
 function parseDomain(raw: unknown, path: string): DomainDTO {
   const d = obj(raw, path);
   const scenarios = arr(d.scenarios, `${path}.scenarios`).map((s, i) => parseScenario(s, `${path}.scenarios[${i}]`));
-  return { id: str(d.id, `${path}.id`), name: str(d.name, `${path}.name`), scenarioCount: scenarios.length, scenarios };
+  return {
+    id: str(d.id, `${path}.id`),
+    name: str(d.name, `${path}.name`),
+    ...(typeof d.nameZh === "string" && d.nameZh.length > 0 ? { nameZh: d.nameZh } : {}),
+    scenarioCount: scenarios.length,
+    scenarios,
+  };
 }
 
 function parseModality(raw: unknown, path: string): ModalityDTO {

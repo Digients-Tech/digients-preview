@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import type { Scenario } from "../types.ts";
 import { posterUrl, videoUrl } from "../api.ts";
+import { useLang } from "../lang.ts";
 import { PlayIcon, BoltIcon } from "./Icons.tsx";
 import { CaptionPanel } from "./CaptionPanel.tsx";
 
@@ -17,6 +18,8 @@ import { CaptionPanel } from "./CaptionPanel.tsx";
 // highlighting. Multi-pick scenarios page through clips with a ◀ / ▶ chrome;
 // state resets per scenario via the parent `key={scenario.id}`.
 export function ScenarioPreview({ scenario, domainName }: { scenario: Scenario; domainName: string }) {
+  const lang = useLang();
+  const scenarioName = lang === "zh" && scenario.nameZh ? scenario.nameZh : scenario.name;
   const [activeIdx, setActiveIdx] = useState(0);
   const [errored, setErrored] = useState(false);
   const primaryRef = useRef<HTMLVideoElement | null>(null);
@@ -35,7 +38,7 @@ export function ScenarioPreview({ scenario, domainName }: { scenario: Scenario; 
       <div className="preview__head">
         <span className="preview__bolt"><BoltIcon className="icon" /></span>
         <div className="preview__title">
-          <div className="preview__name">{scenario.name}</div>
+          <div className="preview__name">{scenarioName}</div>
           <div className="preview__sub">
             {domainName} · {scenario.recordingCount} recordings · {n} preview{n === 1 ? "" : "s"}
           </div>
