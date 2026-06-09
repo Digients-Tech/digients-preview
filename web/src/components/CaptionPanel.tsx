@@ -3,6 +3,7 @@ import type { Caption } from "../types.ts";
 import { normalizeCaption, type Lang } from "../caption.ts";
 import { getCaption } from "../api.ts";
 import { ActionTimeline } from "./ActionTimeline.tsx";
+import { ActionTable } from "./ActionTable.tsx";
 
 function fmtSec(s: number): string {
   return s < 10 ? `${s.toFixed(1)}s` : `${Math.round(s)}s`;
@@ -242,6 +243,10 @@ export function CaptionPanel({
         </div>
       ) : (
         <div className="caption__placeholder caption__placeholder--inset">No step-level annotations.</div>
+      )}
+
+      {norm.actions.length > 0 && (
+        <ActionTable actions={norm.actions} videoRef={videoRef} onSeek={seekTo} lang={lang} />
       )}
     </aside>
   );
