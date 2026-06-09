@@ -1,0 +1,24 @@
+web/src/components/ActionTable.tsx
+  s_3b84479f3786b4::t_e159389f44ab87 1-80
+web/src/index.css
+  s_3b84479f3786b4::t_1c6551d896525b 758-801
+web/src/components/CaptionPanel.tsx
+  s_3b84479f3786b4::t_b0a257a0de099c 6
+  s_3b84479f3786b4::t_6d4ca51a18888d 247-250
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "9a0fde6dc2e45397be3cb920ea7025ef7bb74047",
+  "prompts": {},
+  "sessions": {
+    "s_3b84479f3786b4": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "e15ac59a-d1c2-46e4-9760-4b896dabf2ef",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "wyf-ACCEPT <importwyf@gmail.com>"
+    }
+  }
+}
