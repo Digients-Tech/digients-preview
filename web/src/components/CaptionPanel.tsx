@@ -100,26 +100,12 @@ export function CaptionPanel({
     );
   }
 
-  const tx = norm.taxonomy;
-  const crumbs = [tx.industry, tx.scene, tx.taskCategory].filter(Boolean) as string[];
-
   return (
     <aside className="caption">
       <div className="caption__head">
         <div className="caption__headrow">
           <div className="caption__label">CAPTION</div>
         </div>
-
-        {crumbs.length > 0 && (
-          <div className="caption__crumbs">
-            {crumbs.map((c, i) => (
-              <span key={i} className="crumb">
-                {c}
-                {i < crumbs.length - 1 && <span className="crumb__sep">›</span>}
-              </span>
-            ))}
-          </div>
-        )}
 
         {norm.taskGoal && (
           <p className="caption__goal">
