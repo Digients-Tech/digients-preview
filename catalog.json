@@ -168,22 +168,6 @@
                   "comboFile": "counter__digital-device-operation__13ed333d-7bd2-4697-81b8-216c26d1d513.combo.mp4"
                 }
               ]
-            },
-            {
-              "id": "counter-drink-preparation-serving",
-              "name": "Drink Preparation & Serving",
-              "recordingCount": 6,
-              "previews": [
-                {
-                  "id": "counter-drink-preparation-serving-1",
-                  "label": "Drink Preparation & Serving",
-                  "file": "counter__drink-preparation-serving__6d727c55-d883-40f1-9407-f287e5267ed7.mp4",
-                  "durationSec": 29,
-                  "handFile": "counter__drink-preparation-serving__6d727c55-d883-40f1-9407-f287e5267ed7.hand.mp4",
-                  "headFile": "counter__drink-preparation-serving__6d727c55-d883-40f1-9407-f287e5267ed7.head.mp4",
-                  "comboFile": "counter__drink-preparation-serving__6d727c55-d883-40f1-9407-f287e5267ed7.combo.mp4"
-                }
-              ]
             }
           ]
         },
