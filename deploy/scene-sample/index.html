@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="referrer" content="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <title>Digients Tech · Scene Sample</title>
+
+    <!--
+      Placeholder gate for scene.sample.digients.tech.
+
+      The scene sample set does not exist yet. This page is the visitor-facing
+      placeholder that sits where the real portal will go, so a visitor arriving
+      from the marketing site meets a gate rather than a 404. No password opens
+      it, because there is nothing behind it.
+
+      Two properties this file must keep:
+
+      1. Whatever is typed never leaves the browser. No fetch, no XHR, no beacon,
+         no cookie, no storage, no console. The input carries no `name` and the
+         form has no `action`, so even a native submit that slipped past
+         preventDefault could not put a passphrase in a query string, browser
+         history, or an access log. A fake login that collects what people type
+         is the one version of this page that would actually be harmful — people
+         reuse passwords.
+      2. The visual language is copied from the real gate
+         (digients-preview `web/src/components/Login.tsx` + `web/src/index.css`),
+         so the two read as the same product. Tokens below are duplicated from
+         that stylesheet rather than imported; if the real gate is restyled, this
+         file does not follow automatically.
+    -->
+
+    <style>
+      /* Copied from web/src/index.css — Digients Tech, light Swiss-brutalist. */
+      :root {
+        --bg: #fafafa;
+        --card: #ffffff;
+        --text: #0a0a0a;
+        --text-dim: #525252;
+        --border: rgba(10, 10, 10, 0.1);
+        --border-strong: rgba(10, 10, 10, 0.22);
+        --radius: 4px;
+        --radius-sm: 2px;
+        --font-display: "Space Grotesk", system-ui, -apple-system,
+          BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+        --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo,
+          Consolas, monospace;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        margin: 0;
+        font-family: var(--font-display);
+        color: var(--text);
+        background: var(--bg);
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .login {
+        min-height: 100%;
+        display: grid;
+        place-items: center;
+        padding: 24px;
+        background: var(--bg);
+      }
+      .login__card {
+        width: 100%;
+        max-width: 380px;
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 40px 36px;
+        display: flex;
+        flex-direction: column;
+      }
+      .login__brand {
+        font-family: var(--font-mono);
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--text-dim);
+        padding-left: 32px;
+        position: relative;
+        margin-bottom: 28px;
+      }
+      .login__brand::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 50%;
+        width: 24px;
+        height: 1px;
+        background: var(--text);
+        opacity: 0.3;
+      }
+      .login__title {
+        margin: 0 0 8px;
+        font-family: var(--font-display);
+        font-size: 28px;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        color: var(--text);
+      }
+      .login__hint {
+        margin: 0 0 26px;
+        color: var(--text-dim);
+        font-size: 14px;
+        line-height: 1.5;
+      }
+      .login__input {
+        background: var(--bg);
+        border: 1px solid var(--border-strong);
+        border-radius: var(--radius-sm);
+        padding: 13px 15px;
+        color: var(--text);
+        font-size: 15px;
+        font-family: var(--font-display);
+        outline: none;
+        transition: border-color 0.15s ease;
+      }
+      .login__input:focus {
+        border-color: var(--text);
+      }
+      .login__input--error {
+        border-color: #b00020;
+      }
+      .login__error {
+        color: #b00020;
+        font-size: 13px;
+        margin-top: 10px;
+      }
+      .login__btn {
+        margin-top: 22px;
+        padding: 14px;
+        border: 0;
+        border-radius: var(--radius-sm);
+        font-family: var(--font-display);
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        color: var(--bg);
+        cursor: pointer;
+        background: var(--text);
+        transition: background 0.15s ease;
+      }
+      .login__btn:disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+      }
+      .login__btn:not(:disabled):hover {
+        background: #222;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="login">
+      <!-- No action, no method: submission is handled entirely in JS below. -->
+      <form class="login__card" id="gate" autocomplete="off">
+        <div class="login__brand">Digients Tech</div>
+        <h1 class="login__title">Scene Sample</h1>
+        <p class="login__hint">
+          Enter the access password to browse the dataset.
+        </p>
+        <!-- No `name` attribute on purpose: see the header comment. -->
+        <input
+          class="login__input"
+          id="pw"
+          type="password"
+          autofocus
+          autocomplete="off"
+          placeholder="Access password"
+        />
+        <div class="login__error" id="err" hidden>
+          Wrong password. Try again.
+        </div>
+        <button class="login__btn" id="btn" type="submit" disabled>Enter</button>
+      </form>
+    </div>
+
+    <script>
+      (function () {
+        var form = document.getElementById("gate");
+        var input = document.getElementById("pw");
+        var error = document.getElementById("err");
+        var button = document.getElementById("btn");
+        var busy = false;
+
+        function render() {
+          button.disabled = busy || input.value.length === 0;
+          button.textContent = busy ? "Checking…" : "Enter";
+        }
+
+        function clearError() {
+          error.hidden = true;
+          input.classList.remove("login__input--error");
+        }
+
+        input.addEventListener("input", function () {
+          clearError();
+          render();
+        });
+
+        form.addEventListener("submit", function (event) {
+          event.preventDefault();
+          if (busy || input.value.length === 0) return;
+
+          // The real gate awaits a round trip to the backend, which shows up as
+          // a visible pause on the button. Resolving instantly is the tell that
+          // nothing is being checked, so spend a comparable moment first. The
+          // value is never read, copied, or sent anywhere -- only its length is
+          // consulted, above, to decide whether the button is live.
+          busy = true;
+          clearError();
+          render();
+
+          window.setTimeout(function () {
+            busy = false;
+            render();
+            error.hidden = false;
+            input.classList.add("login__input--error");
+            input.focus();
+            input.select();
+          }, 300 + Math.floor(Math.random() * 300));
+        });
+
+        render();
+      })();
+    </script>
+  </body>
+</html>
