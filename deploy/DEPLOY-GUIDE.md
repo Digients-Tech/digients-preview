@@ -36,7 +36,15 @@ sudo -iu ubuntu
 
 ## 4. 改 dev 站（`dev.sample.digients.tech`）
 
-正常流程：本地改 → push 到 GitHub → 机器上 pull + build + 重启。
+正常流程：本地改 → push 到 GitHub → 机器上 pull + build + 重启。一条命令：
+
+```bash
+sudo -iu ubuntu
+APP_DIR=/opt/digients-preview-dev bash /opt/digients-preview-dev/deploy/update.sh
+```
+
+脚本会自己从 `APP_DIR` 推出服务名（`digients-preview-dev`）和健康检查端口（8788），
+最后打印 `/healthz` 的结果。想手动来也行：
 
 ```bash
 sudo -iu ubuntu
@@ -55,20 +63,13 @@ curl -s localhost:8788/healthz               # 期望 ok
 
 同上，把路径换成 `/opt/digients-preview`、服务换成 `digients-preview`、端口换成 8787。**先在 dev 上验过再动生产。**
 
-## 6. 🔴 三个会咬人的地方
+## 6. 🔴 两个会咬人的地方
 
-### 6.1 `deploy/update.sh` 不能用来部署 dev
+> 曾经的第三个：`update.sh` 收 `APP_DIR`，重启的服务名却写死成 `digients-preview` ——
+> 拿它部署 dev 会「build 了 dev、重启了 prod」，而健康检查打在 prod 端口上、无论如何都报 ok。
+> **2026-09-01 已修**，现在服务名和端口都从 `APP_DIR` 推导。如果你手上是旧版脚本，先 `git pull`。
 
-脚本里 `APP_DIR` 是可以传的，但重启那行**服务名是写死的**：
-
-```bash
-APP_DIR="${APP_DIR:-/opt/digients-preview}"   # 可以覆盖
-sudo systemctl restart digients-preview        # 写死，不跟着 APP_DIR 变
-```
-
-所以 `APP_DIR=/opt/digients-preview-dev bash deploy/update.sh` 的效果是：**在 dev 目录里 pull + build，然后重启生产服务**。dev 还跑着旧代码，生产被无故重启。要么按上面 §4 手动敲，要么先把这个脚本修了。
-
-### 6.2 不要拿仓库里的 `deploy/Caddyfile` 覆盖线上的
+### 6.1 不要拿仓库里的 `deploy/Caddyfile` 覆盖线上的
 
 **线上 `/etc/caddy/Caddyfile` 是唯一真相**，里面有 5 个 site block。仓库里那份只有 1 个（生产那条），是最初装机时的模板，早就落后了。覆盖上去会一次抹掉 dev 路由、Matt 的站和占位门。
 
@@ -80,7 +81,7 @@ sudo caddy validate --config /etc/caddy/Caddyfile   # 先验，别直接 reload
 sudo systemctl reload caddy
 ```
 
-### 6.3 `videos/` `captions/` `posters/` 不在 git 里
+### 6.2 `videos/` `captions/` `posters/` 不在 git 里
 
 机器上那 20 多 G 数据是**可重建的缓存，不是唯一副本**，源在腾讯 COS 和 AWS S3。别把它们当代码管，也别以为丢了就没了。重建链（在代码目录里跑）：
 
