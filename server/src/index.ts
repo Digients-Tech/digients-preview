@@ -21,6 +21,7 @@ import {
 import { sendRequest, validatePayload } from "./contact.js";
 import { buildCatalog } from "./data.js";
 import { serveVideo, servePoster, serveCaption, VIDEOS_DIR } from "./videos.js";
+import { l4 } from './l4.js';
 
 const app = new Hono();
 
@@ -57,6 +58,7 @@ app.get("/api/stats", requireAuth, (c) => c.json(getLoginStats()));
 
 // --- Catalog (protected) ---
 app.get("/api/catalog", requireAuth, (c) => c.json(buildCatalog()));
+app.route('/api/l4', l4);
 
 // --- Dataset access request form (protected; only signed-in portal users) ---
 // Body fields validated server-side; submission is emailed to CONTACT_EMAIL via

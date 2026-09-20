@@ -1,94 +1,45 @@
 import { useEffect, useState } from "react";
-import type { Catalog } from "./types.ts";
-import type { Lang } from "./caption.ts";
-import { LangContext } from "./lang.ts";
-import { getCatalog, getSession, logout } from "./api.ts";
+import { getSession, logout } from "./api.ts";
 import { Login } from "./components/Login.tsx";
-import { ModalityTabs } from "./components/ModalityTabs.tsx";
-import { TaxonomyBrowser } from "./components/TaxonomyBrowser.tsx";
-import { CameraIcon, CubeIcon } from "./components/Icons.tsx";
-import { RequestAccessModal } from "./components/RequestAccessModal.tsx";
+import { L4Explorer } from "./components/L4Explorer.tsx";
+import { Mark } from "./components/ExplorerIcons.tsx";
 
 export function App() {
   const [authed, setAuthed] = useState<boolean | null>(null);
-  const [catalog, setCatalog] = useState<Catalog | null>(null);
-  const [activeId, setActiveId] = useState<string>("");
-  const [error, setError] = useState<string | null>(null);
-  const [requestOpen, setRequestOpen] = useState(false);
-  const [lang, setLang] = useState<Lang>("en");
-
+  const [failed, setFailed] = useState(false);
+  const [retry, setRetry] = useState(0);
   useEffect(() => {
-    getSession().then(setAuthed).catch(() => setAuthed(false));
-  }, []);
-
-  useEffect(() => {
-    if (!authed) return;
-    getCatalog()
-      .then((c) => {
-        setCatalog(c);
-        setActiveId(c.modalities[0]?.id ?? "");
-      })
-      .catch((e) => setError(String(e)));
-  }, [authed]);
-
-  if (authed === null) return <div className="boot" />;
+    setFailed(false);
+    getSession()
+      .then(setAuthed)
+      .catch(() => setFailed(true));
+  }, [retry]);
+  if (failed)
+    return (
+      <div className="boot">
+        <Mark />
+        <h1>Unable to connect</h1>
+        <p>Check your connection and try again.</p>
+        <button className="button" onClick={() => setRetry((n) => n + 1)}>
+          Try again
+        </button>
+      </div>
+    );
+  if (authed === null)
+    return (
+      <div className="boot" role="status">
+        <Mark />
+        <p>Opening the collection…</p>
+      </div>
+    );
   if (!authed) return <Login onAuthed={() => setAuthed(true)} />;
-  if (error) return <div className="boot boot--error">Failed to load catalog: {error}</div>;
-  if (!catalog) return <div className="boot" />;
-
-  const active = catalog.modalities.find((m) => m.id === activeId) ?? catalog.modalities[0];
-
-  const doLogout = async () => {
-    await logout();
-    setAuthed(false);
-    setCatalog(null);
-  };
-
   return (
-    <LangContext.Provider value={lang}>
-    <div className="app">
-      <header className="topbar">
-        <div className="topbar__brand">
-          <span className="topbar__logo">D</span>
-          <span>Digients Tech · Data Preview</span>
-        </div>
-        {/* Only show the modality switcher when there's more than one modality. */}
-        {catalog.modalities.length > 1 ? (
-          <ModalityTabs
-            modalities={catalog.modalities}
-            activeId={active?.id ?? ""}
-            onSelect={setActiveId}
-          />
-        ) : (
-          <span />
-        )}
-        <div className="topbar__actions">
-          <div className="topbar__lang" role="group" aria-label="Language">
-            <button className={lang === "en" ? "is-on" : ""} onClick={() => setLang("en")}>EN</button>
-            <button className={lang === "zh" ? "is-on" : ""} onClick={() => setLang("zh")}>中</button>
-          </div>
-          <button className="topbar__cta" onClick={() => setRequestOpen(true)}>
-            Request Data Access
-          </button>
-          <button className="topbar__logout" onClick={doLogout}>Sign out</button>
-        </div>
-      </header>
-
-      {requestOpen && <RequestAccessModal onClose={() => setRequestOpen(false)} />}
-
-      {active && (
-        <main className="content">
-          {catalog.modalities.length > 1 && (
-            <div className={`crumb crumb--${active.icon}`}>
-              {active.icon === "ego" ? <CameraIcon className="icon" /> : <CubeIcon className="icon" />}
-              <span>{active.name}</span>
-            </div>
-          )}
-
-          <TaxonomyBrowser key={active.id} modality={active} />
-        </main>
-      )}
-    </div>
-    </LangContext.Provider>
+    <L4Explorer
+      onSessionExpired={() => setAuthed(false)}
+      onLogout={async () => {
+        await logout();
+        setAuthed(false);
+      }}
+    />
   );
 }

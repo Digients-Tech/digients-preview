@@ -9,6 +9,7 @@
     "build": "pnpm -C web build",
     "start": "pnpm -C server start",
     "typecheck": "pnpm -C web typecheck && pnpm -C server typecheck",
+    "test": "pnpm -C server exec tsx --test ../tests/*.test.ts",
     "gen:samples": "pnpm -C server gen:samples",
     "gen:posters": "pnpm -C server gen:posters",
     "gen:combos": "pnpm -C server gen:combos",

@@ -1,25 +1,36 @@
 # digients-preview
 
-Client-facing **data-preview portal** — clients enter a shared password, browse the data
-taxonomy (`Domain → Scenario`, matching the Capture App's `scene_major` / `scene_minor`),
-and preview a video demo per scenario. Built to give buyers a polished preview instead of
-a raw S3 / Cyberduck file dump.
+Client-facing **L4 data explorer**. Clients enter a shared password and explore real
+egocentric video alongside synchronized actions, purpose, reasoning, body motion,
+interacting objects, scene memory, and MANO hand reconstruction. The collection opens
+a curated episode and supports search, category/task filters, English/Chinese annotations,
+direct episode links, and source JSON/pose downloads.
+
+The development collection uses all **291 episodes, 2.99 hours, 1,295 subtasks, and
+3,642 actions** from the first three-hour 1x delivery. Independent head pose remains
+pending source verification. The production taxonomy portal is deployed separately.
+
+See [the L4 deployment guide](deploy/L4-DEV.md) for private data preparation, isolated
+dev releases, validation, and rollback. [PRODUCT.md](PRODUCT.md) and [DESIGN.md](DESIGN.md)
+describe the intended experience.
 
 Single repo, single always-on Node process: a [Hono](https://hono.dev) server serves the
 built React frontend, the catalog API, and the on-disk preview videos + posters.
 
 ```
 digients-preview/
-├── catalog.json   the taxonomy + demo content (edit this — no code change / rebuild)
+├── data/       private L4 catalogue, captions, videos, posters and poses (gitignored)
+├── catalog.json   legacy taxonomy catalogue
 ├── web/        React + Vite + TypeScript frontend (no UI framework — bespoke CSS)
 │   └── src/
 │       ├── App.tsx                  auth flow + layout
-│       └── components/              tabs, 2-column browser, connectors, inline preview, stat cards
+│       └── components/              L4Explorer, L4Player, L4Annotations, Login
 ├── server/     Hono backend (run directly with tsx, no build step)
 │   ├── src/
 │   │   ├── index.ts                 routes + static serving
 │   │   ├── auth.ts                  shared-password gate (signed cookie)
-│   │   ├── data.ts                  loads + validates catalog.json (mtime-cached)
+│   │   ├── l4.ts                    authenticated L4 data + media routes
+│   │   ├── data.ts                  legacy catalogue loader
 │   │   └── videos.ts                ranged video + poster serving, path-traversal guard
 │   └── scripts/                     ffmpeg placeholder clip + poster generators
 ├── videos/     preview .mp4 files (gitignored; live on the server disk)
@@ -29,13 +40,18 @@ digients-preview/
 ## Quick start
 
 ```bash
-pnpm install
-pnpm gen:samples        # generate 15 placeholder clips (needs ffmpeg) so the demo works
+pnpm install --frozen-lockfile
+# Prepare the verified private dataset first (see deploy/L4-DEV.md).
+# Set L4_DATA_DIR if it is outside data/l4-1x-20260921.
 pnpm dev                # web on :5173 (proxies /api + /videos to the server on :8787)
 ```
 
 Open http://localhost:5173. Default dev password: **`digients-demo`** (override with
 `PREVIEW_PASSWORD`).
+
+Run `pnpm typecheck`, `pnpm test`, and `pnpm build` before deployment. Without the
+private dataset, the explorer shows a recoverable collection-unavailable state;
+legacy placeholder generation does not populate the L4 collection.
 
 ### Production (single process)
 
@@ -56,6 +72,7 @@ Copy `.env.example` → `.env`. Key vars:
 | `PREVIEW_PASSWORD` | The shared password clients type. **Required in production.** |
 | `SESSION_SECRET` | Signs the session cookie. Random per-boot if unset (sessions reset on restart). |
 | `PORT` | Listen port (default `8787`). |
+| `L4_DATA_DIR` | Private L4 dataset root (default `<repo>/data/l4-1x-20260921`). |
 | `VIDEOS_DIR` | Where preview videos live (default `<repo>/videos`). |
 | `STATIC_ROOT` | Built frontend path, relative to the server's cwd (default `../web/dist`). |
 
@@ -66,7 +83,11 @@ signed, httpOnly cookie; the catalog API and every video request require it (so 
 can't be hot-linked without logging in). This is deliberately lightweight — swap in
 per-user auth (invite codes / OTP via the main `digients-api`) when needed.
 
-## Catalog data
+## Legacy taxonomy catalogue and sync tools
+
+The sections below document the earlier taxonomy portal and its retained migration
+tools. They do not populate the current L4 explorer. Do not run these sync commands
+against production or shared dev media as part of an L4 deployment.
 
 The taxonomy lives in [`catalog.json`](catalog.json) — two levels: `domain` (scene_major)
 → `scenario` (scene_minor); each scenario has a `recordingCount` (the green badge) and

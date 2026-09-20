@@ -19,6 +19,8 @@ videos/*
 !videos/.gitkeep
 posters/
 captions/
+# Source-backed L4 delivery assets and generated catalogue (private runtime data)
+data/l4-*/
 # Client delivery staging (hardlinked subset for Google Drive hand-off)
 delivery-web36/
 delivery-*/

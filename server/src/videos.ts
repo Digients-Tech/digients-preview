@@ -28,8 +28,8 @@ function safePath(baseDir: string, name: string): string | null {
   return full;
 }
 
-export function serveVideo(c: Context, name: string): Response {
-  const path = safePath(VIDEOS_DIR, name);
+export function serveVideo(c: Context, name: string, directory = VIDEOS_DIR): Response {
+  const path = safePath(directory, name);
   if (!path || !existsSync(path) || !statSync(path).isFile()) {
     return c.json({ error: "not_found", file: name }, 404);
   }
@@ -53,9 +53,10 @@ export function serveVideo(c: Context, name: string): Response {
   const match = /^bytes=(\d*)-(\d*)$/.exec(range.trim());
   if (!match) return c.body(null, 416, { "Content-Range": `bytes */${size}` });
 
-  const start = match[1] ? parseInt(match[1], 10) : 0;
-  const end = match[2] ? parseInt(match[2], 10) : size - 1;
-  if (Number.isNaN(start) || Number.isNaN(end) || start > end || end >= size) {
+  const suffix = !match[1] && match[2] ? parseInt(match[2], 10) : null;
+  const start = suffix !== null ? Math.max(0, size - suffix) : Number(match[1] || 0);
+  const end = suffix !== null ? size - 1 : Math.min(size - 1, match[2] ? Number(match[2]) : size - 1);
+  if ((!match[1] && !match[2]) || suffix === 0 || !Number.isSafeInteger(start) || !Number.isSafeInteger(end) || start > end || start >= size) {
     return c.body(null, 416, { "Content-Range": `bytes */${size}` });
   }
 
@@ -65,8 +66,8 @@ export function serveVideo(c: Context, name: string): Response {
   return new Response(stream, { status: 206, headers });
 }
 
-export function servePoster(c: Context, name: string): Response {
-  const path = safePath(POSTERS_DIR, name);
+export function servePoster(c: Context, name: string, directory = POSTERS_DIR): Response {
+  const path = safePath(directory, name);
   if (!path || !existsSync(path) || !statSync(path).isFile()) {
     return c.json({ error: "not_found", file: name }, 404);
   }

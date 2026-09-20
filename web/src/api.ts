@@ -5,7 +5,7 @@ const opts: RequestInit = { credentials: "same-origin" };
 
 export async function getSession(): Promise<boolean> {
   const r = await fetch("/api/session", opts);
-  if (!r.ok) return false;
+  if (!r.ok) throw new Error("Session check failed");
   return (await r.json()).authed === true;
 }
 
@@ -16,11 +16,14 @@ export async function login(password: string): Promise<boolean> {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ password }),
   });
-  return r.ok;
+  if (r.status === 401) return false;
+  if (!r.ok) throw new Error("Login service unavailable");
+  return true;
 }
 
 export async function logout(): Promise<void> {
-  await fetch("/api/logout", { ...opts, method: "POST" });
+  const response = await fetch("/api/logout", { ...opts, method: "POST" });
+  if (!response.ok) throw new Error("Sign out failed");
 }
 
 export async function getCatalog(): Promise<Catalog> {
@@ -61,7 +64,9 @@ export type RequestAccessPayload = {
   ndaRequired?: boolean;
 };
 
-export async function submitRequestAccess(p: RequestAccessPayload): Promise<{ ok: boolean; error?: string }> {
+export async function submitRequestAccess(
+  p: RequestAccessPayload,
+): Promise<{ ok: boolean; error?: string }> {
   const r = await fetch("/api/request-access", {
     ...opts,
     method: "POST",
@@ -69,6 +74,6 @@ export async function submitRequestAccess(p: RequestAccessPayload): Promise<{ ok
     body: JSON.stringify(p),
   });
   if (r.ok) return { ok: true };
-  const body = await r.json().catch(() => ({} as { error?: string }));
+  const body = await r.json().catch(() => ({}) as { error?: string });
   return { ok: false, error: body.error ?? `submission failed (${r.status})` };
 }
