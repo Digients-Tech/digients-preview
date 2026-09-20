@@ -1,0 +1,17 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "side-tab",
+        "value": "*",
+        "files": [
+          "web/src/explorer.css"
+        ],
+        "createdAt": "2026-09-20T23:01:59.734Z",
+        "reason": "Agent verified: .subtask-track button uses a 3px canvas-colored right border as the gap between duration-proportional timeline segments; this is a functional separator, not an accent on a card."
+      }
+    ]
+  }
+}

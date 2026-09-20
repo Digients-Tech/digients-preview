@@ -10,7 +10,7 @@ Restrained. Cool chalk and ink neutrals, with a cobalt accent reserved for playb
 
 ## Typography
 
-One precise sans family with native fallbacks. Calm fixed rem hierarchy: 30–34px episode titles, 20px section titles, 15px body, 13px supporting controls, 12px uppercase overlines. Tabular numerals and a compact monospace face for timestamps. Annotation prose never becomes a wall wider than 72ch.
+DM Sans is the single sans family for identity, headings, collection figures, and annotation prose, with native fallbacks. Keep font loading to this one family; timestamps use a compact native monospace face. Calm fixed rem hierarchy: 30–34px episode titles, 20px section titles, 15px body, 13px supporting controls, 12px uppercase overlines. Use tabular numerals for measurements. Annotation prose never becomes a wall wider than 72ch.
 
 ## Layout
 

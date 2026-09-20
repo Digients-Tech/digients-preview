@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;450;500;550;600;650;700&family=Space+Grotesk:wght@400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;450;500;550;600;650;700&display=swap");
 
 :root {
   font-family:
@@ -178,7 +178,7 @@ svg {
   display: flex;
   align-items: center;
   gap: 9px;
-  font-family: "Space Grotesk", sans-serif;
+  font-family: inherit;
   font-weight: 600;
   font-size: 1.53rem;
   letter-spacing: -0.06em;
@@ -261,7 +261,7 @@ svg {
   color: var(--faint);
 }
 .collection-intro h1 {
-  font-family: "Space Grotesk", sans-serif;
+  font-family: inherit;
   font-size: 2.13rem;
   font-weight: 500;
   line-height: 1.25;
@@ -283,7 +283,7 @@ svg {
   gap: 2px;
 }
 .collection-facts strong {
-  font-family: "Space Grotesk", sans-serif;
+  font-family: inherit;
   font-weight: 500;
   letter-spacing: -0.045em;
   font-size: 1.87rem;
@@ -1249,7 +1249,7 @@ svg {
   color: var(--muted);
 }
 .login-story h1 {
-  font-family: "Space Grotesk", sans-serif;
+  font-family: inherit;
   font-weight: 500;
   font-size: 3.8rem;
   line-height: 1.09;
