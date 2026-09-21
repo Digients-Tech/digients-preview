@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-09-21T07:33:35.936Z",
+  "generatedAt": "2026-09-21T07:42:14.802Z",
   "title": "Design System: Digients L4 Explorer",
   "extensions": {
     "colorMeta": {
@@ -189,6 +189,10 @@
       "label": {
         "displayName": "Control Label",
         "purpose": "Standard buttons, card titles and tabs."
+      },
+      "clock": {
+        "displayName": "Playback Clock",
+        "purpose": "Native SFMono-Regular with Consolas and monospace fallbacks for timestamps and sequence numbers; tabular figures, with existing compact size overrides."
       }
     },
     "shadows": [],

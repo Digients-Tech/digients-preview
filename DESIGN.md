@@ -46,6 +46,11 @@ typography:
     fontSize: "0.8rem"
     fontWeight: 500
     lineHeight: 1.5
+  clock:
+    fontFamily: "\"SFMono-Regular\", Consolas, monospace"
+    fontSize: "0.73rem"
+    fontWeight: 400
+    lineHeight: 1.5
 rounded:
   tag: "4px"
   icon: "5px"
@@ -170,6 +175,7 @@ The hierarchy uses medium headings, regular annotation prose and plain controls.
 - **Body** (`typography.body`): inherited reading baseline.
 - **Annotation** (`typography.annotation`): expanded descriptions and insight fields; mobile increases this size.
 - **Label** (`typography.label`): standard buttons, card titles and annotation tabs. Smaller existing metadata sizes are not a reusable prose scale.
+- **Clock** (`typography.clock`): native monospace for timestamps and sequence numbers, with tabular figures. Compact media, timeline and memory contexts retain their existing local size overrides.
 
 **The One Family Rule.** Use DM Sans for identity, headings, labels and prose; reserve native monospace for clocks and sequence numbers.
 
