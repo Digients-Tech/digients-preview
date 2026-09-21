@@ -4,9 +4,11 @@
 
 ## 代码与数据入口
 
-- `web/`：React + Vite + TypeScript。当前 L4 页面入口为 `App.tsx` → `components/L4Explorer.tsx`；`L4Player.tsx` 管理原视频/手部渲染与播放时钟；`L4Annotations.tsx` 展示动作解释和场景记忆；`l4-core.ts` 管理时间、检索和记忆选择；`explorer.css` 管理样式。`PRODUCT.md` / `DESIGN.md` 记录产品与视觉约定。
+- `web/`：React + Vite + TypeScript。当前入口为 `App.tsx` → `components/L4Explorer.tsx`，默认全量视频网格、精选在前。`VideoCard.tsx` 只挂载可见视频，共用 IntersectionObserver；`SubtaskTimeline.tsx` 负责卡片与详情的分段时间轴；`EpisodeDetail.tsx` 用原生 dialog 管理放大详情、焦点恢复和标注加载；URL 的 `episode` / `t` / `view` 支持时刻分享，浏览器返回保留网格状态。
+- `L4Player.tsx` 管理原视频/手部渲染与播放时钟；`L4Annotations.tsx` 展示完整动作、子任务和 memory，并提供跟随播放以及全部/截至当前记忆切换；`l4-core.ts` 管理时间、检索和记忆选择；`explorer.css` 管理样式。`PRODUCT.md` / `DESIGN.md` 记录产品与视觉约定。
 - 原 taxonomy 页面组件（`TaxonomyBrowser.tsx`、`ScenarioPreview.tsx`、`CaptionPanel.tsx` 等）、`caption.ts` 与 `index.css` 保留为旧实现，当前 L4 页面不引用它们。
 - L4 私有运行数据在 `L4_DATA_DIR`，本地默认 `data/l4-1x-20260921`。`server/src/l4.ts` 提供鉴权后的 catalogue、原始 JSON、Range 视频、poster 和 MANO 下载；不向前端提供 S3 凭据或签名 URL。
+- `server/src/l4-gallery.ts` 从原始 L4 taxonomy 生成 industry/scene/task 与紧凑 subtask 索引，兼容已有 v1 catalogue；不能拿 L0 coarse category 冒充 L4 industry。缓存按 catalog mtime 刷新，一个数据版本内 captions 视为不可变。网格接口不展开完整 memory/动作正文；进入详情才请求单条原始 JSON。
 - `server/scripts/prepare-l4-delivery.py` 从本地 L0/L4 和已读取的 S3 inventories 校验 ID/时间范围、生成检索目录，并保留原始 L4 字节。输出数据不进入 Git。`deploy/prepare-l4-media.py` 从 stdin 接收临时 GET URL，在独立 dev 数据目录下载、校验、生成 poster；不能记录 URL。
 - `server/`：Hono + tsx。`src/index.ts` 定义路由；`data.ts` 校验并按 mtime 缓存 `catalog.json`；`videos.ts` 提供本地视频 Range、poster 和 caption；`auth.ts` 管理访问口令与会话。
 - `catalog.json` 是实际展示目录；`curated.json` 是同步阶段的人工选样映射。`server/scripts/taxonomy-canon.json` 和 `gen-catalog-from-taxonomy.ts` 管理从 caption taxonomy 重建分类。先核对当前 catalogue 的生成来源，再选择同步或重建命令，避免意外重写目录。

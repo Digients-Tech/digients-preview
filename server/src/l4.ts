@@ -3,7 +3,8 @@ import { existsSync, readFileSync, statSync, createReadStream } from "node:fs";
 import { resolve, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { Readable } from "node:stream";
-import type { L4Catalog } from "../../web/src/l4-types.js";
+import type { L4Caption, L4Catalog } from "../../web/src/l4-types.js";
+import { buildGalleryCatalog } from "./l4-gallery.js";
 import { requireAuth } from "./auth.js";
 import { serveVideo, servePoster } from "./videos.js";
 
@@ -30,7 +31,14 @@ export function loadL4Catalog() {
     [...ids].some((id) => !/^[a-zA-Z0-9_-]+$/.test(id))
   )
     throw new Error("Invalid L4 episode IDs");
-  cached = { mtime, catalog, ids };
+  const gallery = buildGalleryCatalog(
+    catalog,
+    (id) =>
+      JSON.parse(
+        readFileSync(join(DATA_DIR, "captions", `${id}.json`), "utf8"),
+      ) as L4Caption,
+  );
+  cached = { mtime, catalog: gallery, ids };
   return cached;
 }
 

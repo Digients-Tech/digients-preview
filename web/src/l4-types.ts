@@ -1,11 +1,23 @@
 export type Language = "en" | "zh";
 export type MediaMode = "recording" | "hand";
+export type SubtaskSegment = Pick<
+  L4Subtask,
+  "subtask_id" | "start_sec" | "end_sec" | "subtask_en" | "subtask_zh"
+>;
 export type Episode = {
   id: string;
   title: string;
   titleZh: string;
   scene: string;
   sceneZh: string;
+  industry: string;
+  industryZh: string;
+  industryId: string;
+  scenes: string[];
+  scenesZh: string[];
+  taskLabels: string[];
+  taskLabelsZh: string[];
+  subtasks: SubtaskSegment[];
   category: string;
   categoryLabel: string;
   categoryLabelZh: string;
@@ -30,6 +42,7 @@ export type L4Catalog = {
     actions: number;
   };
   categories: { id: string; name: string; nameZh: string; count: number }[];
+  industries: { id: string; name: string; nameZh: string; count: number }[];
   tasks: { id: string; name: string; count: number }[];
   episodes: Episode[];
 };

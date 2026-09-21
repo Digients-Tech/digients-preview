@@ -1,14 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import type { CSSProperties, KeyboardEvent } from "react";
 import type { Episode, L4Caption, Language, MediaMode } from "../l4-types.ts";
-import {
-  activeAt,
-  mediaURL,
-  posterURL,
-  preciseTime,
-  timecode,
-} from "../l4-core.ts";
+import { mediaURL, posterURL, preciseTime, timecode } from "../l4-core.ts";
 import { Icon } from "./ExplorerIcons.tsx";
+import { SubtaskTimeline } from "./SubtaskTimeline.tsx";
+import type { OpenEpisode } from "./VideoCard.tsx";
 
 export type SeekRequest = { episodeId: string; time: number; serial: number };
 type Props = {
@@ -18,6 +14,8 @@ type Props = {
   seek: SeekRequest | null;
   onTime: (time: number) => void;
   onSeek: (time: number) => void;
+  initial: OpenEpisode;
+  onMode: (mode: MediaMode) => void;
 };
 
 export function L4Player({
@@ -27,19 +25,20 @@ export function L4Player({
   seek,
   onTime,
   onSeek,
+  initial,
+  onMode,
 }: Props) {
   const video = useRef<HTMLVideoElement>(null);
   const frame = useRef<HTMLDivElement>(null);
-  const resume = useRef({ time: 0, playing: false });
-  const [mode, setMode] = useState<MediaMode>("recording");
-  const [time, setTime] = useState(0);
+  const resume = useRef({ time: initial.time, playing: initial.playing });
+  const [mode, setMode] = useState<MediaMode>(initial.mode);
+  const [time, setTime] = useState(initial.time);
   const [playing, setPlaying] = useState(false);
   const [ready, setReady] = useState(false);
   const [error, setError] = useState(false);
   const [speed, setSpeed] = useState(1);
   const zh = lang === "zh";
-  const subtasks = caption?.subtasks ?? [];
-  const activeSubtask = activeAt(subtasks, time);
+  const subtasks = caption?.subtasks ?? episode.subtasks;
 
   useEffect(() => {
     if (!seek || seek.episodeId !== episode.id || !video.current) return;
@@ -66,12 +65,15 @@ export function L4Player({
     setReady(false);
     setError(false);
     setMode(next);
+    onMode(next);
   }
 
   function loaded() {
     const el = video.current;
     if (!el) return;
     el.currentTime = Math.min(resume.current.time, el.duration);
+    setTime(el.currentTime);
+    onTime(el.currentTime);
     el.playbackRate = speed;
     setReady(true);
     if (resume.current.playing) void el.play().catch(() => setPlaying(false));
@@ -116,7 +118,7 @@ export function L4Player({
           </button>
         </div>
         <span className="media-note">
-          {mode === "hand" ? "MANO" : zh ? "第一人称" : "EGOCENTRIC"}
+          {mode === "hand" ? "MANO" : zh ? "第一人称" : "Egocentric"}
         </span>
       </div>
       <div
@@ -137,6 +139,7 @@ export function L4Player({
             poster={posterURL(episode.id)}
             preload="metadata"
             playsInline
+            muted
             aria-label={zh ? episode.titleZh : episode.title}
             onLoadedMetadata={loaded}
             onCanPlay={() => setReady(true)}
@@ -145,6 +148,7 @@ export function L4Player({
               setPlaying(false);
             }}
             onTimeUpdate={(e) => {
+              if (e.currentTarget.readyState < 2) return;
               const t = e.currentTarget.currentTime;
               setTime(t);
               onTime(t);
@@ -195,10 +199,10 @@ export function L4Player({
             {mode === "hand"
               ? zh
                 ? "手部重建"
-                : "HAND RECONSTRUCTION"
+                : "Hand skeleton"
               : zh
                 ? "原始视频"
-                : "SOURCE VIDEO"}
+                : "Original video"}
           </span>
         </div>
         <div className="player-controls">
@@ -259,56 +263,13 @@ export function L4Player({
           </button>
         </div>
       </div>
-      <div className="subtask-heading">
-        <span className="overline">
-          {zh ? "子任务时间轴" : "Subtask timeline"}
-        </span>
-        <span>
-          {subtasks.length} {zh ? "个阶段" : "phases"}
-        </span>
-      </div>
-      <div
-        className="subtask-track"
-        role="group"
-        aria-label={zh ? "按子任务跳转" : "Seek to subtask"}
-      >
-        {subtasks.map((s, i) => (
-          <button
-            key={s.subtask_id}
-            className={i === activeSubtask ? "is-current" : ""}
-            style={{
-              left: `${(s.start_sec / episode.duration) * 100}%`,
-              width: `${((s.end_sec - s.start_sec) / episode.duration) * 100}%`,
-            }}
-            title={`${preciseTime(s.start_sec)} · ${zh ? s.subtask_zh : s.subtask_en}`}
-            aria-label={`${zh ? "子任务" : "Subtask"} ${i + 1}: ${zh ? s.subtask_zh : s.subtask_en}`}
-            aria-pressed={i === activeSubtask}
-            onClick={() => onSeek(s.start_sec)}
-          >
-            <span>{String(i + 1).padStart(2, "0")}</span>
-          </button>
-        ))}
-        <span
-          className="timeline-cursor"
-          style={{ left: `${Math.min((time / episode.duration) * 100, 100)}%` }}
-        />
-      </div>
-      <div className="subtask-current">
-        <span className="phase-number">
-          {activeSubtask >= 0
-            ? String(activeSubtask + 1).padStart(2, "0")
-            : "—"}
-        </span>
-        <span>
-          {subtasks[activeSubtask]
-            ? zh
-              ? subtasks[activeSubtask]!.subtask_zh
-              : subtasks[activeSubtask]!.subtask_en
-            : zh
-              ? "选择一个阶段以探索"
-              : "Select a phase to explore"}
-        </span>
-      </div>
+      <SubtaskTimeline
+        subtasks={subtasks}
+        duration={episode.duration}
+        time={time}
+        lang={lang}
+        onSeek={onSeek}
+      />
     </section>
   );
 }

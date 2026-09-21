@@ -41,6 +41,20 @@ export function memoryAt(
   return [...latest.values()];
 }
 
+export function filterGallery(
+  episodes: Episode[],
+  query: string,
+  industry: string,
+  scene: string,
+  task: string,
+): Episode[] {
+  return filterEpisodes(episodes, query, "", task).filter(
+    (episode) =>
+      (!industry || episode.industryId === industry) &&
+      (!scene || episode.scenes.includes(scene)),
+  );
+}
+
 export function timecode(time: number): string {
   const safe = Math.max(0, Number.isFinite(time) ? time : 0);
   return `${Math.floor(safe / 60)

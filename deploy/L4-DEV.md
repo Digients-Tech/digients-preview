@@ -17,6 +17,8 @@ poses/<clip-id>.mano.npz
 
 The dataset builder also writes `source-manifest.json` with source keys and caption hashes. Media preparation writes per-file SHA-256/size receipts and probes both videos for every episode. These receipts stay with the private dataset.
 
+The server enriches the v1 catalog from the immutable caption files once per catalog mtime. This adds exact L4 industry, scenes, task labels/classes and compact subtask segments for the flat gallery. It does not rewrite the runtime catalog or original captions. Full action and memory payloads are fetched when an episode opens. Gallery previews attach only while their card is visible; a single shared observer pauses/releases offscreen media. The delivered `hand` stream already contains skeleton overlays.
+
 `server/scripts/prepare-l4-delivery.py --help` documents the offline catalogue build. `prepare-l4-media.py DATA_DIR` accepts short-lived GET URLs as JSON on stdin; URLs and credentials must not be persisted or placed in command arguments. Only the Digients AWS account may generate those URLs. Do not use legacy `sync:*` commands for this collection.
 
 Only verified media channels appear in the viewer. Independent head pose is not included in this delivery mapping; a MANO hand's global orientation is not head pose. Add a head channel only after its artifact, clip mapping, camera/time coordinate conventions, and alignment are verified.
@@ -44,4 +46,4 @@ If this is the first L4 deployment, remove only the newly created `30-l4-release
 
 ## L4 time semantics
 
-Actions and subtasks use half-open intervals `[start_sec, end_sec)`. Gaps and the end of a clip do not display a stale active action. Media switches preserve the playback clock, speed, and play/pause intent; changing episodes resets them. Scene-memory entries are revealed according to their source `t_sec`; their prose is the supplied annotation and may describe a wider interval, so the UI does not claim a causally generated real-time state estimate.
+Actions and subtasks use half-open intervals `[start_sec, end_sec)`. Gaps and the end of a clip do not display a stale active action. Media switches preserve the playback clock, speed, and play/pause intent. Detail opens at its gallery card's clock; direct moment links carry `episode`, `t` and `view`. Closing detail restores the gallery's filters, scroll and focus. Memory defaults to all source observations, with an explicit “At playhead” view selecting the latest entry per object through source `t_sec`. The prose is the supplied annotation and may describe a wider interval, so the UI does not claim a causally generated real-time state estimate.

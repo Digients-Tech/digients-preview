@@ -10,7 +10,7 @@ Prospective embodied-AI customers and research engineers evaluating real egocent
 
 ## Product Purpose
 
-Present the verified 1x three-hour delivery as an explorable L4 sample collection. All available episodes must be searchable and filterable. Open a curated, real episode by default. Let users connect video evidence to subtasks, actions, purpose, reasoning, body motion, interacting objects, and scene memory without losing their place.
+Present the verified 1x three-hour delivery as an explorable L4 sample collection. Open the full, flat video gallery with featured episodes first. Each card shows real hand-skeleton video, source industry/scene/task labels and a segmented subtask timeline linked to playback. Filter by industry, scene, task or search. Opening a card enlarges that episode at the current moment, with complete subtasks, actions, purpose, reasoning, body motion, interacting objects, spatial context and memory. Closing it returns to the same collection position and filters.
 
 ## Brand Personality
 
@@ -18,13 +18,13 @@ Professional, restrained, forward-looking. A precise Silicon Valley AI startup p
 
 ## Anti-references
 
-No glowing AI gradients, oversized marketing KPI cards, repetitive card grids, or dense administration-dashboard styling. Avoid decoration competing with video. Avoid replacing unavailable source annotations or pose channels with invented content.
+No glowing AI gradients, oversized marketing KPI cards, decorative card grids, or dense administration-dashboard styling. The user explicitly chose a flat video grid, using dataset.build.ai/mono_1k as a browsing reference. Avoid decoration competing with video. Avoid replacing unavailable source annotations or pose channels with invented content.
 
 ## Design Principles
 
 1. The evidence is the interface: real video and synchronized annotations carry the visual identity.
 2. Overview first, detail on demand: a browsable collection, a focused episode, then the meaning behind each action.
-3. Preserve context: filtering, seeking, switching media, and changing annotation language keep a coherent selection.
+3. Preserve context: filters and scroll survive detail navigation; seeking and switching media preserve the playback clock. Complete memory and the latest entries through the playhead are distinct, clearly named views.
 4. Every count and annotation reflects verified source data. Distinguish available hand/head signals by actual artifacts.
 5. Changes are demonstrated on the development instance, with its data isolated from the production preview.
 

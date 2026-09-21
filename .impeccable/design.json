@@ -1,0 +1,354 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-21T07:33:35.936Z",
+  "title": "Design System: Digients L4 Explorer",
+  "extensions": {
+    "colorMeta": {
+      "accent": {
+        "role": "primary",
+        "displayName": "Playback Periwinkle",
+        "canonical": "oklch(80% 0.09 280)",
+        "renderedHex": "#b2b8f7",
+        "tonalRamp": [
+          "oklch(15% 0.09 280)",
+          "oklch(26.43% 0.09 280)",
+          "oklch(37.86% 0.09 280)",
+          "oklch(49.29% 0.09 280)",
+          "oklch(60.71% 0.09 280)",
+          "oklch(72.14% 0.09 280)",
+          "oklch(83.57% 0.09 280)",
+          "oklch(95% 0.09 280)"
+        ]
+      },
+      "canvas": {
+        "role": "neutral",
+        "displayName": "Gallery Charcoal",
+        "canonical": "oklch(17% 0.006 270)",
+        "renderedHex": "#0e0f12",
+        "tonalRamp": [
+          "oklch(15% 0.006 270)",
+          "oklch(26.43% 0.006 270)",
+          "oklch(37.86% 0.006 270)",
+          "oklch(49.29% 0.006 270)",
+          "oklch(60.71% 0.006 270)",
+          "oklch(72.14% 0.006 270)",
+          "oklch(83.57% 0.006 270)",
+          "oklch(95% 0.006 270)"
+        ]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Raised Charcoal",
+        "canonical": "oklch(20% 0.007 270)",
+        "renderedHex": "#151619",
+        "tonalRamp": [
+          "oklch(15% 0.007 270)",
+          "oklch(26.43% 0.007 270)",
+          "oklch(37.86% 0.007 270)",
+          "oklch(49.29% 0.007 270)",
+          "oklch(60.71% 0.007 270)",
+          "oklch(72.14% 0.007 270)",
+          "oklch(83.57% 0.007 270)",
+          "oklch(95% 0.007 270)"
+        ]
+      },
+      "subtle": {
+        "role": "neutral",
+        "displayName": "Quiet Graphite",
+        "canonical": "oklch(25% 0.009 270)",
+        "renderedHex": "#202126",
+        "tonalRamp": [
+          "oklch(15% 0.009 270)",
+          "oklch(26.43% 0.009 270)",
+          "oklch(37.86% 0.009 270)",
+          "oklch(49.29% 0.009 270)",
+          "oklch(60.71% 0.009 270)",
+          "oklch(72.14% 0.009 270)",
+          "oklch(83.57% 0.009 270)",
+          "oklch(95% 0.009 270)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Reading White",
+        "canonical": "oklch(93% 0.006 270)",
+        "renderedHex": "#e6e8ec",
+        "tonalRamp": [
+          "oklch(15% 0.006 270)",
+          "oklch(26.43% 0.006 270)",
+          "oklch(37.86% 0.006 270)",
+          "oklch(49.29% 0.006 270)",
+          "oklch(60.71% 0.006 270)",
+          "oklch(72.14% 0.006 270)",
+          "oklch(83.57% 0.006 270)",
+          "oklch(95% 0.006 270)"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Supporting Silver",
+        "canonical": "oklch(73% 0.012 270)",
+        "renderedHex": "#a5a7b0",
+        "tonalRamp": [
+          "oklch(15% 0.012 270)",
+          "oklch(26.43% 0.012 270)",
+          "oklch(37.86% 0.012 270)",
+          "oklch(49.29% 0.012 270)",
+          "oklch(60.71% 0.012 270)",
+          "oklch(72.14% 0.012 270)",
+          "oklch(83.57% 0.012 270)",
+          "oklch(95% 0.012 270)"
+        ]
+      },
+      "faint": {
+        "role": "neutral",
+        "displayName": "Quiet Silver",
+        "canonical": "oklch(66% 0.012 270)",
+        "renderedHex": "#8f929a",
+        "tonalRamp": [
+          "oklch(15% 0.012 270)",
+          "oklch(26.43% 0.012 270)",
+          "oklch(37.86% 0.012 270)",
+          "oklch(49.29% 0.012 270)",
+          "oklch(60.71% 0.012 270)",
+          "oklch(72.14% 0.012 270)",
+          "oklch(83.57% 0.012 270)",
+          "oklch(95% 0.012 270)"
+        ]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Hairline Graphite",
+        "canonical": "oklch(33% 0.01 270)",
+        "renderedHex": "#33353b",
+        "tonalRamp": [
+          "oklch(15% 0.01 270)",
+          "oklch(26.43% 0.01 270)",
+          "oklch(37.86% 0.01 270)",
+          "oklch(49.29% 0.01 270)",
+          "oklch(60.71% 0.01 270)",
+          "oklch(72.14% 0.01 270)",
+          "oklch(83.57% 0.01 270)",
+          "oklch(95% 0.01 270)"
+        ]
+      },
+      "light": {
+        "role": "neutral",
+        "displayName": "Media White",
+        "canonical": "oklch(97% 0.003 270)",
+        "renderedHex": "#f4f5f7",
+        "tonalRamp": [
+          "oklch(15% 0.003 270)",
+          "oklch(26.43% 0.003 270)",
+          "oklch(37.86% 0.003 270)",
+          "oklch(49.29% 0.003 270)",
+          "oklch(60.71% 0.003 270)",
+          "oklch(72.14% 0.003 270)",
+          "oklch(83.57% 0.003 270)",
+          "oklch(95% 0.003 270)"
+        ]
+      },
+      "dark": {
+        "role": "neutral",
+        "displayName": "Media Black",
+        "canonical": "oklch(13% 0.005 270)",
+        "renderedHex": "#070709",
+        "tonalRamp": [
+          "oklch(15% 0.005 270)",
+          "oklch(26.43% 0.005 270)",
+          "oklch(37.86% 0.005 270)",
+          "oklch(49.29% 0.005 270)",
+          "oklch(60.71% 0.005 270)",
+          "oklch(72.14% 0.005 270)",
+          "oklch(83.57% 0.005 270)",
+          "oklch(95% 0.005 270)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Collection Heading",
+        "purpose": "Top-level collection title."
+      },
+      "headline": {
+        "displayName": "Episode Title",
+        "purpose": "Enlarged episode title."
+      },
+      "title": {
+        "displayName": "Memory Heading",
+        "purpose": "Scene-memory title beside the clock."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Inherited reading baseline."
+      },
+      "annotation": {
+        "displayName": "Annotation",
+        "purpose": "Expanded descriptions and insight fields."
+      },
+      "label": {
+        "displayName": "Control Label",
+        "purpose": "Standard buttons, card titles and tabs."
+      }
+    },
+    "shadows": [],
+    "motion": [
+      {
+        "name": "control-state",
+        "value": "color 140ms, background-color 140ms, opacity 140ms",
+        "purpose": "Quiet control feedback."
+      },
+      {
+        "name": "timeline-cursor",
+        "value": "left 160ms linear",
+        "purpose": "Playback cursor interpolation."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "transition-duration: 0s; animation-duration: 0s; scroll-behavior: auto",
+        "purpose": "Remove animation; collection previews also start paused."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "wide-gallery",
+        "value": "1680px"
+      },
+      {
+        "name": "two-column-gallery",
+        "value": "1100px"
+      },
+      {
+        "name": "stacked-detail",
+        "value": "760px"
+      },
+      {
+        "name": "single-column-gallery",
+        "value": "560px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Compact primary access action.",
+      "html": "<div class=\"ds-specimen\"><button class=\"ds-button ds-button-primary\">Enter collection</button></div>",
+      "css": ".ds-specimen{font-family:\"DM Sans\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif;font-size:15px;line-height:1.5;color:var(--ink, oklch(93% 0.006 270))}\nbutton{font-family:\"DM Sans\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif;font-size:12px;line-height:1.5;color:var(--ink, oklch(93% 0.006 270));border:0;background:none;cursor:pointer;transition:color 140ms,background-color 140ms,opacity 140ms}button:disabled{opacity:.45;cursor:default}:focus-visible{outline:2px solid var(--accent, oklch(80% 0.09 280));outline-offset:4px}@media(prefers-reduced-motion:reduce){button{transition:none}}\n.ds-button {display: inline-flex;\n  align-items: center;\n  justify-content: center;\n  gap: 8px;\n  min-height: 38px;\n  padding: 8px 12px;\n  border: 1px solid var(--line, oklch(33% 0.01 270));\n  border-radius: 6px;\n  background: var(--surface, oklch(20% 0.007 270));\n  font-size: 12px;\n  font-weight: 500;}\n.ds-button:hover {background: var(--subtle, oklch(25% 0.009 270));}\n.ds-button-primary {background: var(--accent, oklch(80% 0.09 280));\n  color: var(--dark, oklch(13% 0.005 270));\n  border-color: var(--accent, oklch(80% 0.09 280));}\n.ds-button-primary:hover {background: oklch(85% 0.07 280);}"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Standard action for retry, share and downloads.",
+      "html": "<div class=\"ds-specimen\"><button class=\"ds-button\">Try again</button></div>",
+      "css": ".ds-specimen{font-family:\"DM Sans\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif;font-size:15px;line-height:1.5;color:var(--ink, oklch(93% 0.006 270))}\nbutton{font-family:\"DM Sans\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif;font-size:12px;line-height:1.5;color:var(--ink, oklch(93% 0.006 270));border:0;background:none;cursor:pointer;transition:color 140ms,background-color 140ms,opacity 140ms}button:disabled{opacity:.45;cursor:default}:focus-visible{outline:2px solid var(--accent, oklch(80% 0.09 280));outline-offset:4px}@media(prefers-reduced-motion:reduce){button{transition:none}}\n.ds-button {display: inline-flex;\n  align-items: center;\n  justify-content: center;\n  gap: 8px;\n  min-height: 38px;\n  padding: 8px 12px;\n  border: 1px solid var(--line, oklch(33% 0.01 270));\n  border-radius: 6px;\n  background: var(--surface, oklch(20% 0.007 270));\n  font-size: 12px;\n  font-weight: 500;}\n.ds-button:hover {background: var(--subtle, oklch(25% 0.009 270));}"
+    },
+    {
+      "name": "Text Button",
+      "kind": "button",
+      "refersTo": "button-text",
+      "description": "Quiet utility action.",
+      "html": "<div class=\"ds-specimen\"><button class=\"ds-text-button\">Clear filters</button></div>",
+      "css": ".ds-specimen{font-family:\"DM Sans\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif;font-size:15px;line-height:1.5;color:var(--ink, oklch(93% 0.006 270))}\nbutton{font-family:\"DM Sans\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif;font-size:12px;line-height:1.5;color:var(--ink, oklch(93% 0.006 270));border:0;background:none;cursor:pointer;transition:color 140ms,background-color 140ms,opacity 140ms}button:disabled{opacity:.45;cursor:default}:focus-visible{outline:2px solid var(--accent, oklch(80% 0.09 280));outline-offset:4px}@media(prefers-reduced-motion:reduce){button{transition:none}}\n.ds-text-button {display: inline-flex;\n  align-items: center;\n  gap: 6px;\n  min-height: 32px;\n  padding: 0;\n  color: var(--muted, oklch(73% 0.012 270));\n  font-size: 12px;}\n.ds-text-button:hover {color: var(--ink, oklch(93% 0.006 270));}"
+    },
+    {
+      "name": "Icon Button",
+      "kind": "button",
+      "refersTo": "button-icon",
+      "description": "Compact player and dialog control with an accessible name.",
+      "html": "<div class=\"ds-specimen\"><button class=\"ds-icon-button\" aria-label=\"Close details\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"m6 6 12 12M6 18 18 6\"/></svg></button></div>",
+      "css": ".ds-specimen{font-family:\"DM Sans\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif;font-size:15px;line-height:1.5;color:var(--ink, oklch(93% 0.006 270))}\nbutton{font-family:\"DM Sans\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif;font-size:12px;line-height:1.5;color:var(--ink, oklch(93% 0.006 270));border:0;background:none;cursor:pointer;transition:color 140ms,background-color 140ms,opacity 140ms}button:disabled{opacity:.45;cursor:default}:focus-visible{outline:2px solid var(--accent, oklch(80% 0.09 280));outline-offset:4px}@media(prefers-reduced-motion:reduce){button{transition:none}}\n.ds-icon-button {width: 34px;\n  height: 34px;\n  display: inline-flex;\n  align-items: center;\n  justify-content: center;\n  padding: 0;\n  border-radius: 5px;\n  flex-shrink: 0;}\n.ds-icon-button:hover:not(:disabled) {background: var(--subtle, oklch(25% 0.009 270));}"
+    },
+    {
+      "name": "Search Field",
+      "kind": "input",
+      "refersTo": "input-search",
+      "description": "Collection search with an accent focus border.",
+      "html": "<div class=\"ds-specimen\"><label class=\"ds-search-field\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"10.5\" cy=\"10.5\" r=\"6.5\"/><path d=\"m16 16 4.5 4.5\"/></svg><input type=\"search\" aria-label=\"Search clips\" placeholder=\"Search tasks, objects, scenes…\"/></label></div>",
+      "css": ".ds-specimen{font-family:\"DM Sans\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif;font-size:15px;line-height:1.5;color:var(--ink, oklch(93% 0.006 270))}\n.ds-search-field {display: flex;\n  align-items: center;\n  gap: 10px;\n  flex: 1.6;\n  min-width: 160px;\n  height: 40px;\n  padding: 0 13px;\n  border: 1px solid var(--line, oklch(33% 0.01 270));\n  border-radius: 6px;\n  color: var(--faint, oklch(66% 0.012 270));\n  background: var(--surface, oklch(20% 0.007 270));}\n.ds-search-field:focus-within {border-color: var(--accent, oklch(80% 0.09 280));}\n.ds-search-field input {width: 100%;\n  height: 100%;\n  padding: 0;\n  border: 0;\n  outline: none;\n  background: transparent;\n  color: var(--ink, oklch(93% 0.006 270));\n  font-size: 12px;}\n.ds-search-field input::placeholder {color: var(--faint, oklch(66% 0.012 270));\n  opacity: 1;}\n.ds-search-field input{font-family:\"DM Sans\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif}"
+    },
+    {
+      "name": "Annotation Tabs",
+      "kind": "nav",
+      "refersTo": "navigation-tabs",
+      "description": "Peer annotation views with an accent selection rule.",
+      "html": "<div class=\"ds-specimen\"><div class=\"ds-annotation-tabs\" role=\"tablist\" aria-label=\"Annotation view\"><button role=\"tab\" aria-selected=\"true\">Actions</button><button role=\"tab\" aria-selected=\"false\" tabindex=\"-1\">Subtasks</button><button role=\"tab\" aria-selected=\"false\" tabindex=\"-1\">Memory</button></div></div>",
+      "css": ".ds-specimen{font-family:\"DM Sans\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif;font-size:15px;line-height:1.5;color:var(--ink, oklch(93% 0.006 270))}\nbutton{font-family:\"DM Sans\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif;font-size:12px;line-height:1.5;color:var(--ink, oklch(93% 0.006 270));border:0;background:none;cursor:pointer;transition:color 140ms,background-color 140ms,opacity 140ms}button:disabled{opacity:.45;cursor:default}:focus-visible{outline:2px solid var(--accent, oklch(80% 0.09 280));outline-offset:4px}@media(prefers-reduced-motion:reduce){button{transition:none}}\n.ds-annotation-tabs {display: flex;\n  flex-shrink: 0;\n  padding: 0 20px;\n  gap: 20px;\n  min-height: 57px;\n  border-bottom: 1px solid var(--line, oklch(33% 0.01 270));}\n.ds-annotation-tabs button {flex-shrink: 0;\n  white-space: nowrap;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  gap: 6px;\n  padding: 0;\n  border-bottom: 1px solid transparent;\n  color: var(--faint, oklch(66% 0.012 270));\n  font-size: 12px;\n  font-weight: 500;}\n.ds-annotation-tabs button[aria-selected=\"true\"] {color: var(--ink, oklch(93% 0.006 270));\n  border-bottom-color: var(--accent, oklch(80% 0.09 280));}"
+    },
+    {
+      "name": "Industry Label",
+      "kind": "chip",
+      "refersTo": "chip-industry",
+      "description": "Source taxonomy label; specimen uses generic text.",
+      "html": "<div class=\"ds-specimen\"><span class=\"ds-industry-label\">Industry</span></div>",
+      "css": ".ds-specimen{font-family:\"DM Sans\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif;font-size:15px;line-height:1.5;color:var(--ink, oklch(93% 0.006 270))}\n.ds-industry-label {display: inline-block;\n  max-width: 100%;\n  padding: 1px 7px;\n  border-radius: 4px;\n  background: var(--subtle, oklch(25% 0.009 270));\n  color: var(--ink, oklch(93% 0.006 270));\n  font-size: 10.5px;\n  line-height: 20px;\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  vertical-align: middle;}"
+    },
+    {
+      "name": "Video Card",
+      "kind": "card",
+      "refersTo": "card-video",
+      "description": "Flat media well. Private footage and annotation content are intentionally omitted from this specimen.",
+      "html": "<div class=\"ds-specimen\"><article class=\"ds-video-card\"><div class=\"ds-card-picture\"><button class=\"ds-card-open\" aria-label=\"Open clip details\"><span class=\"ds-card-open-hint\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M9 4H4v5m11-5h5v5M4 15v5h5m11-5v5h-5\"/></svg>Explore clip</span></button></div></article></div>",
+      "css": ".ds-specimen{font-family:\"DM Sans\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif;font-size:15px;line-height:1.5;color:var(--ink, oklch(93% 0.006 270))}\nbutton{font-family:\"DM Sans\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif;font-size:12px;line-height:1.5;color:var(--ink, oklch(93% 0.006 270));border:0;background:none;cursor:pointer;transition:color 140ms,background-color 140ms,opacity 140ms}button:disabled{opacity:.45;cursor:default}:focus-visible{outline:2px solid var(--accent, oklch(80% 0.09 280));outline-offset:4px}@media(prefers-reduced-motion:reduce){button{transition:none}}\n.ds-video-card {min-width: 0;\n  cursor: pointer;}\n.ds-card-picture {position: relative;\n  aspect-ratio: 16 / 9;\n  overflow: hidden;\n  border-radius: 8px;\n  background: var(--dark, oklch(13% 0.005 270));\n  isolation: isolate;}\n.ds-card-open {position: absolute;\n  inset: 0;\n  width: 100%;\n  padding: 0;\n  border-radius: inherit;}\n.ds-card-open:focus-visible {outline-offset: -3px;}\n.ds-card-open-hint {position: absolute;\n  bottom: 10px;\n  right: 10px;\n  display: flex;\n  align-items: center;\n  gap: 7px;\n  border-radius: 5px;\n  padding: 7px 9px;\n  background: oklch(13% 0.005 270 / 0.9);\n  font-size: 10.95px;\n  color: var(--light, oklch(97% 0.003 270));\n  opacity: 0;\n  transition: opacity 140ms;}\n.ds-video-card:hover .ds-card-open-hint,\n.ds-card-open:focus-visible .ds-card-open-hint {opacity: 1;}\n@media(max-width:560px){.ds-card-open-hint{opacity:1}}"
+    },
+    {
+      "name": "Subtask Timeline",
+      "kind": "custom",
+      "refersTo": "timeline-subtask",
+      "description": "Proportional segments and playhead; generic labels and illustrative positions only.",
+      "html": "<div class=\"ds-specimen\"><div class=\"ds-subtask-timeline\"><div class=\"ds-subtask-rail\" role=\"group\" aria-label=\"Subtask timeline specimen\"><button class=\"ds-subtask-segment ds-is-current\" aria-label=\"First segment\" aria-pressed=\"true\" style=\"left:0;width:40%\"><span></span></button><button class=\"ds-subtask-segment\" aria-label=\"Second segment\" aria-pressed=\"false\" style=\"left:40%;width:60%\"><span></span></button><span class=\"ds-timeline-cursor\" style=\"left:20%\"></span></div></div></div>",
+      "css": ".ds-specimen{font-family:\"DM Sans\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif;font-size:15px;line-height:1.5;color:var(--ink, oklch(93% 0.006 270))}\nbutton{font-family:\"DM Sans\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif;font-size:12px;line-height:1.5;color:var(--ink, oklch(93% 0.006 270));border:0;background:none;cursor:pointer;transition:color 140ms,background-color 140ms,opacity 140ms}button:disabled{opacity:.45;cursor:default}:focus-visible{outline:2px solid var(--accent, oklch(80% 0.09 280));outline-offset:4px}@media(prefers-reduced-motion:reduce){button{transition:none}}\n.ds-subtask-timeline {margin-top: 8px;}\n.ds-subtask-rail {position: relative;\n  height: 26px;}\n.ds-subtask-rail::before {content: \"\";\n  position: absolute;\n  top: 11px;\n  left: 0;\n  right: 0;\n  height: 5px;\n  background: var(--subtle, oklch(25% 0.009 270));\n  border-radius: 2px;}\n.ds-subtask-segment {position: absolute;\n  height: 26px;\n  top: 0;\n  padding: 0;}\n.ds-subtask-segment > span {position: absolute;\n  top: 11px;\n  left: 1px;\n  right: 1px;\n  height: 5px;\n  border-radius: 2px;\n  background: oklch(46% 0.025 270);\n  transition: background-color 140ms;}\n.ds-subtask-segment:hover > span {background: var(--muted, oklch(73% 0.012 270));}\n.ds-subtask-segment.ds-is-current > span {background: var(--accent, oklch(80% 0.09 280));}\n.ds-subtask-segment:focus-visible {outline-offset: 0;\n  border-radius: 3px;}\n.ds-timeline-cursor {position: absolute;\n  top: 7px;\n  width: 2px;\n  height: 13px;\n  transform: translateX(-50%);\n  background: var(--light, oklch(97% 0.003 270));\n  border-radius: 1px;\n  pointer-events: none;\n  transition: left 160ms linear;}\n@media(prefers-reduced-motion:reduce){.ds-timeline-cursor,.ds-subtask-segment>span{transition:none}}"
+    },
+    {
+      "name": "Memory Heading",
+      "kind": "custom",
+      "refersTo": "memory-heading",
+      "description": "Single scene-memory title with its clock aligned on the right.",
+      "html": "<div class=\"ds-specimen\"><div class=\"ds-memory-heading\"><div class=\"ds-memory-heading-row\"><h2>Scene memory</h2><span class=\"ds-clock\">00:00</span></div></div></div>",
+      "css": ".ds-specimen{font-family:\"DM Sans\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif;font-size:15px;line-height:1.5;color:var(--ink, oklch(93% 0.006 270))}\n.ds-clock {font-size: 10.95px;\n  white-space: nowrap;}\n.ds-memory-heading {margin: 20px 0 18px;}\n.ds-memory-heading-row {display: flex;\n  align-items: center;\n  justify-content: space-between;\n  gap: 15px;}\n.ds-memory-heading-row .ds-clock {color: var(--accent, oklch(80% 0.09 280));\n  font-size: 10.05px;}\n.ds-memory-heading h2 {font-size: 19.5px;\n  letter-spacing: -0.025em;\n  font-weight: 500;}\n.ds-memory-heading h2{margin:0}.ds-clock{font-family:\"SFMono-Regular\",Consolas,monospace;font-variant-numeric:tabular-nums}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Evidence Gallery",
+    "overview": "The Evidence Gallery gives real human activity the largest, clearest surface. Cool dark neutrals recede behind authentic egocentric footage and hand-skeleton renderings. Restrained periwinkle identifies playback and selection. The personality is professional, precise and forward-looking; the source material supplies the visual variety.\n\nThe flat collection opens into a focused evidence view, with calm annotation prose beside an enlarged player. DM Sans, real video, low decoration and readable hierarchy remain the durable identity. The approved dark gallery replaces the previous pale canvas and permanent collection rail.",
+    "keyCharacteristics": [
+      "Real video and synchronized meaning lead the hierarchy.",
+      "Cool dark tonal layers and one playback accent.",
+      "A flat collection and a focused enlarged episode.",
+      "One sans family, plain labels and tabular clocks.",
+      "Keyboard access, responsive stacking and reduced motion."
+    ],
+    "rules": [
+      {
+        "name": "The Playback Accent Rule",
+        "body": "Use periwinkle for playback, selection, focus or a primary action; do not turn it into a decorative category palette.",
+        "section": "colors"
+      },
+      {
+        "name": "The One Family Rule",
+        "body": "Use DM Sans for identity, headings, labels and prose; reserve native monospace for clocks and sequence numbers.",
+        "section": "typography"
+      },
+      {
+        "name": "The Flat Surface Rule",
+        "body": "Separate resting surfaces with tone, spacing and hairline borders; do not add floating card shadows to the gallery.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do let authentic video and source annotations supply the visual variety.",
+      "Do preserve the shared clock across cards, timelines, details and media switches.",
+      "Do keep complete memory and latest entries through the playhead visibly distinct.",
+      "Do preserve keyboard focus, responsive stacking and reduced-motion behavior."
+    ],
+    "donts": [
+      "Don't restore the discarded permanent collection rail to this gallery surface.",
+      "Don't add decorative gradients, glowing accents, marketing KPI cards or shadows around videos.",
+      "Don't replace missing footage, pose channels or source annotations with invented evidence.",
+      "Don't rely on color alone for active time, selection or media availability.",
+      "Don't duplicate the memory title with a small heading above it or shrink prose to metadata size."
+    ]
+  }
+}

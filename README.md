@@ -3,8 +3,10 @@
 Client-facing **L4 data explorer**. Clients enter a shared password and explore real
 egocentric video alongside synchronized actions, purpose, reasoning, body motion,
 interacting objects, scene memory, and MANO hand reconstruction. The collection opens
-a curated episode and supports search, category/task filters, English/Chinese annotations,
-direct episode links, and source JSON/pose downloads.
+as a full video grid with featured clips first. Each card combines hand-skeleton video,
+industry/scene/task labels and a playback-linked subtask timeline. Opening a card enlarges
+that episode with complete action, subtask and memory views. Industry/scene/task filters,
+English/Chinese annotations, direct moment links and source JSON/pose downloads are included.
 
 The development collection uses all **291 episodes, 2.99 hours, 1,295 subtasks, and
 3,642 actions** from the first three-hour 1x delivery. Independent head pose remains
@@ -24,12 +26,13 @@ digients-preview/
 ├── web/        React + Vite + TypeScript frontend (no UI framework — bespoke CSS)
 │   └── src/
 │       ├── App.tsx                  auth flow + layout
-│       └── components/              L4Explorer, L4Player, L4Annotations, Login
+│       └── components/              L4Explorer, VideoCard, EpisodeDetail, L4Player, L4Annotations
 ├── server/     Hono backend (run directly with tsx, no build step)
 │   ├── src/
 │   │   ├── index.ts                 routes + static serving
 │   │   ├── auth.ts                  shared-password gate (signed cookie)
 │   │   ├── l4.ts                    authenticated L4 data + media routes
+│   │   ├── l4-gallery.ts            source L4 taxonomy + compact gallery timeline index
 │   │   ├── data.ts                  legacy catalogue loader
 │   │   └── videos.ts                ranged video + poster serving, path-traversal guard
 │   └── scripts/                     ffmpeg placeholder clip + poster generators
