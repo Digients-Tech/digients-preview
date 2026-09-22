@@ -28,4 +28,10 @@ Use only clips with completed low-resolution hand and camera stages, finite alig
 
 **FINISH:** unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance
 
-Raster provenance: all shown frames and posters come from the existing first-1x delivery; corrected hand overlay videos come from the delivered/for-1x-first-3h run at the producer commit above. No generated or stock rasters ship. WebGL geometry is computed directly from delivered poses.
+Raster provenance: all shown frames and posters come from the existing first-1x delivery; corrected hand overlay videos come from the delivered/for-1x-first-3h run at the producer commit above. No generated or stock rasters ship. Hand geometry is computed from delivered joint positions; the generic head glyph is authored code, positioned and rotated by the delivered camera pose.
+
+## Head form refinement — 2026-09-22
+
+The user requested the recognizable head + skeleton form associated with production or the earliest dev preview. Read-only inspection of the production `vis_head` footage confirms hand joint lines, camera orientation and trajectory; it is a prerecorded view, not reusable avatar geometry. Replace the current sphere/frustum with an authored generic head silhouette: cranium, facial profile, nose, jaw and ears with sparse mesh contours. Keep all established colors, layout and source-driven hands. This is a narrow user-requested form change, not a new visual world or a new data reconstruction.
+
+The default view looks toward the face from a third-person three-quarter angle; drag, keyboard rotation, zoom, reset and whole-path framing remain available. A quiet reference grid stays subordinate to the head and hands. The head is a generic orientation glyph driven by camera SLAM, not a reconstruction of facial anatomy; the visible legend labels it "Generic head / camera" and the canvas accessible name explains that distinction. Never add guessed shoulder, arm or body joints to this delivery.

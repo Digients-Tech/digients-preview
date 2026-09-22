@@ -6,6 +6,7 @@
 
 - `web/`：React + Vite + TypeScript。当前入口为 `App.tsx` → `components/L4Explorer.tsx`，默认全量视频网格、精选在前。`VideoCard.tsx` 只挂载可见视频，共用 IntersectionObserver；`SubtaskTimeline.tsx` 负责卡片与详情的分段时间轴；`EpisodeDetail.tsx` 用原生 dialog 管理放大详情、焦点恢复和标注加载；URL 的 `episode` / `t` / `view` 支持时刻分享，浏览器返回保留网格状态。
 - `L4Player.tsx` 以 video frame callback 作为共享播放时钟，管理原视频/手部叠加和同步 3D；`PoseScene.tsx` 按需加载 Three.js，渲染真实头部/相机位姿及所有有效手部 track，保留 orbit/zoom/整段轨迹视角；`TemporalDetail.tsx` 提供 subtask/action 双分段时间轴与完整语义详情，点条播放；`SceneMemory.tsx` 常驻右栏，默认截至当前时刻，仅越过源时间戳时触发更新点。`L4Annotations.tsx` 保留为旧详情实现；`l4-core.ts` 管理时间、检索和记忆选择；`explorer.css` 管理样式。`PRODUCT.md` / `DESIGN.md` 记录产品与视觉约定。
+- `head-glyph.ts` 是通用头型的代码几何，仅表达相机位姿的朝向与位置，不是人脸重建。局部坐标遵循源相机的 x 右、y 下、z 前，头型位于相机原点后方；手部仍使用原始逐帧关节。不得把通用头型尺寸或补造的身体关节当成交付标注。
 - 原 taxonomy 页面组件（`TaxonomyBrowser.tsx`、`ScenarioPreview.tsx`、`CaptionPanel.tsx` 等）、`caption.ts` 与 `index.css` 保留为旧实现，当前 L4 页面不引用它们。
 - L4 私有运行数据在 `L4_DATA_DIR`，本地默认 `data/l4-1x-20260921`。`server/src/l4.ts` 提供鉴权后的 catalogue、原始 JSON、Range 视频、poster、MANO 下载和 gzip 空间数据接口；不向前端提供 S3 凭据或签名 URL。
 - `server/src/l4-gallery.ts` 从原始 L4 taxonomy 生成 industry/scene/task 与紧凑 subtask 索引，兼容已有 v1 catalogue；不能拿 L0 coarse category 冒充 L4 industry。缓存按 catalog mtime 刷新，一个数据版本内 captions 视为不可变。网格接口不展开完整 memory/动作正文；进入详情才请求单条原始 JSON。

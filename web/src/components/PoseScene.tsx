@@ -3,6 +3,7 @@ import * as THREE from "three";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import type { Language } from "../l4-types.ts";
 import { HAND_EDGES, poseFrame, type SpatialPayload } from "../spatial.ts";
+import { createHeadGlyph } from "../head-glyph.ts";
 
 export default function PoseScene({
   episodeId,
@@ -91,48 +92,19 @@ export default function PoseScene({
       0x344046,
       0x222e34,
     );
+    for (const material of Array.isArray(grid.material)
+      ? grid.material
+      : [grid.material]) {
+      material.transparent = true;
+      material.opacity = 0.4;
+    }
     grid.position.set(center.x, min.y - 0.07, center.z);
     scene.add(grid, new THREE.HemisphereLight(0xffffff, 0x53616b, 2.5));
     const light = new THREE.DirectionalLight(0xffffff, 2);
     light.position.set(2, 4, 3);
     scene.add(light);
-    const head = new THREE.Group();
-    const headGeometry = new THREE.SphereGeometry(0.047, 16, 12);
-    const headMaterial = new THREE.MeshStandardMaterial({
-      color: 0xc4c3ed,
-      roughness: 0.5,
-      metalness: 0.15,
-    });
-    const marker = new THREE.Mesh(headGeometry, headMaterial);
-    marker.scale.set(0.88, 1.12, 0.95);
-    head.add(marker);
-    const frustumPoints = [
-      [0, 0, 0],
-      [-0.075, -0.044, 0.15],
-      [0.075, -0.044, 0.15],
-      [0, 0, 0],
-      [0.075, -0.044, 0.15],
-      [0.075, 0.044, 0.15],
-      [0, 0, 0],
-      [0.075, 0.044, 0.15],
-      [-0.075, 0.044, 0.15],
-      [0, 0, 0],
-      [-0.075, 0.044, 0.15],
-      [-0.075, -0.044, 0.15],
-    ];
-    const frustum = new THREE.Line(
-      new THREE.BufferGeometry().setFromPoints(
-        frustumPoints.map(
-          (p) => new THREE.Vector3(...(p as [number, number, number])),
-        ),
-      ),
-      new THREE.LineBasicMaterial({
-        color: 0xa4a6d2,
-        transparent: true,
-        opacity: 0.75,
-      }),
-    );
-    head.add(frustum);
+    const head = createHeadGlyph();
+    const headBounds = new THREE.Box3().setFromObject(head);
     scene.add(head);
     const trajectoryGeometry = new THREE.BufferGeometry().setFromPoints(
       data.cameras.map((p) => new THREE.Vector3(p[0], p[1], p[2])),
@@ -181,11 +153,29 @@ export default function PoseScene({
       const index = poseFrame(currentTime.current, data.fps, data.frameCount);
       const pose = data.cameras[index]!;
       const headPosition = new THREE.Vector3(pose[0], pose[1], pose[2]);
+      const headTransform = new THREE.Matrix4().set(
+        pose[3],
+        pose[4],
+        pose[5],
+        pose[0],
+        pose[6],
+        pose[7],
+        pose[8],
+        pose[1],
+        pose[9],
+        pose[10],
+        pose[11],
+        pose[2],
+        0,
+        0,
+        0,
+        1,
+      );
       lastHead.copy(headPosition);
       let target = center.clone(),
         span = extent;
       if (!overview) {
-        const box = new THREE.Box3().expandByPoint(headPosition);
+        const box = headBounds.clone().applyMatrix4(headTransform);
         for (const hand of data.hands[index] ?? [])
           for (let j = 0; j < 21; j++)
             box.expandByPoint(new THREE.Vector3().fromArray(hand.j, j * 3));
@@ -193,11 +183,16 @@ export default function PoseScene({
         span = Math.max(0.65, box.getSize(new THREE.Vector3()).length());
       }
       const distance = span * (overview ? 1.25 : 1.05);
+      // Start in front of the source camera at a three-quarter angle so the
+      // head's face and both hands read immediately. Orbit remains unrestricted.
+      const viewDirection = new THREE.Vector3(
+        0.78,
+        -0.42,
+        0.8,
+      ).transformDirection(headTransform);
       camera.position
         .copy(target)
-        .add(
-          new THREE.Vector3(distance * 0.78, distance * 0.42, distance * 0.8),
-        );
+        .addScaledVector(viewDirection, distance * 1.2);
       controls.target.copy(target);
       controls.update();
       render();
@@ -383,8 +378,8 @@ export default function PoseScene({
           role="img"
           aria-label={
             zh
-              ? "同步三维头手位姿。拖拽或方向键旋转，滚轮或加减键缩放。"
-              : "Synchronized 3D head and hand poses. Drag or use arrow keys to orbit. Scroll or press plus/minus to zoom."
+              ? "同步三维头手位姿。通用头型由记录的相机位置与朝向驱动，不是人脸重建。拖拽或方向键旋转，滚轮或加减键缩放。"
+              : "Synchronized 3D head and hand poses. The generic head shape follows the recorded camera position and orientation; it is not a facial reconstruction. Drag or use arrow keys to orbit. Scroll or press plus/minus to zoom."
           }
           onKeyDown={(e) => {
             const moves: Record<string, [number, number, number?]> = {
@@ -435,8 +430,15 @@ export default function PoseScene({
             <div className="pose-legend">
               <span className="left-hand">{zh ? "左手" : "Left"}</span>
               <span className="right-hand">{zh ? "右手" : "Right"}</span>
-              <span className="head-pose">
-                {zh ? "头部 / 相机" : "Head / camera"}
+              <span
+                className="head-pose"
+                title={
+                  zh
+                    ? "通用头部模型，朝向与位置由相机位姿驱动"
+                    : "Generic head shape driven by the recorded camera pose"
+                }
+              >
+                {zh ? "通用头型 / 相机" : "Generic head / camera"}
               </span>
             </div>
             <span className="pose-hint">
