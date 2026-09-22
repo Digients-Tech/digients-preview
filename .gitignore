@@ -37,3 +37,6 @@ pnpm-debug.log*
 # Tooling
 .claude/
 .impeccable/review/
+
+# Python data preparation bytecode
+__pycache__/

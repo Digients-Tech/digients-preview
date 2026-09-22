@@ -82,6 +82,25 @@ l4.get("/posters/:id", (c) => {
     return c.json({ error: "episode_not_found" }, 404);
   return servePoster(c, `${id}.jpg`, join(DATA_DIR, "posters"));
 });
+l4.get("/spatial/:id", (c) => {
+  const id = c.req.param("id");
+  if (!loadL4Catalog().ids.has(id))
+    return c.json({ error: "episode_not_found" }, 404);
+  const file = join(DATA_DIR, "spatial", `${id}.json.gz`);
+  if (!existsSync(file)) return c.json({ error: "spatial_not_found" }, 404);
+  return new Response(
+    Readable.toWeb(createReadStream(file)) as ReadableStream,
+    {
+      headers: {
+        "Content-Type": "application/json; charset=utf-8",
+        "Content-Encoding": "gzip",
+        "Content-Length": String(statSync(file).size),
+        "Cache-Control": "private, no-cache",
+        Vary: "Cookie",
+      },
+    },
+  );
+});
 l4.get("/poses/:id", (c) => {
   const id = c.req.param("id");
   if (!loadL4Catalog().ids.has(id))

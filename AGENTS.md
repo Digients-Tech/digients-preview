@@ -5,13 +5,14 @@
 ## 代码与数据入口
 
 - `web/`：React + Vite + TypeScript。当前入口为 `App.tsx` → `components/L4Explorer.tsx`，默认全量视频网格、精选在前。`VideoCard.tsx` 只挂载可见视频，共用 IntersectionObserver；`SubtaskTimeline.tsx` 负责卡片与详情的分段时间轴；`EpisodeDetail.tsx` 用原生 dialog 管理放大详情、焦点恢复和标注加载；URL 的 `episode` / `t` / `view` 支持时刻分享，浏览器返回保留网格状态。
-- `L4Player.tsx` 管理原视频/手部渲染与播放时钟；`L4Annotations.tsx` 展示完整动作、子任务和 memory，并提供跟随播放以及全部/截至当前记忆切换；`l4-core.ts` 管理时间、检索和记忆选择；`explorer.css` 管理样式。`PRODUCT.md` / `DESIGN.md` 记录产品与视觉约定。
+- `L4Player.tsx` 以 video frame callback 作为共享播放时钟，管理原视频/手部叠加和同步 3D；`PoseScene.tsx` 按需加载 Three.js，渲染真实头部/相机位姿及所有有效手部 track，保留 orbit/zoom/整段轨迹视角；`TemporalDetail.tsx` 提供 subtask/action 双分段时间轴与完整语义详情，点条播放；`SceneMemory.tsx` 常驻右栏，默认截至当前时刻，仅越过源时间戳时触发更新点。`L4Annotations.tsx` 保留为旧详情实现；`l4-core.ts` 管理时间、检索和记忆选择；`explorer.css` 管理样式。`PRODUCT.md` / `DESIGN.md` 记录产品与视觉约定。
 - 原 taxonomy 页面组件（`TaxonomyBrowser.tsx`、`ScenarioPreview.tsx`、`CaptionPanel.tsx` 等）、`caption.ts` 与 `index.css` 保留为旧实现，当前 L4 页面不引用它们。
-- L4 私有运行数据在 `L4_DATA_DIR`，本地默认 `data/l4-1x-20260921`。`server/src/l4.ts` 提供鉴权后的 catalogue、原始 JSON、Range 视频、poster 和 MANO 下载；不向前端提供 S3 凭据或签名 URL。
+- L4 私有运行数据在 `L4_DATA_DIR`，本地默认 `data/l4-1x-20260921`。`server/src/l4.ts` 提供鉴权后的 catalogue、原始 JSON、Range 视频、poster、MANO 下载和 gzip 空间数据接口；不向前端提供 S3 凭据或签名 URL。
 - `server/src/l4-gallery.ts` 从原始 L4 taxonomy 生成 industry/scene/task 与紧凑 subtask 索引，兼容已有 v1 catalogue；不能拿 L0 coarse category 冒充 L4 industry。缓存按 catalog mtime 刷新，一个数据版本内 captions 视为不可变。网格接口不展开完整 memory/动作正文；进入详情才请求单条原始 JSON。
 - `server/scripts/prepare-l4-delivery.py` 从本地 L0/L4 和已读取的 S3 inventories 校验 ID/时间范围、生成检索目录，并保留原始 L4 字节。输出数据不进入 Git。`deploy/prepare-l4-media.py` 从 stdin 接收临时 GET URL，在独立 dev 数据目录下载、校验、生成 poster；不能记录 URL。
 - `server/`：Hono + tsx。`src/index.ts` 定义路由；`data.ts` 校验并按 mtime 缓存 `catalog.json`；`videos.ts` 提供本地视频 Range、poster 和 caption；`auth.ts` 管理访问口令与会话。
 - `catalog.json` 是实际展示目录；`curated.json` 是同步阶段的人工选样映射。`server/scripts/taxonomy-canon.json` 和 `gen-catalog-from-taxonomy.ts` 管理从 caption taxonomy 重建分类。先核对当前 catalogue 的生成来源，再选择同步或重建命令，避免意外重写目录。
+- `deploy/spatial_payload.py` 把新 MANO v2 和 HaWoR camera fields 转成浏览器逐帧数据：`traj` 是 camera-to-world xyz+xyzw，相机 translation 乘 scale；MANO `joints_3d` 已含平移/左手镜像，不可再加 translation 或镜像。以首帧相机归一化，Rx(pi) 转为 y-up。保留 track ID/逐帧有效性，不插补缺失手、不补造身体或房间；`tests/spatial_payload_test.py` 用 dev Python 验证坐标变换。
 - 当前分类保留人工挑选的 COS domain/scenario 树；提交 `4364a26` 已撤回按 caption taxonomy 自动分组。`gen:catalog` 工具保留但处于停用状态，不能作为例行重建步骤；只有明确要改变分类方案时才使用。
 - `videos/`、`posters/`、`captions/` 是不进入 Git 的媒体/标注资产。克隆代码不包含真实预览数据。
 - `sync-from-cos.ts` 读取腾讯 COS；`sync-handhead-s3.ts` 读取 AWS S3 的标注、手部和头部可视化；`gen-combos.ts` 合成手部/头部视频。页面默认优先播放 `comboFile`，标注仍由原始 `file` 的同名 JSON 定位。

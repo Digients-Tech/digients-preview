@@ -1,6 +1,6 @@
 # L4 collection on the development instance
 
-The L4 explorer presents the 291-episode first 1x delivery. Its private runtime dataset joins the exact local L4 JSON files with delivered low-resolution recordings, rendered MANO hands, and MANO NPZ files. The public Git repository contains no delivery media or captions.
+The first 1x delivery contains 291 episodes. The spatial dev version presents its 284 episodes with completed low-resolution hand and camera stages; seven failed-camera episodes are excluded. Its private runtime dataset joins the exact local L4 JSON files with delivered low-resolution recordings, rendered MANO hands, and MANO NPZ files. The public Git repository contains no delivery media or captions.
 
 ## Runtime data
 
@@ -13,6 +13,7 @@ videos/<clip-id>.recording.mp4
 videos/<clip-id>.hand.mp4
 posters/<clip-id>.jpg
 poses/<clip-id>.mano.npz
+spatial/<clip-id>.json.gz
 ```
 
 The dataset builder also writes `source-manifest.json` with source keys and caption hashes. Media preparation writes per-file SHA-256/size receipts and probes both videos for every episode. These receipts stay with the private dataset.
@@ -21,7 +22,9 @@ The server enriches the v1 catalog from the immutable caption files once per cat
 
 `server/scripts/prepare-l4-delivery.py --help` documents the offline catalogue build. `prepare-l4-media.py DATA_DIR` accepts short-lived GET URLs as JSON on stdin; URLs and credentials must not be persisted or placed in command arguments. Only the Digients AWS account may generate those URLs. Do not use legacy `sync:*` commands for this collection.
 
-Only verified media channels appear in the viewer. Independent head pose is not included in this delivery mapping; a MANO hand's global orientation is not head pose. Add a head channel only after its artifact, clip mapping, camera/time coordinate conventions, and alignment are verified.
+The spatial dataset uses corrected low-res.rendered.mp4, low-res.mano.npz and low-res.camera.npz from delivered/for-1x-first-3h/. The producer commit is 66da58edde58c1813ffa3c5ec4ad247e202c1703. Head orientation is represented by the SLAM camera pose, not anatomical head/neck joints. `spatial_payload.py::build_payload` validates aligned frames, timestamps, finite joints, quaternions and positive scale before conversion. MANO joints are already camera-space positions. Camera traj is camera-to-world xyz+xyzw and its translation is multiplied by scale. The viewer uses a first-camera local origin and y-up axes. Missing tracks remain absent; no pose quality or shared world calibration is inferred from successful stage status.
+
+Camera NPZ files contain large disparity arrays that are unnecessary for this view. Read the ZIP directory with authenticated S3 byte ranges, pin reads with IfMatch to the inventory ETag, and extract only traj, scale, img_focal, img_center and tstamp. The full native MANO file is retained. Validate all per-clip payload hashes, caption hashes, video durations/codecs and counts on the host before creating COMPLETE.json. Private source-manifest.json and spatial-verification.json retain lineage and frame counts. Reuse verified original videos/captions/posters with hardlinks in the new isolated data directory; never overwrite a hardlinked file.
 
 ## Build and release
 
@@ -34,10 +37,10 @@ Only verified media channels appear in the viewer. Independent head pose is not 
 [Service]
 WorkingDirectory=/opt/digients-preview-releases/RELEASE/server
 ExecStart=
-ExecStart=/usr/bin/env L4_DATA_DIR=/opt/digients-preview-data/l4-1x-20260921 STATS_PATH=/opt/digients-preview-dev/.stats/login-counts.json pnpm start
+ExecStart=/usr/bin/env L4_DATA_DIR=/opt/digients-preview-data/l4-1x-20260922-spatial STATS_PATH=/opt/digients-preview-dev/.stats/login-counts.json pnpm start
 ```
 
-5. Reload systemd and restart **only** `digients-preview-dev`. Check `https://dev.sample.digients.tech/healthz`, authentication, 291 catalogue entries, and real video/caption/pose responses through the public HTTPS origin.
+5. Reload systemd and restart **only** `digients-preview-dev`. Check `https://dev.sample.digients.tech/healthz`, authentication, 284 catalogue entries, and real video/caption/pose responses through the public HTTPS origin.
 6. Compare the production service PID/start time, production HTML hash, Caddy configuration hash, and old dev Git status before/after. Do not edit Caddy, production files, shared symlinks, or the existing dev branch.
 
 ## Rollback
@@ -46,4 +49,4 @@ If this is the first L4 deployment, remove only the newly created `30-l4-release
 
 ## L4 time semantics
 
-Actions and subtasks use half-open intervals `[start_sec, end_sec)`. Gaps and the end of a clip do not display a stale active action. Media switches preserve the playback clock, speed, and play/pause intent. Detail opens at its gallery card's clock; direct moment links carry `episode`, `t` and `view`. Closing detail restores the gallery's filters, scroll and focus. Memory defaults to all source observations, with an explicit “At playhead” view selecting the latest entry per object through source `t_sec`. The prose is the supplied annotation and may describe a wider interval, so the UI does not claim a causally generated real-time state estimate.
+Actions and subtasks use half-open intervals `[start_sec, end_sec)`. Gaps and the end of a clip do not display a stale active action. Media switches preserve the playback clock, speed, and play/pause intent. Detail opens at its gallery card's clock; direct moment links carry `episode`, `t` and `view`. Closing detail restores the gallery's filters, scroll and focus. Memory defaults to “At playhead”, selecting the latest entry per object through source `t_sec`, with “All events” exposing every source observation. A small green dot pulses on forward playback across a real observation timestamp, and reduced-motion removes animation. Both views and both timeline cursors follow the presented video frame. Segment and memory timestamp clicks seek and play; ordinary scrubbing retains playback intent. The prose is the supplied annotation and may describe a wider interval, so the UI does not claim a causally generated real-time state estimate.

@@ -10,7 +10,7 @@ Prospective embodied-AI customers and research engineers evaluating real egocent
 
 ## Product Purpose
 
-Present the verified 1x three-hour delivery as an explorable L4 sample collection. Open the full, flat video gallery with featured episodes first. Each card shows real hand-skeleton video, source industry/scene/task labels and a segmented subtask timeline linked to playback. Filter by industry, scene, task or search. Opening a card enlarges that episode at the current moment, with complete subtasks, actions, purpose, reasoning, body motion, interacting objects, spatial context and memory. Closing it returns to the same collection position and filters.
+Present the verified 1x three-hour delivery as an explorable L4 sample collection. Open the full, flat video gallery with featured episodes first. Each card shows real hand-skeleton video, source industry/scene/task labels and a segmented subtask timeline linked to playback. Filter by industry, scene, task or search. Opening a card enlarges that episode at the current moment. Original video with hand overlay and a rotatable third-person head/hand reconstruction appear together, with two colored timestamp-segmented subtask/action lanes below and scene memory on the right. Segment clicks seek and play; green memory dots mark source-timed updates. Complete purpose, reasoning, body motion, interacting objects and spatial context remain available. Closing it returns to the same collection position and filters.
 
 ## Brand Personality
 

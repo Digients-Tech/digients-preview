@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-09-21T07:42:14.802Z",
+  "generatedAt": "2026-09-22T08:19:12.779Z",
   "title": "Design System: Digients L4 Explorer",
   "extensions": {
     "colorMeta": {
@@ -163,6 +163,246 @@
           "oklch(83.57% 0.005 270)",
           "oklch(95% 0.005 270)"
         ]
+      },
+      "subtask-base": {
+        "role": "secondary",
+        "displayName": "Subtask Lavender",
+        "canonical": "#514967",
+        "tonalRamp": [
+          "oklch(15% 0.04990 296.46)",
+          "oklch(26.43% 0.04990 296.46)",
+          "oklch(37.86% 0.04990 296.46)",
+          "oklch(49.29% 0.04990 296.46)",
+          "oklch(60.71% 0.04990 296.46)",
+          "oklch(72.14% 0.04990 296.46)",
+          "oklch(83.57% 0.04990 296.46)",
+          "oklch(95% 0.04990 296.46)"
+        ]
+      },
+      "subtask-tone-2": {
+        "role": "secondary",
+        "displayName": "Subtask Lavender 2",
+        "canonical": "#665880",
+        "tonalRamp": [
+          "oklch(15% 0.06485 300.09)",
+          "oklch(26.43% 0.06485 300.09)",
+          "oklch(37.86% 0.06485 300.09)",
+          "oklch(49.29% 0.06485 300.09)",
+          "oklch(60.71% 0.06485 300.09)",
+          "oklch(72.14% 0.06485 300.09)",
+          "oklch(83.57% 0.06485 300.09)",
+          "oklch(95% 0.06485 300.09)"
+        ]
+      },
+      "subtask-tone-3": {
+        "role": "secondary",
+        "displayName": "Subtask Lavender 3",
+        "canonical": "#72648e",
+        "tonalRamp": [
+          "oklch(15% 0.06658 299.43)",
+          "oklch(26.43% 0.06658 299.43)",
+          "oklch(37.86% 0.06658 299.43)",
+          "oklch(49.29% 0.06658 299.43)",
+          "oklch(60.71% 0.06658 299.43)",
+          "oklch(72.14% 0.06658 299.43)",
+          "oklch(83.57% 0.06658 299.43)",
+          "oklch(95% 0.06658 299.43)"
+        ]
+      },
+      "subtask-tone-4": {
+        "role": "secondary",
+        "displayName": "Subtask Lavender 4",
+        "canonical": "#5d507b",
+        "tonalRamp": [
+          "oklch(15% 0.07005 297.49)",
+          "oklch(26.43% 0.07005 297.49)",
+          "oklch(37.86% 0.07005 297.49)",
+          "oklch(49.29% 0.07005 297.49)",
+          "oklch(60.71% 0.07005 297.49)",
+          "oklch(72.14% 0.07005 297.49)",
+          "oklch(83.57% 0.07005 297.49)",
+          "oklch(95% 0.07005 297.49)"
+        ]
+      },
+      "subtask-ink": {
+        "role": "secondary",
+        "displayName": "Lavender Ink",
+        "canonical": "#c8b8ed",
+        "tonalRamp": [
+          "oklch(15% 0.07546 298.54)",
+          "oklch(26.43% 0.07546 298.54)",
+          "oklch(37.86% 0.07546 298.54)",
+          "oklch(49.29% 0.07546 298.54)",
+          "oklch(60.71% 0.07546 298.54)",
+          "oklch(72.14% 0.07546 298.54)",
+          "oklch(83.57% 0.07546 298.54)",
+          "oklch(95% 0.07546 298.54)"
+        ]
+      },
+      "action-base": {
+        "role": "secondary",
+        "displayName": "Action Teal",
+        "canonical": "#30575a",
+        "tonalRamp": [
+          "oklch(15% 0.04451 202.01)",
+          "oklch(26.43% 0.04451 202.01)",
+          "oklch(37.86% 0.04451 202.01)",
+          "oklch(49.29% 0.04451 202.01)",
+          "oklch(60.71% 0.04451 202.01)",
+          "oklch(72.14% 0.04451 202.01)",
+          "oklch(83.57% 0.04451 202.01)",
+          "oklch(95% 0.04451 202.01)"
+        ]
+      },
+      "action-tone-2": {
+        "role": "secondary",
+        "displayName": "Action Teal 2",
+        "canonical": "#39686a",
+        "tonalRamp": [
+          "oklch(15% 0.05150 199.15)",
+          "oklch(26.43% 0.05150 199.15)",
+          "oklch(37.86% 0.05150 199.15)",
+          "oklch(49.29% 0.05150 199.15)",
+          "oklch(60.71% 0.05150 199.15)",
+          "oklch(72.14% 0.05150 199.15)",
+          "oklch(83.57% 0.05150 199.15)",
+          "oklch(95% 0.05150 199.15)"
+        ]
+      },
+      "action-tone-3": {
+        "role": "secondary",
+        "displayName": "Action Teal 3",
+        "canonical": "#3e7270",
+        "tonalRamp": [
+          "oklch(15% 0.05599 192.34)",
+          "oklch(26.43% 0.05599 192.34)",
+          "oklch(37.86% 0.05599 192.34)",
+          "oklch(49.29% 0.05599 192.34)",
+          "oklch(60.71% 0.05599 192.34)",
+          "oklch(72.14% 0.05599 192.34)",
+          "oklch(83.57% 0.05599 192.34)",
+          "oklch(95% 0.05599 192.34)"
+        ]
+      },
+      "action-tone-4": {
+        "role": "secondary",
+        "displayName": "Action Teal 4",
+        "canonical": "#365f63",
+        "tonalRamp": [
+          "oklch(15% 0.04646 203.70)",
+          "oklch(26.43% 0.04646 203.70)",
+          "oklch(37.86% 0.04646 203.70)",
+          "oklch(49.29% 0.04646 203.70)",
+          "oklch(60.71% 0.04646 203.70)",
+          "oklch(72.14% 0.04646 203.70)",
+          "oklch(83.57% 0.04646 203.70)",
+          "oklch(95% 0.04646 203.70)"
+        ]
+      },
+      "action-ink": {
+        "role": "secondary",
+        "displayName": "Teal Ink",
+        "canonical": "#98d6cf",
+        "tonalRamp": [
+          "oklch(15% 0.06387 187.25)",
+          "oklch(26.43% 0.06387 187.25)",
+          "oklch(37.86% 0.06387 187.25)",
+          "oklch(49.29% 0.06387 187.25)",
+          "oklch(60.71% 0.06387 187.25)",
+          "oklch(72.14% 0.06387 187.25)",
+          "oklch(83.57% 0.06387 187.25)",
+          "oklch(95% 0.06387 187.25)"
+        ]
+      },
+      "memory-idle": {
+        "role": "tertiary",
+        "displayName": "Memory Sage",
+        "canonical": "#587366",
+        "tonalRamp": [
+          "oklch(15% 0.03757 164.05)",
+          "oklch(26.43% 0.03757 164.05)",
+          "oklch(37.86% 0.03757 164.05)",
+          "oklch(49.29% 0.03757 164.05)",
+          "oklch(60.71% 0.03757 164.05)",
+          "oklch(72.14% 0.03757 164.05)",
+          "oklch(83.57% 0.03757 164.05)",
+          "oklch(95% 0.03757 164.05)"
+        ]
+      },
+      "memory-current": {
+        "role": "tertiary",
+        "displayName": "Memory Green",
+        "canonical": "#69d7a2",
+        "tonalRamp": [
+          "oklch(15% 0.12789 160.54)",
+          "oklch(26.43% 0.12789 160.54)",
+          "oklch(37.86% 0.12789 160.54)",
+          "oklch(49.29% 0.12789 160.54)",
+          "oklch(60.71% 0.12789 160.54)",
+          "oklch(72.14% 0.12789 160.54)",
+          "oklch(83.57% 0.12789 160.54)",
+          "oklch(95% 0.12789 160.54)"
+        ]
+      },
+      "pose-left": {
+        "role": "tertiary",
+        "displayName": "Left Amber",
+        "canonical": "#ffcd59",
+        "tonalRamp": [
+          "oklch(15% 0.14289 85.48)",
+          "oklch(26.43% 0.14289 85.48)",
+          "oklch(37.86% 0.14289 85.48)",
+          "oklch(49.29% 0.14289 85.48)",
+          "oklch(60.71% 0.14289 85.48)",
+          "oklch(72.14% 0.14289 85.48)",
+          "oklch(83.57% 0.14289 85.48)",
+          "oklch(95% 0.14289 85.48)"
+        ]
+      },
+      "pose-right": {
+        "role": "tertiary",
+        "displayName": "Right Mint",
+        "canonical": "#67e2ab",
+        "tonalRamp": [
+          "oklch(15% 0.13659 161.85)",
+          "oklch(26.43% 0.13659 161.85)",
+          "oklch(37.86% 0.13659 161.85)",
+          "oklch(49.29% 0.13659 161.85)",
+          "oklch(60.71% 0.13659 161.85)",
+          "oklch(72.14% 0.13659 161.85)",
+          "oklch(83.57% 0.13659 161.85)",
+          "oklch(95% 0.13659 161.85)"
+        ]
+      },
+      "pose-head": {
+        "role": "tertiary",
+        "displayName": "Camera Lavender",
+        "canonical": "#c4c3ed",
+        "tonalRamp": [
+          "oklch(15% 0.05846 286.15)",
+          "oklch(26.43% 0.05846 286.15)",
+          "oklch(37.86% 0.05846 286.15)",
+          "oklch(49.29% 0.05846 286.15)",
+          "oklch(60.71% 0.05846 286.15)",
+          "oklch(72.14% 0.05846 286.15)",
+          "oklch(83.57% 0.05846 286.15)",
+          "oklch(95% 0.05846 286.15)"
+        ]
+      },
+      "pose-canvas": {
+        "role": "neutral",
+        "displayName": "Spatial Charcoal",
+        "canonical": "#11171b",
+        "tonalRamp": [
+          "oklch(15% 0.01215 237.41)",
+          "oklch(26.43% 0.01215 237.41)",
+          "oklch(37.86% 0.01215 237.41)",
+          "oklch(49.29% 0.01215 237.41)",
+          "oklch(60.71% 0.01215 237.41)",
+          "oklch(72.14% 0.01215 237.41)",
+          "oklch(83.57% 0.01215 237.41)",
+          "oklch(95% 0.01215 237.41)"
+        ]
       }
     },
     "typographyMeta": {
@@ -172,11 +412,11 @@
       },
       "headline": {
         "displayName": "Episode Title",
-        "purpose": "Enlarged episode title."
+        "purpose": "Retained earlier detail heading step; current spatial detail uses spatial-headline."
       },
       "title": {
         "displayName": "Memory Heading",
-        "purpose": "Scene-memory title beside the clock."
+        "purpose": "Retained earlier annotation heading step; current memory panel uses memory-title."
       },
       "body": {
         "displayName": "Body",
@@ -193,6 +433,34 @@
       "clock": {
         "displayName": "Playback Clock",
         "purpose": "Native SFMono-Regular with Consolas and monospace fallbacks for timestamps and sequence numbers; tabular figures, with existing compact size overrides."
+      },
+      "spatial-headline": {
+        "displayName": "Spatial Clip Title",
+        "purpose": "Balanced clip heading above the paired evidence; scoped fluid scale with a phone override."
+      },
+      "evidence-label": {
+        "displayName": "Evidence Label",
+        "purpose": "Medium-weight media and temporal-lane headings."
+      },
+      "temporal-caption": {
+        "displayName": "Current Segment",
+        "purpose": "Readable numbered description immediately below each temporal lane."
+      },
+      "context-prose": {
+        "displayName": "Semantic Context",
+        "purpose": "Expanded action and subtask fields with a 75ch maximum measure."
+      },
+      "memory-title": {
+        "displayName": "Memory Panel Title",
+        "purpose": "Current persistent scene-memory heading beside the update dot."
+      },
+      "memory-entry-title": {
+        "displayName": "Memory Object Title",
+        "purpose": "Object heading beside an observation dot and source timestamp."
+      },
+      "memory-prose": {
+        "displayName": "Memory Observation",
+        "purpose": "Scoped side-column observation prose; grows to 0.81rem on phones."
       }
     },
     "shadows": [],
@@ -211,6 +479,16 @@
         "name": "reduced-motion",
         "value": "transition-duration: 0s; animation-duration: 0s; scroll-behavior: auto",
         "purpose": "Remove animation; collection previews also start paused."
+      },
+      {
+        "name": "temporal-segment-hover",
+        "value": "filter 0.12s",
+        "purpose": "Brightness 1.25 on temporal-segment hover; disabled by reduced motion."
+      },
+      {
+        "name": "memory-observation-update",
+        "value": "memory-update 0.6s ease-out 2",
+        "purpose": "At real forward timestamp crossings only: scale 1 to 1.65 and briefly brighten to #89efbb, then settle. Reduced motion removes the pulse."
       }
     ],
     "breakpoints": [
@@ -229,6 +507,18 @@
       {
         "name": "single-column-gallery",
         "value": "560px"
+      },
+      {
+        "name": "compact-spatial-columns",
+        "value": "1190px"
+      },
+      {
+        "name": "stacked-memory",
+        "value": "950px"
+      },
+      {
+        "name": "stacked-spatial-media",
+        "value": "600px"
       }
     ]
   },
@@ -306,20 +596,28 @@
       "css": ".ds-specimen{font-family:\"DM Sans\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif;font-size:15px;line-height:1.5;color:var(--ink, oklch(93% 0.006 270))}\nbutton{font-family:\"DM Sans\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif;font-size:12px;line-height:1.5;color:var(--ink, oklch(93% 0.006 270));border:0;background:none;cursor:pointer;transition:color 140ms,background-color 140ms,opacity 140ms}button:disabled{opacity:.45;cursor:default}:focus-visible{outline:2px solid var(--accent, oklch(80% 0.09 280));outline-offset:4px}@media(prefers-reduced-motion:reduce){button{transition:none}}\n.ds-subtask-timeline {margin-top: 8px;}\n.ds-subtask-rail {position: relative;\n  height: 26px;}\n.ds-subtask-rail::before {content: \"\";\n  position: absolute;\n  top: 11px;\n  left: 0;\n  right: 0;\n  height: 5px;\n  background: var(--subtle, oklch(25% 0.009 270));\n  border-radius: 2px;}\n.ds-subtask-segment {position: absolute;\n  height: 26px;\n  top: 0;\n  padding: 0;}\n.ds-subtask-segment > span {position: absolute;\n  top: 11px;\n  left: 1px;\n  right: 1px;\n  height: 5px;\n  border-radius: 2px;\n  background: oklch(46% 0.025 270);\n  transition: background-color 140ms;}\n.ds-subtask-segment:hover > span {background: var(--muted, oklch(73% 0.012 270));}\n.ds-subtask-segment.ds-is-current > span {background: var(--accent, oklch(80% 0.09 280));}\n.ds-subtask-segment:focus-visible {outline-offset: 0;\n  border-radius: 3px;}\n.ds-timeline-cursor {position: absolute;\n  top: 7px;\n  width: 2px;\n  height: 13px;\n  transform: translateX(-50%);\n  background: var(--light, oklch(97% 0.003 270));\n  border-radius: 1px;\n  pointer-events: none;\n  transition: left 160ms linear;}\n@media(prefers-reduced-motion:reduce){.ds-timeline-cursor,.ds-subtask-segment>span{transition:none}}"
     },
     {
-      "name": "Memory Heading",
+      "name": "Scene Memory",
       "kind": "custom",
-      "refersTo": "memory-heading",
-      "description": "Single scene-memory title with its clock aligned on the right.",
-      "html": "<div class=\"ds-specimen\"><div class=\"ds-memory-heading\"><div class=\"ds-memory-heading-row\"><h2>Scene memory</h2><span class=\"ds-clock\">00:00</span></div></div></div>",
-      "css": ".ds-specimen{font-family:\"DM Sans\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif;font-size:15px;line-height:1.5;color:var(--ink, oklch(93% 0.006 270))}\n.ds-clock {font-size: 10.95px;\n  white-space: nowrap;}\n.ds-memory-heading {margin: 20px 0 18px;}\n.ds-memory-heading-row {display: flex;\n  align-items: center;\n  justify-content: space-between;\n  gap: 15px;}\n.ds-memory-heading-row .ds-clock {color: var(--accent, oklch(80% 0.09 280));\n  font-size: 10.05px;}\n.ds-memory-heading h2 {font-size: 19.5px;\n  letter-spacing: -0.025em;\n  font-weight: 500;}\n.ds-memory-heading h2{margin:0}.ds-clock{font-family:\"SFMono-Regular\",Consolas,monospace;font-variant-numeric:tabular-nums}"
+      "refersTo": "memory-panel-heading",
+      "description": "Persistent memory hierarchy, scope, current-time row and source-timed observation marker. Generic specimen text only.",
+      "html": "<aside class=\"ds-evidence-specimen ds-memory-panel\" aria-label=\"Scene memory specimen\"><div class=\"ds-memory-top\"><h2>Scene memory</h2><span class=\"ds-memory-live-dot\" role=\"img\" aria-label=\"Following timestamps\"></span></div><p class=\"ds-memory-intro\">Objects, places and states as the scene unfolds.</p><div class=\"ds-memory-scope\" role=\"group\" aria-label=\"Memory scope\"><button aria-pressed=\"true\">At playhead</button><button aria-pressed=\"false\">All events<span>1</span></button></div><div class=\"ds-memory-clock\"><span>Objects in memory <b>1</b></span><span class=\"ds-memory-clock-value\">00:08.0</span></div><article class=\"ds-memory-event\"><div class=\"ds-memory-event-title\"><span class=\"ds-memory-event-dot ds-is-latest\" aria-hidden=\"true\"></span><h3>Object</h3><button class=\"ds-memory-time\" aria-label=\"Play 00:06.0\">00:06.0</button></div><p class=\"ds-memory-location\">Source location</p><p>Source observation text.</p></article></aside>",
+      "css": ".ds-evidence-specimen{font-family:\"DM Sans\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif;font-size:15px;line-height:1.5;color:var(--ink,oklch(93% 0.006 270))}.ds-evidence-specimen :where(button){font-family:inherit;cursor:pointer}.ds-evidence-specimen button:focus-visible{outline:2px solid var(--accent,oklch(80% 0.09 280));outline-offset:4px}.ds-evidence-specimen button:disabled{opacity:.45;cursor:default}.ds-memory-panel{padding:25px 22px 15px;border-left:1px solid var(--line,oklch(33% 0.01 270));max-width:380px}.ds-memory-top{display:flex;justify-content:space-between;align-items:center;gap:16px}.ds-memory-top h2{font-size:15px;font-weight:550;letter-spacing:-.015em;margin:0}.ds-memory-live-dot,.ds-memory-event-dot{width:6px;height:6px;background:#587366;flex-shrink:0;border-radius:50%}.ds-memory-live-dot.ds-is-updating,.ds-memory-event-dot.ds-is-latest{background:#69d7a2}.ds-memory-live-dot.ds-is-updating,.ds-memory-event.ds-is-updating .ds-memory-event-dot{animation:ds-memory-update .6s ease-out 2}@keyframes ds-memory-update{0%,100%{transform:scale(1)}35%{transform:scale(1.65);background:#89efbb}}.ds-memory-intro{font-size:11.4px;line-height:1.55;color:var(--muted,oklch(73% 0.012 270));margin:10px 0 19px;max-width:32ch}.ds-memory-scope{display:inline-flex;width:fit-content;max-width:100%;gap:3px;padding:3px;border:1px solid var(--line,oklch(33% 0.01 270));border-radius:6px}.ds-memory-scope button{background:none;border:0;border-radius:3px;min-height:30px;padding:4px 10px;color:var(--muted,oklch(73% 0.012 270));font-size:10.5px;white-space:nowrap;transition:color 140ms,background-color 140ms,opacity 140ms}.ds-memory-scope button[aria-pressed=true]{background:var(--subtle,oklch(25% 0.009 270));color:var(--ink,oklch(93% 0.006 270))}.ds-memory-scope button span{margin-left:7px;color:var(--faint,oklch(66% 0.012 270));font-size:9.9px}.ds-memory-clock{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:19px 0 13px;border-bottom:1px solid var(--line,oklch(33% 0.01 270));color:var(--faint,oklch(66% 0.012 270));font-size:10.35px}.ds-memory-clock b{margin-left:7px;color:var(--muted,oklch(73% 0.012 270));font-weight:500}.ds-memory-clock-value,.ds-memory-time{font-family:\"SFMono-Regular\",Consolas,monospace;font-variant-numeric:tabular-nums}.ds-memory-clock-value{font-size:10.05px;color:var(--muted,oklch(73% 0.012 270))}.ds-memory-event{padding:17px 0;border-bottom:1px solid var(--line,oklch(33% 0.01 270))}.ds-memory-event-title{display:flex;align-items:baseline;gap:8px}.ds-memory-event-title h3{font-size:11.85px;font-weight:550;line-height:1.4;margin:0;flex:1}.ds-memory-event-dot{align-self:center;width:5px;height:5px}.ds-memory-time{padding:3px 0;flex-shrink:0;color:var(--accent,oklch(80% 0.09 280));font-size:9.45px;min-height:25px;background:none;border:0}.ds-memory-time:hover{text-decoration:underline}.ds-memory-event p{font-size:11.4px;color:var(--muted,oklch(73% 0.012 270));line-height:1.65;margin:8px 0 0;overflow-wrap:anywhere}.ds-memory-event p.ds-memory-location{font-size:10.2px;color:var(--faint,oklch(66% 0.012 270));line-height:1.5;margin-top:6px}@media(max-width:950px){.ds-memory-panel{border-left:0;border-top:1px solid var(--line,oklch(33% 0.01 270))}}@media(max-width:600px){.ds-memory-panel{padding:25px 16px}.ds-memory-event p{font-size:12.15px}}@media(prefers-reduced-motion:reduce){.ds-memory-live-dot.ds-is-updating,.ds-memory-event.ds-is-updating .ds-memory-event-dot{animation:none}.ds-memory-scope button{transition:none}}"
+    },
+    {
+      "name": "Temporal Detail Lanes",
+      "kind": "custom",
+      "refersTo": "temporal-subtask",
+      "description": "Lavender subtasks and teal actions with numbered segments, active outlines and a shared playhead. Generic labels and illustrative positions only.",
+      "html": "<div class=\"ds-evidence-specimen\"><section class=\"ds-lane ds-subtask\"><div class=\"ds-lane-heading\"><h3>Subtask<span>3</span></h3><span class=\"ds-clock\">00:06.0 — 00:12.0</span></div><div class=\"ds-temporal-track\" role=\"group\" aria-label=\"Subtask timeline specimen\"><button class=\"ds-temporal-segment\" style=\"left:0;width:30%\" aria-label=\"First segment, 00:00 to 00:06\" aria-pressed=\"false\">01</button><button class=\"ds-temporal-segment ds-tone-1 ds-is-active\" style=\"left:30%;width:30%\" aria-label=\"Second segment, 00:06 to 00:12\" aria-pressed=\"true\">02</button><button class=\"ds-temporal-segment ds-tone-2\" style=\"left:60%;width:40%\" aria-label=\"Third segment, 00:12 to 00:20\" aria-pressed=\"false\">03</button><span class=\"ds-temporal-cursor\" style=\"left:40%\" aria-hidden=\"true\"></span></div><p class=\"ds-lane-current\"><span>02</span>Current subtask description</p></section><section class=\"ds-lane ds-action\"><div class=\"ds-lane-heading\"><h3>Action<span>3</span></h3><span class=\"ds-clock\">00:06.0 — 00:12.0</span></div><div class=\"ds-temporal-track\" role=\"group\" aria-label=\"Action timeline specimen\"><button class=\"ds-temporal-segment\" style=\"left:0;width:30%\" aria-label=\"First segment, 00:00 to 00:06\" aria-pressed=\"false\">01</button><button class=\"ds-temporal-segment ds-tone-1 ds-is-active\" style=\"left:30%;width:30%\" aria-label=\"Second segment, 00:06 to 00:12\" aria-pressed=\"true\">02</button><button class=\"ds-temporal-segment ds-tone-2\" style=\"left:60%;width:40%\" aria-label=\"Third segment, 00:12 to 00:20\" aria-pressed=\"false\">03</button><span class=\"ds-temporal-cursor\" style=\"left:40%\" aria-hidden=\"true\"></span></div><p class=\"ds-lane-current\"><span>02</span>Current action description</p></section></div>",
+      "css": ".ds-evidence-specimen{font-family:\"DM Sans\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif;font-size:15px;line-height:1.5;color:var(--ink,oklch(93% 0.006 270))}.ds-evidence-specimen :where(button){font-family:inherit;cursor:pointer}.ds-evidence-specimen button:focus-visible{outline:2px solid var(--accent,oklch(80% 0.09 280));outline-offset:4px}.ds-evidence-specimen button:disabled{opacity:.45;cursor:default}.ds-lane{--lane-1:#514967;--lane-2:#665880;--lane-3:#72648e;--lane-4:#5d507b;--lane-ink:#c8b8ed;margin-bottom:21px}.ds-action{--lane-1:#30575a;--lane-2:#39686a;--lane-3:#3e7270;--lane-4:#365f63;--lane-ink:#98d6cf}.ds-lane-heading{display:flex;align-items:baseline;justify-content:space-between;gap:14px;margin-bottom:9px}.ds-lane-heading h3{margin:0;color:var(--lane-ink);font-size:12px;font-weight:550}.ds-lane-heading h3 span{padding-left:9px;color:var(--muted,oklch(73% 0.012 270));font-size:10.35px;font-weight:400}.ds-clock{font-family:\"SFMono-Regular\",Consolas,monospace;font-variant-numeric:tabular-nums;font-size:10.05px;color:var(--muted,oklch(73% 0.012 270))}.ds-temporal-track{position:relative;height:28px;background:var(--subtle,oklch(25% 0.009 270));border-radius:3px}.ds-temporal-segment{position:absolute;top:0;height:28px;padding:0;min-width:0;border:1px solid var(--surface,oklch(20% 0.007 270));border-radius:3px;background:var(--lane-1);color:#fff;overflow:hidden;font-size:9px;font-variant-numeric:tabular-nums;transition:filter .12s}.ds-temporal-segment.ds-tone-1{background:var(--lane-2)}.ds-temporal-segment.ds-tone-2{background:var(--lane-3)}.ds-temporal-segment.ds-tone-3{background:var(--lane-4)}.ds-temporal-segment:hover{filter:brightness(1.25)}.ds-temporal-segment.ds-is-active{outline:1px solid var(--lane-ink);outline-offset:2px;z-index:1}.ds-temporal-cursor{position:absolute;top:-5px;bottom:-5px;width:2px;background:var(--light,oklch(97% 0.003 270));pointer-events:none;z-index:2;transform:translateX(-1px)}.ds-temporal-cursor::before{content:\"\";position:absolute;top:-2px;left:-2px;width:6px;height:4px;border-radius:2px;background:var(--light,oklch(97% 0.003 270))}.ds-lane-current{display:flex;align-items:baseline;gap:10px;font-size:12.3px;line-height:1.5;margin:11px 0 0;min-height:2.9em}.ds-lane-current>span{color:var(--lane-ink);font-size:10.05px;font-variant-numeric:tabular-nums}@media(max-width:600px){.ds-temporal-track,.ds-temporal-segment{height:32px}.ds-temporal-segment{font-size:8.55px}.ds-lane-current{font-size:12px}}@media(prefers-reduced-motion:reduce){.ds-temporal-segment{transition:none}}"
     }
   ],
   "narrative": {
     "northStar": "The Evidence Gallery",
-    "overview": "The Evidence Gallery gives real human activity the largest, clearest surface. Cool dark neutrals recede behind authentic egocentric footage and hand-skeleton renderings. Restrained periwinkle identifies playback and selection. The personality is professional, precise and forward-looking; the source material supplies the visual variety.\n\nThe flat collection opens into a focused evidence view, with calm annotation prose beside an enlarged player. DM Sans, real video, low decoration and readable hierarchy remain the durable identity. The approved dark gallery replaces the previous pale canvas and permanent collection rail.",
+    "overview": "The Evidence Gallery gives real human activity the largest, clearest surface. Cool dark neutrals recede behind authentic egocentric footage and hand-skeleton renderings. Restrained periwinkle identifies playback and selection. The personality is professional, precise and forward-looking; the source material supplies the visual variety.\n\nThe flat collection opens into a focused evidence view with synchronized video and spatial pose, timestamp lanes and calm annotation prose. Lavender and teal distinguish the two temporal levels; green marks memory observations. DM Sans, real video, low decoration and readable hierarchy remain the durable identity. The approved dark gallery replaces the previous pale canvas and permanent collection rail.",
     "keyCharacteristics": [
       "Real video and synchronized meaning lead the hierarchy.",
-      "Cool dark tonal layers and one playback accent.",
+      "Cool dark tonal layers, a playback accent and distinct temporal color roles.",
       "A flat collection and a focused enlarged episode.",
       "One sans family, plain labels and tabular clocks.",
       "Keyboard access, responsive stacking and reduced motion."
@@ -328,6 +626,11 @@
       {
         "name": "The Playback Accent Rule",
         "body": "Use periwinkle for playback, selection, focus or a primary action; do not turn it into a decorative category palette.",
+        "section": "colors"
+      },
+      {
+        "name": "The Evidence Color Rule",
+        "body": "Lavender means subtask, teal means action, and green dots mean memory observations. Keep pose colors tied to their labelled tracks; pair every temporal color with numbers, timestamps, text and a visible playhead.",
         "section": "colors"
       },
       {
@@ -345,7 +648,8 @@
       "Do let authentic video and source annotations supply the visual variety.",
       "Do preserve the shared clock across cards, timelines, details and media switches.",
       "Do keep complete memory and latest entries through the playhead visibly distinct.",
-      "Do preserve keyboard focus, responsive stacking and reduced-motion behavior."
+      "Do preserve keyboard focus, responsive stacking and reduced-motion behavior.",
+      "Do keep temporal colors, pose-track colors and timestamp-driven memory markers attached to their documented meanings."
     ],
     "donts": [
       "Don't restore the discarded permanent collection rail to this gallery surface.",
