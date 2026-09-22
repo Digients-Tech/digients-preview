@@ -222,7 +222,7 @@ export function EpisodeDetail({
               </a>
               <a
                 className="button"
-                href={`/api/l4/poses/${encodeURIComponent(episode.id)}`}
+                href={`/api/l4/poses/${encodeURIComponent(episode.id)}?v=${encodeURIComponent(episode.mediaRevision ?? "")}`}
                 download
               >
                 <Icon name="download" size={16} />

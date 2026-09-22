@@ -50,3 +50,7 @@ If this is the first L4 deployment, remove only the newly created `30-l4-release
 ## L4 time semantics
 
 Actions and subtasks use half-open intervals `[start_sec, end_sec)`. Gaps and the end of a clip do not display a stale active action. Media switches preserve the playback clock, speed, and play/pause intent. Detail opens at its gallery card's clock; direct moment links carry `episode`, `t` and `view`. Closing detail restores the gallery's filters, scroll and focus. Memory defaults to “At playhead”, selecting the latest entry per object through source `t_sec`, with “All events” exposing every source observation. A small green dot pulses on forward playback across a real observation timestamp, and reduced-motion removes animation. Both views and both timeline cursors follow the presented video frame. Segment and memory timestamp clicks seek and play; ordinary scrubbing retains playback intent. The prose is the supplied annotation and may describe a wider interval, so the UI does not claim a causally generated real-time state estimate.
+
+## Media cache identity
+
+The catalogue adds `mediaRevision` from the immutable dataset directory name. Both gallery/detail video URLs and the MANO download carry it as `?v=...`, so a data refresh cannot reuse a prior dataset's cached Range response. Use a new dataset directory for each data revision; do not replace media in place under the same version name.

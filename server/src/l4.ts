@@ -1,6 +1,6 @@
 import { Hono } from "hono";
 import { existsSync, readFileSync, statSync, createReadStream } from "node:fs";
-import { resolve, join } from "node:path";
+import { resolve, join, basename } from "node:path";
 import { fileURLToPath } from "node:url";
 import { Readable } from "node:stream";
 import type { L4Caption, L4Catalog } from "../../web/src/l4-types.js";
@@ -38,6 +38,12 @@ export function loadL4Catalog() {
         readFileSync(join(DATA_DIR, "captions", `${id}.json`), "utf8"),
       ) as L4Caption,
   );
+  // Dataset directories are immutable releases. A changed data version must
+  // not reuse the previous release's cached HTTP Range responses.
+  gallery.episodes = gallery.episodes.map((episode) => ({
+    ...episode,
+    mediaRevision: basename(DATA_DIR),
+  }));
   cached = { mtime, catalog: gallery, ids };
   return cached;
 }

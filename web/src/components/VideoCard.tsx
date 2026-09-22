@@ -99,7 +99,7 @@ export function VideoCard({
         {visible ? (
           <video
             ref={video}
-            src={mediaURL(episode.id, mode)}
+            src={mediaURL(episode.id, mode, episode.mediaRevision)}
             poster={posterURL(episode.id)}
             muted
             loop

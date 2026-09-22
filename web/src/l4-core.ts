@@ -69,7 +69,7 @@ export function preciseTime(time: number): string {
   return `${timecode(ticks / 10)}.${ticks % 10}`;
 }
 
-export const mediaURL = (id: string, mode: string) =>
-  `/api/l4/media/${encodeURIComponent(id)}/${mode}`;
+export const mediaURL = (id: string, mode: string, revision?: string) =>
+  `/api/l4/media/${encodeURIComponent(id)}/${mode}${revision ? `?v=${encodeURIComponent(revision)}` : ""}`;
 export const posterURL = (id: string) =>
   `/api/l4/posters/${encodeURIComponent(id)}`;

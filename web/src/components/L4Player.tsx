@@ -161,7 +161,7 @@ export function L4Player({
           >
             <video
               ref={video}
-              src={mediaURL(episode.id, mode)}
+              src={mediaURL(episode.id, mode, episode.mediaRevision)}
               poster={posterURL(episode.id)}
               preload="metadata"
               playsInline

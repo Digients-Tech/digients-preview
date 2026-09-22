@@ -9,3 +9,15 @@ test("pose frame follows the presented video timestamp and clamps exact end/nega
   assert.equal(poseFrame(100, 20, 330), 329);
   assert.equal(HAND_EDGES.length, 20);
 });
+
+import { mediaURL } from "../web/src/l4-core.ts";
+test("new dataset revisions cannot reuse old cached video Range URLs", () => {
+  const old = mediaURL("clip", "hand");
+  const refreshed = mediaURL("clip", "hand", "l4-20260922");
+  assert.notEqual(old, refreshed);
+  assert.equal(
+    new URL(refreshed, "https://preview.test").searchParams.get("v"),
+    "l4-20260922",
+  );
+  assert.notEqual(refreshed, mediaURL("clip", "hand", "l4-next"));
+});

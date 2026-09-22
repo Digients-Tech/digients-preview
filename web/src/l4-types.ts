@@ -28,6 +28,7 @@ export type Episode = {
   memoryCount: number;
   featured: boolean;
   media: MediaMode[];
+  mediaRevision?: string;
   captionSha256: string;
   searchText: string;
 };
