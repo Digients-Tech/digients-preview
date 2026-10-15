@@ -1,0 +1,88 @@
+cua/scripts/dev.mjs
+  s_8e2bcc4b26108f::t_798064c42fb7d8 1-18
+server/package.json
+  s_8e2bcc4b26108f::t_798064c42fb7d8 7-8
+.gitignore
+  s_8e2bcc4b26108f::t_798064c42fb7d8 39-40
+  s_8e2bcc4b26108f::t_18ab444db8d4ad 25-26,41
+server/src/cua-app.ts
+  s_8e2bcc4b26108f::t_6036f35cf26382 97
+  s_8e2bcc4b26108f::t_798064c42fb7d8 1-96,98-101
+cua/scripts/sync-theme.mjs
+  s_8e2bcc4b26108f::t_798064c42fb7d8 1-20
+cua/login.html
+  s_8e2bcc4b26108f::t_798064c42fb7d8 1-29
+cua/login.css
+  s_8e2bcc4b26108f::t_798064c42fb7d8 1-11
+cua/login.js
+  s_8e2bcc4b26108f::t_18ab444db8d4ad 47
+  s_8e2bcc4b26108f::t_798064c42fb7d8 1-46,48-53
+package.json
+  s_8e2bcc4b26108f::t_798064c42fb7d8 8-11
+cua/portal-theme.css
+  s_8e2bcc4b26108f::t_798064c42fb7d8 1-48
+cua/session.js
+  s_8e2bcc4b26108f::t_798064c42fb7d8 1-31
+server/scripts/test-cua.ts
+  s_8e2bcc4b26108f::t_9bb8322ced5712 1-62
+deploy/digients-cua-preview.service
+  s_8e2bcc4b26108f::t_9bb8322ced5712 1-18
+deploy/digients-cua-preview.env.example
+  s_8e2bcc4b26108f::t_9bb8322ced5712 1-9
+cua/README.md
+  s_8e2bcc4b26108f::t_9bb8322ced5712 1-80
+DESIGN.md
+  s_8e2bcc4b26108f::t_9bb8322ced5712 1-105
+premium-ui.json
+  s_8e2bcc4b26108f::t_6036f35cf26382 4
+  s_8e2bcc4b26108f::t_9bb8322ced5712 1-3,5-11
+README.md
+  s_8e2bcc4b26108f::t_6036f35cf26382 11-16
+deploy/Caddyfile.cua.snippet
+  s_8e2bcc4b26108f::t_9bb8322ced5712 1-5
+server/src/cua.ts
+  s_8e2bcc4b26108f::t_798064c42fb7d8 1-8,10-20
+  s_8e2bcc4b26108f::t_18ab444db8d4ad 9
+cua/favicon.svg
+  s_8e2bcc4b26108f::t_798064c42fb7d8 1
+cua/app.js
+  s_8e2bcc4b26108f::t_a5675fd1134d7e 1-458
+cua/audio-core.js
+  s_8e2bcc4b26108f::t_a1e575078ce493 1-42
+cua/audio.css
+  s_8e2bcc4b26108f::t_4ad5398de70d9c 1-49
+cua/audio.js
+  s_8e2bcc4b26108f::t_e88ee5db0fc0d2 1-185
+cua/core.js
+  s_8e2bcc4b26108f::t_bba77cb4939fc8 1-122
+cua/index.html
+  s_8e2bcc4b26108f::t_0f137a92fa7cf5 1-182
+cua/portal-login.css
+  s_8e2bcc4b26108f::t_3af1a993578891 1-67
+cua/portal-tokens.css
+  s_8e2bcc4b26108f::t_a6f63e008d9d90 1-31
+cua/sample-loader.js
+  s_8e2bcc4b26108f::t_846676bb288e35 1-107
+cua/steps-core.js
+  s_8e2bcc4b26108f::t_31975fb72ecbeb 1-270
+cua/steps.js
+  s_8e2bcc4b26108f::t_78b7775ef5e689 1-275
+cua/styles.css
+  s_8e2bcc4b26108f::t_be00f4e66140a7 1-161
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "6f7b147e53ff806b03358c2ab0e94ec14996e2c1",
+  "prompts": {},
+  "sessions": {
+    "s_8e2bcc4b26108f": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a13daf-f2d4-7cf0-a332-feab18bfd813",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "wyf-ACCEPT <importwyf@gmail.com>"
+    }
+  }
+}
