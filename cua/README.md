@@ -54,6 +54,8 @@ areas. See root `DESIGN.md` for ownership and behavior.
 1. Obtain the existing deployment authorization; DNS and storage provisioning are separate actions.
 2. Provision storage first. The 2026-10-15 host check found only 4.8G free; the source
    package is about 6.9GB and must not be uploaded to the existing remaining root space.
+   The independent data disk mounts at `/mnt/preview-data`; the service declares
+   `RequiresMountsFor` so missing storage cannot silently fall back onto the root disk.
 3. Create an independent release checkout at `/opt/digients-cua-preview`, owned by
    `ubuntu`. Install dependencies with `pnpm install --frozen-lockfile`, run
    `pnpm build:cua`, `pnpm check:cua`, `pnpm typecheck`, and `pnpm build`.

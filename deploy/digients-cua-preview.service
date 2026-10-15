@@ -1,6 +1,7 @@
 [Unit]
 Description=Digients CUA sample preview
 After=network.target
+RequiresMountsFor=/mnt/preview-data
 
 [Service]
 Type=simple
