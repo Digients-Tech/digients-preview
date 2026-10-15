@@ -1,0 +1,48 @@
+/* Adapt the CUA viewer to the production portal's generated semantic tokens. */
+:root {
+  --paper: var(--card);
+  --ink: var(--text);
+  --muted: var(--text-dim);
+  --subtle: var(--text-dim);
+  --line: var(--border-strong);
+  --blue: var(--text);
+  --blue-hover: var(--text);
+  --wash: var(--bg-2);
+  --dark: #101114;
+  --code-text: #E6E6E6;
+  --mono: var(--font-mono);
+  font-family: var(--font-display), "PingFang SC", "Microsoft YaHei", sans-serif;
+  scrollbar-color: var(--text-dim) var(--bg-2);
+  scrollbar-width: thin;
+}
+* { scrollbar-color: var(--text-dim) var(--bg-2); scrollbar-width: thin; }
+*::-webkit-scrollbar { width: 8px; height: 8px; }
+*::-webkit-scrollbar-thumb { background: var(--text-dim); border: 2px solid var(--bg-2); }
+*::-webkit-scrollbar-track { background: var(--bg-2); }
+::selection { color: var(--text); background: var(--accent-soft); }
+.header-inner { min-height: 70px; gap: 16px; }
+.wordmark { font-size: 14px; font-weight: 600; letter-spacing: -.01em; gap: 10px; }
+.wordmark small { display: block; color: var(--text-dim); font-family: var(--font-mono); font-size: 10px; letter-spacing: .08em; margin-top: 5px; }
+.portal-mark { display: grid; place-items: center; width: 26px; height: 26px; background: var(--text); color: var(--bg); font-size: 14px; }
+.hero h1 { font-weight: 700; letter-spacing: -.04em; }
+.eyebrow, nav a, .language-button, .sample-category, .button, .context-label, .view-tab { font-family: var(--font-mono); }
+.eyebrow { text-transform: uppercase; letter-spacing: .12em; }
+.status-dot { background: var(--text); box-shadow: none; }
+nav { margin-right: 12px; }
+nav .nav-current:after, .view-tab.active:after, .code-tab.active:after { background: var(--accent); }
+.language-button, .button, .icon-button, .timeline-row, .filter, .sample-picker select, .step-filter-row input, .step-filter-row select, .step-jump input { border-radius: var(--radius-sm); }
+.viewer, .code-inspector, .app-glyph, .toast { border-radius: var(--radius); box-shadow: none; }
+.button-secondary { background: var(--accent); border-color: var(--text); color: var(--text); }
+.button-secondary:hover { background: var(--text); color: var(--accent); border-color: var(--text); }
+.app-glyph { color: var(--text); background: var(--bg-2); border: 1px solid var(--border-strong); }
+.timeline-row.active, .filter.active { border-color: var(--border-strong); background: var(--bg-2); color: var(--text); }
+.player .icon-button[aria-pressed=true] { background: var(--accent); color: var(--text); }
+.seek-row input { background: linear-gradient(to right, var(--accent) var(--progress, 0%), #555 var(--progress, 0%)); }
+#session-error { padding: 8px 24px; color: #B00020; font-size: 13px; }
+@media (max-width: 700px) {
+  .header-inner { width: calc(100% - 32px); gap: 10px; flex-wrap: wrap; padding: 14px 0; }
+  nav { order: 2; width: 100%; margin: 0; gap: 24px; min-height: 36px; }
+  .wordmark { margin-right: auto; }
+  .language-button { min-height: 44px; }
+}
+@media (forced-colors: active) { * { scrollbar-color: auto; } }

@@ -5,6 +5,10 @@
   "type": "module",
   "description": "Client-facing data-preview portal — browse the embodied-AI data taxonomy and preview video demos. Single always-on Node (Hono) process serving the built frontend, API, and on-disk videos.",
   "scripts": {
+    "dev:cua": "node cua/scripts/dev.mjs",
+    "start:cua": "pnpm -C server start:cua",
+    "build:cua": "node cua/scripts/sync-theme.mjs",
+    "check:cua": "node cua/scripts/sync-theme.mjs --check && pnpm -C server test:cua",
     "dev": "concurrently -n web,api -c cyan,magenta \"pnpm -C web dev\" \"pnpm -C server dev\"",
     "build": "pnpm -C web build",
     "start": "pnpm -C server start",

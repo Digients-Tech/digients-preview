@@ -1,0 +1,11 @@
+{
+  "profile": "product-admin",
+  "sourceRoots": ["cua"],
+  "locale": "en",
+  "canonicalMap": "DESIGN.md",
+  "requiredCapabilities": ["Select/Listbox", "Form", "Scrollbar", "Toast"],
+  "ownership": { "Select/Listbox": "native" },
+  "requiredCommands": ["cua", "typecheck", "build"],
+  "commands": { "cua": "pnpm check:cua", "typecheck": "pnpm typecheck", "build": "pnpm build" },
+  "evidence": { "failurePaths": "server/scripts/test-cua.ts" }
+}

@@ -4,6 +4,8 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "start:cua": "tsx src/cua.ts",
+    "test:cua": "tsx scripts/test-cua.ts",
     "dev": "tsx watch src/index.ts",
     "start": "tsx src/index.ts",
     "typecheck": "tsc --noEmit",

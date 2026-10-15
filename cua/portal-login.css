@@ -1,0 +1,67 @@
+/* Generated from web/src/index.css by cua/scripts/sync-theme.mjs. */
+/* ===================== login ===================== */
+.login {
+  min-height: 100%;
+  display: grid; place-items: center;
+  padding: 24px;
+  background: var(--bg);
+}
+.login__card {
+  width: 100%; max-width: 380px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 40px 36px;
+  display: flex; flex-direction: column;
+}
+.login__brand {
+  font-family: var(--font-mono);
+  font-size: 11px; font-weight: 500;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--text-dim);
+  padding-left: 32px;
+  position: relative;
+  margin-bottom: 28px;
+  -webkit-background-clip: initial; background-clip: initial;
+  background: none;
+  /* Override the gradient text from the old design */
+}
+.login__brand::before {
+  content: ""; position: absolute; left: 0; top: 50%;
+  width: 24px; height: 1px;
+  background: var(--text); opacity: 0.3;
+}
+.login__title {
+  margin: 0 0 8px;
+  font-family: var(--font-display);
+  font-size: 28px; font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+.login__hint { margin: 0 0 26px; color: var(--text-dim); font-size: 14px; line-height: 1.5; }
+.login__input {
+  background: var(--bg);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  padding: 13px 15px;
+  color: var(--text); font-size: 15px;
+  font-family: var(--font-display);
+  outline: none;
+  transition: border-color .15s ease;
+}
+.login__input:focus { border-color: var(--text); }
+.login__input--error { border-color: #B00020; }
+.login__error { color: #B00020; font-size: 13px; margin-top: 10px; }
+.login__btn {
+  margin-top: 22px;
+  padding: 14px;
+  border: 0;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-display);
+  font-size: 14px; font-weight: 600; letter-spacing: 0.02em;
+  color: var(--bg); cursor: pointer;
+  background: var(--text);
+  transition: background .15s ease;
+}
+.login__btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.login__btn:not(:disabled):hover { background: #222; }

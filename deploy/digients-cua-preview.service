@@ -1,0 +1,18 @@
+[Unit]
+Description=Digients CUA sample preview
+After=network.target
+
+[Service]
+Type=simple
+User=ubuntu
+WorkingDirectory=/opt/digients-cua-preview/server
+# Read sample's passwords first; this service's own config must not override them.
+EnvironmentFile=/etc/digients-preview.env
+EnvironmentFile=/etc/digients-cua-preview.env
+ExecStart=/usr/bin/env pnpm start:cua
+Restart=on-failure
+RestartSec=3
+NoNewPrivileges=true
+
+[Install]
+WantedBy=multi-user.target

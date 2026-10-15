@@ -1,0 +1,31 @@
+/* Generated from web/src/index.css by cua/scripts/sync-theme.mjs. */
+:root {
+  /* Surface */
+  --bg: #FAFAFA;
+  --bg-2: #F4F4F4;
+  --card: #FFFFFF;
+  --card-hover: #F7F7F7;
+
+  /* Ink */
+  --text: #0A0A0A;
+  --text-dim: #525252;
+  --text-faint: #999999;
+
+  /* Lines */
+  --border: rgba(10, 10, 10, 0.10);
+  --border-strong: rgba(10, 10, 10, 0.22);
+
+  /* Single accent — matches main site oklch(0.89 0.21 128) */
+  --accent: #B8FF00;
+  --accent-soft: rgba(184, 255, 0, 0.18);
+  --accent-line: rgba(184, 255, 0, 0.6);
+
+  /* Brutalist: sharp corners. 4px = main site --radius: 0.25rem. */
+  --radius: 4px;
+  --radius-sm: 2px;
+
+  /* Typography */
+  --font-display: "Space Grotesk", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font: var(--font-display);
+}

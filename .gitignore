@@ -22,6 +22,8 @@ captions/
 # Client delivery staging (hardlinked subset for Google Drive hand-off)
 delivery-web36/
 delivery-*/
+cua/data/
+cua/assets/
 
 # Runtime state — login counts per password slot
 .stats/
@@ -34,3 +36,6 @@ pnpm-debug.log*
 
 # Tooling
 .claude/
+.codex/
+.local/
+premium-audit.json

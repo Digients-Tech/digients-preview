@@ -8,6 +8,12 @@ a raw S3 / Cyberduck file dump.
 Single repo, single always-on Node process: a [Hono](https://hono.dev) server serves the
 built React frontend, the catalog API, and the on-disk preview videos + posters.
 
+The independent [CUA sample viewer](cua/README.md) also lives in this repository.
+Run `pnpm dev:cua` for its local password-protected preview on port 8789. Its planned
+production URL is `https://cua-sample.digients.tech/`, with sample's password list and
+no staging environment. CUA uses its own server entry point and external runtime data;
+the commands below continue to operate the original taxonomy portal.
+
 ```
 digients-preview/
 ├── catalog.json   the taxonomy + demo content (edit this — no code change / rebuild)

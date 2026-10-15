@@ -1,0 +1,11 @@
+* { box-sizing: border-box; }
+html { height: 100%; scrollbar-color: var(--text-dim) var(--bg-2); }
+body { margin: 0; color: var(--text); font-family: var(--font-display), "PingFang SC", "Microsoft YaHei", sans-serif; }
+[hidden] { display: none !important; }
+button, input { font: inherit; }
+label { font-size: 13px; margin-bottom: 8px; }
+.login__btn { min-height: 46px; }
+.login-language { margin-top: 20px; padding: 8px; border: 0; background: transparent; color: var(--text-dim); cursor: pointer; min-height: 44px; }
+button:focus-visible, input:focus-visible { outline: 2px solid var(--text); outline-offset: 3px; }
+.login__input[aria-invalid=true] { border-color: #B00020; }
+@media (max-width: 400px) { .login__card { padding: 28px 24px; } .login__input { font-size: 16px; min-width: 0; } }
