@@ -1,0 +1,23 @@
+deploy/digients-cua-preview.service
+  s_8e2bcc4b26108f::t_89948edb907c31 4
+deploy/digients-cua-preview.env.example
+  s_8e2bcc4b26108f::t_89948edb907c31 4-5
+cua/README.md
+  s_8e2bcc4b26108f::t_89948edb907c31 57-58
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "a6e601129cf4becd92e6e43568bd3b7db8257e8d",
+  "prompts": {},
+  "sessions": {
+    "s_8e2bcc4b26108f": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a13daf-f2d4-7cf0-a332-feab18bfd813",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "wyf-ACCEPT <importwyf@gmail.com>"
+    }
+  }
+}
