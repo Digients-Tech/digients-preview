@@ -59,6 +59,11 @@ Space Grotesk is the display/body face; JetBrains Mono labels technical values a
 secondary controls. Use system Chinese fallbacks for unsupported glyphs. Existing
 portal font loading is retained. CUA supports English and Chinese, persists language
 locally and uses the same preference in login and the authenticated viewer.
+The viewer header shows a single bordered `中文 | EN` segmented control. Both
+labels stay visible, with a filled selected segment and `aria-pressed` state.
+Each native button selects its named language in place; selecting the active
+language is a no-op. Preserve the current URL and playback position, and omit
+external-link icons. Mobile language segments retain 44px touch targets.
 
 ## Layout
 

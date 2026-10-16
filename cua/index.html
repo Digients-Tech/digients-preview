@@ -44,7 +44,10 @@
         <a href="#workflow" class="nav-current" data-i18n="navSample">Workflow sample</a>
         <a href="#data" data-i18n="navData">Explore the data</a>
       </nav>
-      <button id="language" class="language-button" aria-label="切换到中文"><span lang="zh">中文</span><span aria-hidden="true">↗</span></button>
+      <div id="language" class="language-switch" role="group" aria-label="Language">
+        <button class="language-option" type="button" data-language="zh" lang="zh-CN" aria-pressed="false">中文</button>
+        <button class="language-option" type="button" data-language="en" lang="en" aria-pressed="true">EN</button>
+      </div>
       <button id="sign-out" class="language-button" type="button" data-i18n="signOut">Sign out</button>
     </div>
     <p id="session-error" role="alert" hidden></p>

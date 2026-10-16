@@ -103,8 +103,10 @@
     }
     $('stat-annotations').textContent = S.counts.annotations.toLocaleString('en-US');
     $('stat-steps').textContent = S.counts.trainingSteps.toLocaleString('en-US');
-    $('language').firstElementChild.textContent = lang === 'en' ? '中文' : 'EN';
-    $('language').setAttribute('aria-label', lang === 'en' ? '切换到中文' : 'Switch to English');
+    $('language').setAttribute('aria-label', lang === 'zh' ? '语言' : 'Language');
+    $('language').querySelectorAll('[data-language]').forEach(button => {
+      button.setAttribute('aria-pressed', String(button.dataset.language === lang));
+    });
     $('search').placeholder = t(mode === 'narration' ? 'search' : 'searchEvents');
     $('search').setAttribute('aria-label', $('search').placeholder);
     accessibleName('big-play',t('watchWorkflow')); accessibleName('rewind',t('backTen'));
@@ -429,7 +431,12 @@
   $('copy-json').addEventListener('click',() => copy(codeCache,'json'));
   $('share-time').addEventListener('click',() => { const url = new URL(location.href); url.hash = `t=${moment().toFixed(3)}`; copy(url.href,'link'); });
   $('close-copy').addEventListener('click',() => { $('copy-fallback').hidden = true; $('share-time').focus(); });
-  $('language').addEventListener('click',() => { lang = lang === 'en' ? 'zh' : 'en'; try { localStorage.setItem('digients-sample-language',lang); } catch {} applyLanguage(); });
+  $('language').querySelectorAll('[data-language]').forEach(button => button.addEventListener('click',() => {
+    if (lang === button.dataset.language) return;
+    lang = button.dataset.language;
+    try { localStorage.setItem('digients-sample-language',lang); } catch {}
+    applyLanguage();
+  }));
   addEventListener('hashchange',() => { if (/^#t=/.test(location.hash)) seek(C.parseMoment(location.hash,duration,S.initialTime)); });
   // Player shortcuts never steal typing, native range keys or tab navigation.
   $('player').addEventListener('keydown',event => {
