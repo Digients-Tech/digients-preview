@@ -25,7 +25,7 @@ metadata:
   created: 2026-10-15
   modified:
     - date: 2026-10-16
-      note: Keep three visually distinct chapter cards across the recording and consolidate downloads.
+      note: Keep distinct chapter cards and unified downloads; align thumbnail/title/description rows as cards narrow.
     - date: 2026-10-15
       note: Document the production identity and its independent CUA adapter.
 ---
@@ -65,6 +65,10 @@ locally and uses the same preference in login and the authenticated viewer.
 Keep the existing CUA two-column player/inspector and its mobile stacked layout.
 Its page width follows the existing 1320px viewer. Small-screen header controls wrap;
 authentication is a single centered card derived from the production login layout.
+Chapter cards share image, title and description rows above 600px, so wrapped titles
+do not move neighbouring thumbnails or description starts. Keep the existing compact
+image/text card layout at 600px and below. Older engines use a top-aligned flex fallback
+with a two-line minimum title space rather than vertically centered button contents.
 
 ## Elevation & Depth
 
