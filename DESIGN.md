@@ -25,7 +25,7 @@ metadata:
   created: 2026-10-15
   modified:
     - date: 2026-10-16
-      note: Keep distinct chapter cards and unified downloads; align thumbnail/title/description rows as cards narrow.
+      note: Keep distinct aligned chapter cards and unified downloads; compact the hero and sample controls.
     - date: 2026-10-15
       note: Document the production identity and its independent CUA adapter.
 ---
@@ -65,6 +65,12 @@ locally and uses the same preference in login and the authenticated viewer.
 Keep the existing CUA two-column player/inspector and its mobile stacked layout.
 Its page width follows the existing 1320px viewer. Small-screen header controls wrap;
 authentication is a single centered card derived from the production login layout.
+CUA's hero is compact: the two title phrases share a line where space permits, in
+black and muted gray, without a forced line break. Its title scales from 30px to
+44px; intro padding is 22px above and 18px below on desktop. The supporting copy
+uses 13px text at 1.5 line height. Below 900px it moves under the title with a 10px
+gap, and phrases may wrap naturally. Keep sample-heading gaps tight and preserve
+44px touch targets for the video/frame tabs on mobile.
 Chapter cards share image, title and description rows above 600px, so wrapped titles
 do not move neighbouring thumbnails or description starts. Keep the existing compact
 image/text card layout at 600px and below. Older engines use a top-aligned flex fallback
