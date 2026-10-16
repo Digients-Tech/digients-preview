@@ -46,3 +46,5 @@ nav .nav-current:after, .view-tab.active:after, .code-tab.active:after { backgro
   .language-button { min-height: 44px; }
 }
 @media (forced-colors: active) { * { scrollbar-color: auto; } }
+
+.data-intro > p.download-note { margin-top: 18px; color: var(--text-dim); font-size: 12px; line-height: 1.7; }

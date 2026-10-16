@@ -14,6 +14,18 @@
   const nativeSample = S.sourceKind === 'local_recording' || S.source_kind === 'local_recording';
   const sampleId = window.CUASampleLoader?.selectedId || S.id;
   const nativeSteps = nativeSample ? (window.CUA_STEPS?.steps || []) : [];
+  // Presentation-only chapter picks. Use each source image's frame clock, not
+  // the action start, so the thumbnail and video seek point refer to one frame.
+  const chapterPicks = sampleId === 'cua-windows-20260918-30fps' ? [
+    {step:464,title:{en:'Surface cracks up close',zh:'近看表面裂纹'},description:{en:'Inspect the branching grooves across the sculpted surface.',zh:'查看雕刻表面清晰的分叉纹理。'}},
+    {step:2117,title:{en:'Along the curved rim',zh:'沿弧形边缘查看'},description:{en:'See the circular rim and its surrounding surface from a different angle.',zh:'从另一角度查看圆弧边缘及周围表面。'}},
+    {step:3846,title:{en:'The quick palette in context',zh:'查看快捷工具面板'},description:{en:'Jump to the quick palette displayed over the model.',zh:'跳转到模型上方显示快捷工具面板的画面。'}},
+  ] : null;
+  const highlights = chapterPicks ? chapterPicks.map(pick => {
+    const step = nativeSteps[pick.step - 1];
+    if (!step || !Number.isFinite(step.frameTimestamp_s) || step.frameTimestamp_s < 0 || step.frameTimestamp_s >= duration) return null;
+    return {...pick,start_s:step.frameTimestamp_s,image:step.image,width:step.width,height:step.height};
+  }).filter(Boolean) : (S.highlights || []);
   let activeOverlayStep = null, activeOverlayTime = null;
   const mediaWidth = Number(S.media.width), mediaHeight = Number(S.media.height);
   const PAGE_SIZE = 40;
@@ -32,11 +44,11 @@
       signOut:'Sign out',chooseSample:'Choose sample',resumeFollow:'Resume follow',mouse:'Mouse',leftHeld:'Left held',rightHeld:'Right held',middleHeld:'Middle held',noPointer:'No pointer position',
       skip:'Skip to the sample',navSample:'Workflow sample',navData:'Explore the data',eyebrow:'Computer-use data, up close',
       heroLine1:'Human work.',heroLine2:'In full context.',heroDescription:'Go beyond the screen recording. Explore the actions, intent and structured traces behind a real creative workflow.',heroCta:'Explore one complete workflow',
-      category:'3D creation',downloadSample:'Download sample JSON',watchWorkflow:'Watch the workflow',speed:'Playback speed',currentIntent:'Current intent',statDuration:'continuous workflow',statAnnotations:'semantic annotations',statSteps:'training action steps',
+      category:'3D creation',downloadSample:'Viewer data',watchWorkflow:'Watch the workflow',speed:'Playback speed',currentIntent:'Current intent',statDuration:'continuous workflow',statAnnotations:'semantic annotations',statSteps:'training action steps',
       narration:'Narration',events:'Input events',synced:'Synced',all:'All',clicks:'Clicks',keys:'Keys',scroll:'Scroll',noResults:'No matching moments',clearSearch:'Clear search',follow:'Follow video',
       sourceLine:'Recording and annotations prepared by Digients.',originalSource:'Original source',copyManually:'Select and copy this link',done:'Done',
       momentsTitle:'A few moments worth exploring.',momentsDescription:'Jump into the work. Every moment is connected to its context.',momentsAside:'From the same continuous recording',
-      dataEyebrow:'Under the surface',dataTitle:'See what’s in the data.',dataDescription:'Inspect the original annotations, video-aligned inputs and an official training record. The first two follow your playhead.',downloadAnnotations:'All annotations',downloadTrace:'Full training trace',downloadSource:'Source manifest',originalLanguage:'Annotations are shown in their original English. Source labels are model-generated.',input:'Input',trace:'Training trace',traceNote:'Official step 727. This record has no video timestamp and is shown independently of playback.',copyJsonManually:'Select and copy the JSON below',footer:'A closer look at how people work.',backSample:'Back to the sample',
+      dataEyebrow:'Under the surface',dataTitle:'See what’s in the data.',dataDescription:'Inspect the original annotations, video-aligned inputs and an official training record. The first two follow your playhead.',downloadAnnotations:'Full model annotations',downloadTrace:'Full training trace',downloadSource:'Source manifest',downloadNote:'Each link downloads a different data file. Video and images are not included.',originalLanguage:'Annotations are shown in their original English. Source labels are model-generated.',input:'Input',trace:'Training trace',traceNote:'Official step 727. This record has no video timestamp and is shown independently of playback.',copyJsonManually:'Select and copy the JSON below',footer:'A closer look at how people work.',backSample:'Back to the sample',
       search:'Search actions or intent…',searchEvents:'Search key, button or time…',noAnnotation:'No source annotation covers this moment.',play:'Play',pause:'Pause',backTen:'Back 10 seconds',fullScreen:'Fullscreen',showCursor:'Show cursor trail',hideCursor:'Hide cursor trail',copyLink:'Copy link to this moment',copyJson:'Copy JSON',previousPage:'Previous timeline page',nextPage:'Next timeline page',
       copied:'Copied to clipboard',linkCopied:'Link to this moment copied',playFailed:'Playback could not start. Try the play button again.',videoFailed:'The recording could not be loaded. Keep the assets/sample folder beside this page and reload.',fullscreenFailed:'Fullscreen is unavailable in this browser.',eventNote:'Selected mouse/key presses and scrolls. Timing comes from the source video-aligned event sidecar.',narrationNote:'Source model annotation. Intervals use the source video clock.',traceRecordNote:'Original Scale-CUA-style training record. No video timestamp is supplied.',noInput:'No input event has occurred yet.',eventTime:'Latest input at',sourceModel:'Source model annotation',sampleDuration:'1h 28m',linkLocal:'Local link copied. It opens on this computer.',
     },
@@ -44,11 +56,11 @@
       signOut:'退出',chooseSample:'选择样本',resumeFollow:'恢复跟随',mouse:'鼠标',leftHeld:'左键按住',rightHeld:'右键按住',middleHeld:'中键按住',noPointer:'无光标位置记录',
       skip:'跳到样本',navSample:'工作流样本',navData:'查看数据',eyebrow:'近距离查看 Computer-use 数据',
       heroLine1:'看见真实操作。',heroLine2:'理解完整上下文。',heroDescription:'从一段真实创作过程出发，查看屏幕背后的操作、意图与结构化训练记录。',heroCta:'探索一个完整工作流',
-      category:'三维创作',downloadSample:'下载样本 JSON',watchWorkflow:'播放工作流',speed:'播放速度',currentIntent:'当前意图',statDuration:'连续工作流',statAnnotations:'语义标注',statSteps:'训练操作步骤',
+      category:'三维创作',downloadSample:'展示数据',watchWorkflow:'播放工作流',speed:'播放速度',currentIntent:'当前意图',statDuration:'连续工作流',statAnnotations:'语义标注',statSteps:'训练操作步骤',
       narration:'语义叙述',events:'输入事件',synced:'同步',all:'全部',clicks:'点击',keys:'按键',scroll:'滚动',noResults:'没有匹配的片段',clearSearch:'清除搜索',follow:'跟随视频',
       sourceLine:'录屏与标注由 Digients 提供。',originalSource:'原始来源',copyManually:'选中并复制此链接',done:'完成',
       momentsTitle:'从几个片段开始探索。',momentsDescription:'跳入真实工作现场，同时查看每一步的上下文。',momentsAside:'均来自同一段连续录屏',
-      dataEyebrow:'走进数据内部',dataTitle:'查看数据内容。',dataDescription:'检查原始标注、与视频对齐的输入事件和一条官方训练记录。前两项会随播放位置更新。',downloadAnnotations:'完整语义标注',downloadTrace:'完整训练记录',downloadSource:'来源清单',originalLanguage:'标注保留原始英文。来源标签由模型生成。',input:'输入事件',trace:'训练记录',traceNote:'官方第 727 步。该记录没有视频时间戳，因此独立于播放进度展示。',copyJsonManually:'选中并复制下方 JSON',footer:'更近一步，看见人如何工作。',backSample:'返回样本',
+      dataEyebrow:'走进数据内部',dataTitle:'查看数据内容。',dataDescription:'检查原始标注、与视频对齐的输入事件和一条官方训练记录。前两项会随播放位置更新。',downloadAnnotations:'完整模型标注',downloadTrace:'完整训练记录',downloadSource:'来源清单',downloadNote:'每个入口对应不同的数据文件，不包含视频和图片。',originalLanguage:'标注保留原始英文。来源标签由模型生成。',input:'输入事件',trace:'训练记录',traceNote:'官方第 727 步。该记录没有视频时间戳，因此独立于播放进度展示。',copyJsonManually:'选中并复制下方 JSON',footer:'更近一步，看见人如何工作。',backSample:'返回样本',
       search:'搜索英文操作或意图…',searchEvents:'搜索按键、鼠标或时间…',noAnnotation:'此时刻没有对应的来源标注。',play:'播放',pause:'暂停',backTen:'后退 10 秒',fullScreen:'全屏',showCursor:'显示光标轨迹',hideCursor:'隐藏光标轨迹',copyLink:'复制此时刻的链接',copyJson:'复制 JSON',previousPage:'上一页时间记录',nextPage:'下一页时间记录',
       copied:'已复制到剪贴板',linkCopied:'已复制此时刻的链接',playFailed:'暂时无法开始播放，请再点一次播放按钮。',videoFailed:'无法加载录屏。请保留页面旁的 assets/sample 文件夹，然后刷新。',fullscreenFailed:'当前浏览器无法进入全屏。',eventNote:'筛选鼠标按下、按键按下与滚动事件。时间来自已映射到视频的官方事件文件。',narrationNote:'来源模型标注，时间区间对应来源视频时钟。',traceRecordNote:'原始 Scale-CUA 格式训练记录。来源未提供视频时间戳。',noInput:'此前尚无输入事件。',eventTime:'最近输入时间',sourceModel:'来源模型标注',sampleDuration:'1 小时 28 分钟',linkLocal:'已复制本机链接，适用于这台电脑。',
     },
@@ -228,20 +240,22 @@
     rebuildFilter(true);
   }
   function renderHighlights() {
-    $('highlights').replaceChildren(...S.highlights.map(highlight => {
+    $('highlights').replaceChildren(...highlights.map(highlight => {
       const button = document.createElement('button'); button.className = 'highlight';
+      button.dataset.time = String(highlight.start_s);
       button.setAttribute('aria-label',`${localized(highlight.title)} · ${C.formatTime(highlight.start_s)}`);
       const picture = document.createElement('div'); picture.className = 'highlight-image';
       const img = document.createElement('img'); img.src = highlight.image; img.alt = localized(highlight.title); img.loading = 'lazy'; img.width = highlight.width || mediaWidth; img.height = highlight.height || mediaHeight;
       const stamp = document.createElement('span'); stamp.className = 'highlight-time'; stamp.textContent = C.formatTime(highlight.start_s);
-      const play = document.createElement('span'); play.className = 'highlight-play'; play.append(icon('play'));
+      const play = document.createElement('span'); play.className = 'highlight-play'; play.append(icon('arrow'));
       picture.append(img,stamp,play);
-      const title = document.createElement('h3'); title.textContent = localized(highlight.title); title.append(icon('external'));
+      const title = document.createElement('h3'); title.textContent = localized(highlight.title); title.append(icon('arrow'));
       const description = document.createElement('p'); description.textContent = localized(highlight.description);
       button.append(picture,title,description);
       button.addEventListener('click',() => {
+        if ($('video-view').hidden) $('view-video').click();
         $('search').value = ''; $('follow').checked = true; setTimelineMode('narration');
-        seek(highlight.start_s,true); $('workflow').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth'});
+        seek(highlight.start_s); $('workflow').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth'});
       });
       return button;
     }));

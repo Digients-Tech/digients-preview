@@ -24,6 +24,8 @@ components:
 metadata:
   created: 2026-10-15
   modified:
+    - date: 2026-10-16
+      note: Keep three visually distinct chapter cards across the recording and consolidate downloads.
     - date: 2026-10-15
       note: Document the production identity and its independent CUA adapter.
 ---
@@ -93,6 +95,17 @@ Do not claim server-side revocation of previously copied valid session tokens.
 CUA has one production environment, with the same password list as sample and an
 independent session secret. Its service loads sample's env file then its own settings.
 Password values never enter frontend files, deployment snippets, logs or Git.
+
+CUA shows three stable chapter cards from the early, middle and late parts of the
+recording. Select visibly different source frames; do not treat nearby input types
+as separate highlights. The thumbnail and seek target use the same source frame
+timestamp, not the action's start time. Clicking switches to the video view and
+preserves playback intent. Changing language does not reshuffle the picks. Chapter
+curation belongs to frontend presentation; original dataset payloads remain intact.
+
+All four data downloads live together under the data section: viewer JSON, full
+model annotations, full training trace and source manifest. Explain that these are
+different files and exclude video/images; do not imply a complete media bundle.
 
 ## Do's and Don'ts
 
