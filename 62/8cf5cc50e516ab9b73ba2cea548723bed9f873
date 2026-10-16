@@ -1,0 +1,23 @@
+cua/portal-theme.css
+  s_8e2bcc4b26108f::t_8df41d7e7ae477 27-54
+cua/index.html
+  s_8e2bcc4b26108f::t_8df41d7e7ae477 54,56
+DESIGN.md
+  s_8e2bcc4b26108f::t_8df41d7e7ae477 28,68-73
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "628cf5cc50e516ab9b73ba2cea548723bed9f873",
+  "prompts": {},
+  "sessions": {
+    "s_8e2bcc4b26108f": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a13daf-f2d4-7cf0-a332-feab18bfd813",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "wyf-ACCEPT <importwyf@gmail.com>"
+    }
+  }
+}
