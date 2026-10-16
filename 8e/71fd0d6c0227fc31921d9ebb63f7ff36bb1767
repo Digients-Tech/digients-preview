@@ -1,0 +1,25 @@
+cua/index.html
+  s_8e2bcc4b26108f::t_096a5f15933bf8 47-50
+cua/app.js
+  s_8e2bcc4b26108f::t_096a5f15933bf8 106-109,434-439
+cua/portal-theme.css
+  s_8e2bcc4b26108f::t_096a5f15933bf8 61-65,79,81
+DESIGN.md
+  s_8e2bcc4b26108f::t_18c4a9c39b6502 62-66
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "8e71fd0d6c0227fc31921d9ebb63f7ff36bb1767",
+  "prompts": {},
+  "sessions": {
+    "s_8e2bcc4b26108f": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a13daf-f2d4-7cf0-a332-feab18bfd813",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "wyf-ACCEPT <importwyf@gmail.com>"
+    }
+  }
+}
